@@ -1,0 +1,551 @@
+{
+  "doc_name": "40aa8136_temp",
+  "structure": [
+    {
+      "title": "HPM5300 系列高性能微控制器数据手册 Rev0.11",
+      "node_id": "0000",
+      "text": "## HPM5300 系列高性能微控制器数据手册 Rev0.11\n\n• 32 位 RISC-V 处理器\n\n- 支持 RV32-IMAFDCBP 指令集\n\n- 3.57 Coremark/MHz, 1.98 DMIPS/MHz\n\n- DSP 单元，支持 SIMD 和 DSP 指令\n\n- L1 指令缓存和数据缓存各 16KB\n\n- 指令本地存储器 ILM 和数据本地存储器 DLM 各 128KB\n\n- 内置存储器\n- 共 288 KB 片上 SRAM，包括通用内存和 CPU 的本地存储器\n- 1 MB 内置闪存\n- 4096 位 OTP\n- 128 KB BOOT ROM\n\n- 电源和时钟\n- 多个片上电源，包括 DCDC 和 LDO\n- 低功耗模式，运行模式、等待模式、停止模式、休眠模式和关机模式\n- 24MHz 晶体振荡器\n- 24MHz 和 32KHz 内部 RC 振荡器\n- 2 个 PLL，支持小数分频、展频\n\n- 外部存储器接口\n- 1 个串行总线控制器 XPI，支持各类外部串行 Flash 和 PSRAM\n\n- 运动控制系统\n- 2 个 PWM 定时器\n- 2 个正交编码器输入 QEIV2 和 2 个正交编码器输出 QEO\n- 2 个串行编码器接口 SEI\n- 2 个运动管理控制器 MMC\n- 1 个旋变解码器 RDC\n- 1 个可编程逻辑模块 PLB\n\n• 定时器\n\n- 5 组 32 位通用定时器\n- 3 个看门狗\n- 实时时钟\n\n- 通讯接口\n- 9 个 UART、4 个 SPI、4 个 I2C\n- 1 个 USB 2.0 OTG，集成 HS-PHY\n- 4 个 CAN 控制器，支持 CAN-FD\n\n- 高性能模拟外设\n- 2 个 ADC，16 位/2MSPS，可配置为 12 位/4MSPS，共支持 16 路模拟输入引脚\n- 2 个 12 位 DAC，1MSPS\n- 2 个模拟比较器\n- 2 个运算放大器\n\n- 输入输出\n- 56 个 GPIO\n- IO 支持 3.3V 和 1.8V\n\n- 信息安全\n- AES-128/256 加解密引擎，支持 ECB，CBC 模式\n- 支持 SM2，SM3，SM4\n- SHA-1/256 哈希模块\n- 真随机数发生器\n- NOR Flash 实时解密\n\n<table><tr><td>产品型号：</td></tr><tr><td>HPM5361ICB1、HPM5361ICF1、HPM5361IEG1</td></tr><tr><td>HPM5331ICB1、HPM5331ICF1、HPM5331IEG1</td></tr><tr><td>HPM5321ICB1、HPM5321ICF1、HPM5321IEG1</td></tr><tr><td>HPM5301IEG1</td></tr></table>\n\n---",
+      "line_num": 1,
+      "summary": "HPM5300系列高性能微控制器数据手册的封面页，概述了该系列MCU的核心特性，包括32位RISC-V处理器、存储器、电源时钟、运动控制、定时器、通信接口、模拟外设、GPIO和信息安全系统，并列出了具体产品型号。"
+    },
+    {
+      "title": "目录",
+      "node_id": "0001",
+      "text": "## 目录\n\n1 产品概述 ..... 4\n1.1 系统框图 ..... 4\n1.2 特性总结 ..... 6\n1.2.1 内核与系统 ..... 6\n1.2.2 内部存储器 ..... 7\n1.2.3 电源管理 ..... 7\n1.2.4 时钟 ..... 7\n1.2.5 复位 ..... 8\n1.2.6 启动 ..... 8\n1.2.7 外部存储器 ..... 8\n1.2.8 运动控制系统 ..... 8\n1.2.9 定时器 ..... 9\n1.2.10 通讯外设 ..... 9\n1.2.11 模拟外设 ..... 9\n1.2.12 输入输出 ..... 9\n1.2.13 信息安全系统 ..... 10\n1.2.14 系统调试 ..... 10\n2 引脚及功能描述 ..... 12\n2.1 LQFP100 引脚分布 ..... 12\n2.2 LQFP64 引脚分布 ..... 13\n2.3 QFN48 引脚分布 ..... 14\n2.4 引脚配置及功能 PINMUX ..... 15\n2.5 特殊功能引脚 ..... 37\n2.6 IO 复位状态 ..... 37\n2.7 IO 供电引脚 ..... 38\n3 电源 ..... 39\n3.1 电源框图 ..... 39\n3.2 上下电时序 ..... 39\n4 电气特性 ..... 39\n4.1 工作条件 ..... 39\n4.1.1 最大值和最小值 ..... 40\n4.1.2 正常工作条件 ..... 41\n4.2 内置闪存特性 ..... 41\n4.3 VPMC 欠压检测 ..... 42\n4.4 复位引脚 RESET_N ..... 42\n4.5 振荡器 ..... 42\n4.5.1 24MHz 振荡器特性 ..... 43\n4.5.2 32KHz RC 振荡器时钟特性 ..... 43\n4.5.3 24MHz RC 振荡器时钟特性 ..... 43\n4.5.4 PLL 特性 ..... 43\n\n---\n\n4.6 外设时钟特性 ..... 43\n4.7 工作模式 ..... 45\n4.8 供电电流特性 ..... 45\n4.9 I/O 特性 ..... 47\n4.9.1 I/O DC 特性 ..... 47\n4.9.2 I/O AC 特性 ..... 47\n4.10 JTAG 接口 ..... 49\n4.11 XPI 存储器接口 ..... 50\n4.11.1 DC 特性 ..... 50\n4.11.2 AC 特性 ..... 50\n4.12 模拟接口 ..... 55\n4.12.1 16 位模数转换 ADC 特性 ..... 55\n4.12.2 比较器 ACMP 特性 ..... 56\n4.12.3 12 位模数转换器 DAC 特性 ..... 56\n4.12.4 运算放大器 OPAMP 特性 ..... 57\n4.13 SPI 接口 ..... 63\n4.13.1 SPI 主模式时序图 ..... 63\n4.13.2 SPI 从模式时序图 ..... 64\n4.14 I2C 接口 ..... 66\n5 封装 ..... 67\n5.1 LQFP100 封装尺寸 ..... 67\n5.2 LQFP64 封装尺寸 ..... 68\n5.3 QFN48 封装尺寸 ..... 69\n5.4 封装热阻系数 ..... 69\n6 订购信息 ..... 70\n6.1 产品命名规则 ..... 70\n6.2 订购信息 ..... 70\n6.3 封装引出功能差异 ..... 71\n7 版本信息 ..... 73\n8 免责声明 ..... 75\n\n---",
+      "line_num": 71,
+      "summary": "数据手册的目录，列出了文档的章节结构，包括产品概述、引脚描述、电源、电气特性、封装、订购信息、版本信息和免责声明等主要部分及其子章节。"
+    },
+    {
+      "title": "表格目录",
+      "node_id": "0002",
+      "text": "## 表格目录\n\n1 外设简称总结 ..... 6\n2 SOC IOMUX ..... 35\n3 PMIC IOMUX ..... 36\n4 启动配置表 ..... 37\n5 特殊功能引脚配置 ..... 37\n6 IO 复位状态表 ..... 38\n7 电源部分电感，电容参考值 ..... 39\n8 最大值和最小值 ..... 40\n9 正常工作条件 ..... 41\n10 内置闪存特性 ..... 42\n11 VPMC 欠压检测特性 ..... 42\n12 RESET_N 低电平复位特性 ..... 42\n13 24MHz 晶振 ..... 43\n14 32KHz RC 振荡器 ..... 43\n15 24MHz RC 振荡器 ..... 43\n16 PLL 特性参数 ..... 43\n17 外设时钟特性 ..... 44\n18 工作模式配置表 ..... 45\n19 运行模式的典型电流 ..... 45\n20 IDD(VPMC) 典型电流 ..... 46\n21 IDD(VANA) 典型电流 ..... 46\n22 IDD(VPLL) 典型电流 ..... 46\n23 IO 工作条件 ..... 47\n24 I/O AC 特性 ..... 48\n25 JTAG 时序参数 ..... 49\n26 XPI SDR 模式的输入特性（XPI_GCR0|RXCLK|SRC|=0X0） ..... 50\n27 XPI SDR 模式的输入特性（XPI_GCR0|RXCLK|SRC|=0X1） ..... 50\n28 XPI SDR 模式的输入特性（XPI_GCR0|RXCLK|SRC|=0X3，情形 1） ..... 51\n29 XPI SDR 模式的输入特性（XPI_GCR0|RXCLK|SRC|=0X3，情形 2） ..... 51\n30 XPI DDR 模式的输入特性（XPI_GCR0|RXCLK|SRC|=0X0） ..... 52\n31 XPI DDR 模式的输入特性（XPI_GCR0|RXCLK|SRC|=0X1） ..... 52\n32 XPI DDR 模式的输入特性（XPI_GCR0|RXCLK|SRC|=0X3） ..... 53\n33 XPI SDR 模式的输出信号时序 ..... 53\n34 XPI DDR 模式的输出信号时序 ..... 54\n35 16 位 ADC 参数 ..... 55\n36 比较器参数 ..... 56\n37 12 位 DAC 参数 ..... 57\n38 OPAMP 参数 ..... 62\n39 SPI 主模式参数 (注：tperiph = 1000 / fperiph) ..... 64\n40 SPI 从模式参数 (注：tperiph = 1000 / fperiph) ..... 65\n\n---\n\n41 I2C 工作模式及参数 …… 66\n42 各封装热阻系数表 …… 69\n43 订购信息 …… 71\n44 封装引出功能差异 …… 72\n45 版本信息 …… 74\n\n---",
+      "line_num": 149,
+      "summary": "数据手册的表格目录，列出了文档中所有表格的编号和标题，内容涵盖外设简称、引脚配置、电气参数、时序特性、封装信息等。"
+    },
+    {
+      "title": "图片目录",
+      "node_id": "0003",
+      "text": "## 图片目录\n\n1 系统架构框图 ..... 4\n2 LQFP100 引脚分布 ..... 12\n3 LQFP64 引脚分布 ..... 13\n4 QFN48 引脚分布 ..... 14\n5 系统供电框图 ..... 39\n6 I/O AC 特性 ..... 47\n7 JTAG 时序图 ..... 49\n8 XPI SDR 模式的输入时序 (XPI_GCRO[RXCLLKSRC] = 0X0,0X1) ..... 50\n9 XPI SDR 模式的输入时序 (XPI_GCRO[RXCLLKSRC] = 0X3, 情形 1) ..... 51\n10 XPI SDR 模式的输入时序 (XPI_GCRO[RXCLLKSRC] = 0X3, 情形 2) ..... 51\n11 XPI DDR 模式的输入时序 (XPI_GCRO[RXCLLKSRC] = 0X0,0X1) ..... 52\n12 XPI DDR 模式的输入时序 (XPI_GCRO[RXCLLKSRC] = 0X3) ..... 52\n13 XPI SDR 模式的输出信号 ..... 53\n14 XPI DDR 模式的输出信号 ..... 53\n15 SPI 主模式时序 (CPHA=0) ..... 63\n16 SPI 主模式时序 (CPHA=1) ..... 63\n17 SPI 从模式时序 (CPHA=0) ..... 64\n18 SPI 从模式时序 (CPHA=1) ..... 64\n19 LQFP100 封装尺寸图 ..... 67\n20 LQFP64 封装尺寸图 ..... 68\n21 QFN48 封装尺寸图 ..... 69\n22 产品命名规则 ..... 70\n\n---",
+      "line_num": 202,
+      "summary": "数据手册的图片目录，列出了文档中所有插图的编号和标题，包括系统框图、引脚分布图、时序图、封装尺寸图等。"
+    },
+    {
+      "title": "1 产品概述",
+      "node_id": "0004",
+      "text": "## 1 产品概述",
+      "line_num": 229,
+      "summary": "## 1 产品概述"
+    },
+    {
+      "title": "1.1 系统框图",
+      "node_id": "0005",
+      "text": "## 1.1 系统框图\n\n本产品的系统框图如图 1。\n\n![](images/6_0.jpg)\n\n图 1: 系统架构框图\n\n表 1 总结了图 1 中所有外设简称的释义。\n\n<table><tr><td>简称</td><td>描述</td></tr><tr><td>CPU0 子系统</td><td>包含 RISC-V CPU0 及其本地存储器和私有外设的子系统</td></tr><tr><td>HART</td><td>硬件线程（Hardware Thread），RISC-V 规范定义一个可以包含完整 RISC-V 体系架构，并可以独立执行指令的单元为 HART。本手册中，HART 等同与 RISC-V 内核。</td></tr><tr><td>ILM</td><td>指令本地存储器（Instruction Local Memory）</td></tr><tr><td>DLM</td><td>数据本地存储器（Data Local Memory）</td></tr><tr><td>FGPIO</td><td>快速 GPIO 控制器（Fast General Purpose Input Output）</td></tr></table>\n\n---\n\n<table><tr><td>简称</td><td>描述</td></tr><tr><td>USB</td><td>通用串行总线（Universal Serial Bus）</td></tr><tr><td>SDP</td><td>安全数据处理器（Secure Data Processor）</td></tr><tr><td>HDMA</td><td>AHB 外设总线 DMA 控制器（AHB DMA）</td></tr><tr><td>AHB SRAM</td><td>AHB 总线 SRAM</td></tr><tr><td>EXIP</td><td>在线解密模块（Encrypted Execution-In-Place）</td></tr><tr><td>ADC</td><td>模数转换器（Analog-to-Digital Converter）</td></tr><tr><td>DAC</td><td>数模转换器（Digital-to-Analog Converter）</td></tr><tr><td>SYSCTL</td><td>系统控制模块（System Control）</td></tr><tr><td>PLLCTL</td><td>锁相环控制器（PLL Controller）</td></tr><tr><td>ACMP</td><td>模拟比较器（Analog Comparator）</td></tr><tr><td>MBX</td><td>信箱（Mailbox）</td></tr><tr><td>DMAMUX</td><td>DMA 请求路由器</td></tr><tr><td>IOC</td><td>IO 控制器（Input Output Controller）</td></tr><tr><td>PIOC</td><td>电源管理域 IO 控制器</td></tr><tr><td>GPIO</td><td>通用输入输出控制器（General Purpose Input Output）</td></tr><tr><td>PGPIO</td><td>电源管理域 GPIO 控制器</td></tr><tr><td>GPIOIM</td><td>GPIO 管理器（GPIO Manager）</td></tr><tr><td>OTP</td><td>一次性可编程存储（One Time Program）</td></tr><tr><td>PWM</td><td>PWM 定时器（Pulse Width Modulation）</td></tr><tr><td>QEIV2</td><td>正交编码器输入（Quadrature Encoder Input）</td></tr><tr><td>QEO</td><td>正交编码器输出（Quadrature Encoder Output）</td></tr><tr><td>SEI</td><td>串行编码器接口（Serial Encoder Interface）</td></tr><tr><td>MMC</td><td>运动管理控制器（Motion Management Controller）</td></tr><tr><td>RDC</td><td>旋转变压器接口（Resolver Decoder）</td></tr><tr><td>PLB</td><td>可编程逻辑单元（Programmable Logic Block）</td></tr><tr><td>TRGM</td><td>互联管理器（Trigger Manager）</td></tr><tr><td>SYNT</td><td>同步定时器（Sync Timer）</td></tr><tr><td>GPTMR</td><td>通用定时器（General Purpose Timer）</td></tr><tr><td>PTMR</td><td>电源管理域内的通用定时器</td></tr><tr><td>EWDG</td><td>看门狗（Watchdog）</td></tr><tr><td>PWDG</td><td>电源管理域内的看门狗</td></tr><tr><td>UART</td><td>通用异步收发器（Universal Asynchronous Receiver and Transmitter）</td></tr><tr><td>PUART</td><td>电源管理域内的通用异步收发器</td></tr><tr><td>SPI</td><td>串行外设接口（Serial Peripheral Interface）</td></tr><tr><td>I2C</td><td>集成电路总线（Inter-Integrated Circuit）</td></tr><tr><td>CAN</td><td>控制器局域网（Control Area Network）</td></tr><tr><td>PTPC</td><td>精确时间协议模块（Precise Time Protocol）</td></tr><tr><td>RNG</td><td>随机数发生器（Random Number Generator）</td></tr><tr><td>KEYM</td><td>密钥管理器（Key Manager）</td></tr><tr><td>PGPR0/1</td><td>电源管理域的通用寄存器 0/1</td></tr></table>\n\n---\n\n<table><tr><td>简称</td><td>描述</td></tr><tr><td>PCFG</td><td>电源管理域配置模块</td></tr><tr><td>PDGO</td><td>电源管理域开关机模块</td></tr><tr><td>SEC</td><td>安全管理器</td></tr><tr><td>MON</td><td>安全监视器</td></tr><tr><td>系统电源域</td><td>本手册中，系统电源域专指由 VDD_SOC 供电的逻辑和存储电路</td></tr><tr><td>电源管理域</td><td>本手册中，电源管理域专指由 VPMC 供电的逻辑和存储电路</td></tr></table>\n\n表 1: 外设简称总结",
+      "line_num": 231,
+      "summary": "展示了HPM5300系列的系统架构框图，并提供了图中所有外设模块简称的详细释义表，用于解释系统各组成部分。"
+    },
+    {
+      "title": "1.2 特性总结",
+      "node_id": "0006",
+      "text": "## 1.2 特性总结\n\n本章节介绍本产品的主要特性。",
+      "line_num": 253,
+      "summary": "## 1.2 特性总结\n\n本章节介绍本产品的主要特性。"
+    },
+    {
+      "title": "1.2.1 内核与系统",
+      "node_id": "0007",
+      "text": "## 1.2.1 内核与系统\n\n32 位 RISC-V 处理器，处理器特性如下:\n\n- RV32-IMAFDCBP 指令集\n- 整数指令集\n- 乘法指令集\n- 原子指令集\n- 单精度浮点数指令集\n- 双精度浮点数指令集\n- 压缩指令集\n- 位运算指令集\n- DSP 单元，支持 SIMD 和 DSP 指令，兼容 P 扩展指令集\n\n• 性能可达 3.57 CoreMark / MHz\n\n• 特权模式支持 Machine 模式和 User 模式\n\n- 支持 16 个物理内存保护（Physical Memory Protection PMP）区域\n\n- 支持 16KB L1 指令缓存和 16KB L1 数据缓存\n\n- 支持 128 KB 指令本地存储器 ILM 和 128 KB 数据本地存储器 DLM\n\n处理器配备 1 个平台中断控制器 PLIC，用于管理 RISC-V 的外部中断\n\n- 支持多个中断源\n\n- 支持 8 级可编程中断优先级\n\n- 中断嵌套扩展和中断向量扩展\n\n处理器内核配备 1 个软件中断控制器 PLICSW，管理 RISC-V 的软件中断\n\n• 生成 RISC-V 软件中断\n\n处理器内核配备 1 个机器定时器 MCHTMR，管理 RISC-V 的定时器中断\n\n• 生成 RISC-V 定时器中断\n\nDMA 控制器:\n\n- HDMA，支持 32 个通道，用于在外设寄存器和存储器之间进行低延迟的数据搬移，也可以用于存储器之间的数据搬移\n\n---\n\n● 支持 DMA 请求路由分配到任意 DMA 控制器\n\n包括 1 个邮箱 MBX，支持处理器不同进程间的通信：\n\n● 支持独立的信息收发接口\n\n● 支持生成中断",
+      "line_num": 257,
+      "summary": "详细描述了HPM5300系列微控制器的内核与系统特性，包括RISC-V处理器支持的指令集、性能指标、缓存、本地存储器、中断控制器（PLIC, PLICSW, MCHTMR）以及DMA控制器和邮箱（MBX）功能。"
+    },
+    {
+      "title": "1.2.2 内部存储器",
+      "node_id": "0008",
+      "text": "## 1.2.2 内部存储器\n\n内部存储器包括：\n\n• 288 KB 的片上 SRAM\n\n- ILMO, RISC-V CPU0 的指令本地存储器，128KB\n\n- DLM0, RISC-V CPU0 的数据本地存储器，128KB\n\n- AHB SRAM, 32KB, 适用于 HDMA 的低延时访问\n\n● 通用寄存器\n\n- 电源管理域通用寄存器 PGPR，2 组各 64 字节 (共 128 字节)，可以在系统电源域掉电时保存数据\n\n- DGO 通用寄存器 DGO_GPR，容量 16 字节，可以在系统电源域，电源管理域掉电时保存数据\n\n- 内部只读存储器 ROM，容量 128KB，ROM 存放本产品的启动代码，闪存加载（Flashloader）和部分外设驱动程序\n\n- 一次性可编程存储器 OTP，4096 位，可用于存放芯片的部分出厂信息，用户密钥和安全配置，启动配置等数据",
+      "line_num": 311,
+      "summary": "列出了HPM5300系列微控制器的内部存储器组成，包括片上SRAM（ILM, DLM, AHB SRAM）、通用寄存器（PGPR, DGO_GPR）、只读存储器（ROM）和一次性可编程存储器（OTP）的容量和用途。"
+    },
+    {
+      "title": "1.2.3 电源管理",
+      "node_id": "0009",
+      "text": "## 1.2.3 电源管理\n\n本产品集成了完整的电源管理系统：\n\n● 多个片上电源\n\n- DCDC 电压转换器，提供 0.9~1.3V 输出，为系统电源域的电路供电，可调节 DCDC 输出，以支持动态电压频率调整 DVFS，来优化运行时的功耗\n\n- LDOPMC，典型值 1.1V 输出的线性稳压器，为电源管理域的电路供电\n\n- LDOOTP，典型值 2.5V 输出的线性稳压器，为 OTP 供电，仅可在烧写 OTP 时打开\n\n● 运行模式和低功耗模式：等待模式、停止模式、休眠模式和关机模式\n\n● 芯片集成上电复位电路\n\n● 芯片集成低压检测电路",
+      "line_num": 333,
+      "summary": "介绍了HPM5300系列微控制器的电源管理系统，包括集成的DCDC和LDO电源、多种低功耗模式（运行、等待、停止、休眠、关机），以及上电复位和低压检测电路。"
+    },
+    {
+      "title": "1.2.4 时钟",
+      "node_id": "0010",
+      "text": "## 1.2.4 时钟\n\n本产品时钟管理系统支持多个时钟源和时钟低功耗管理：\n\n● 外部时钟源:\n\n- 24MHz 片上振荡器，OSC24M，支持 24MHz 晶体，也支持通过引脚从外部输入 24MHz 有源时钟\n\n● 内部时钟源:\n\n- 内部 RC 振荡器，RC24M，频率 24MHz，允许配置内部 RC 振荡器作为 PLL 的候补时钟源\n\n- 内部 32KHz RC 振荡器，RC32K\n\n● 2 个锁相环 PLL，支持小数分频，支持展频\n\n● 支持低功耗管理，支持自动时钟门控\n\n---",
+      "line_num": 351,
+      "summary": "描述了HPM5300系列微控制器的时钟管理系统，支持的外部（24MHz晶体/有源时钟）和内部（24MHz RC, 32KHz RC）时钟源，以及两个支持小数分频和展频的PLL，并支持低功耗时钟管理。"
+    },
+    {
+      "title": "1.2.5 复位",
+      "node_id": "0011",
+      "text": "## 1.2.5 复位\n\n全局复位，可以复位整个芯片，包括电源管理域和系统电源域，复位源有：\n\n• RESETN 引脚复位（RESETN）\n\n系统电源域复位可以复位系统电源域，复位源有：\n\n• VPMC 引脚的低压复位（VPMC Brownout）\n\n调试复位（DEBUG RST）\n\n• 看门狗复位（WDOGx RST）\n\n软件复位（SW RST）",
+      "line_num": 371,
+      "summary": "## 1.2.5 复位\n\n全局复位，可以复位整个芯片，包括电源管理域和系统电源域，复位源有：\n\n• RESETN 引脚复位（RESETN）\n\n系统电源域复位可以复位系统电源域，复位源有：\n\n• VPMC 引脚的低压复位（VPMC Brownout）\n\n调试复位（DEBUG RST）\n\n• 看门狗复位（WDOGx RST）\n\n软件复位（SW RST）"
+    },
+    {
+      "title": "1.2.6 启动",
+      "node_id": "0012",
+      "text": "## 1.2.6 启动\n\nBootROM 为该芯片上电后执行的第一段程序，它支持如下功能：\n\n从串行 NOR FLASH 启动\n\n• UART/USB 启动\n\n在系统编程 (ISP)\n\n安全启动\n\n低功耗唤醒\n\n多种 ROM API",
+      "line_num": 387,
+      "summary": "## 1.2.6 启动\n\nBootROM 为该芯片上电后执行的第一段程序，它支持如下功能：\n\n从串行 NOR FLASH 启动\n\n• UART/USB 启动\n\n在系统编程 (ISP)\n\n安全启动\n\n低功耗唤醒\n\n多种 ROM API"
+    },
+    {
+      "title": "1.2.7 外部存储器",
+      "node_id": "0013",
+      "text": "## 1.2.7 外部存储器\n\n外部存储器接口包括：\n\n- 1 个串行总线控制器 XPI，可以连接片外的各种 SPI 串行存储设备，也可以连接支持串行总线的器件，每个 XPI:\n\n- 支持 1/2/4 位数据模式，支持 2 个 CS 片选信号\n\n- 支持 SDR 和 DDR，最高支持 166MHz\n\n- 支持 Quad-SPI 和 Octal-SPI 的串行 NOR Flash\n\n- 支持串行 NAND Flash\n\n- 支持 HyperBus，HyperRAM 和 HyperFlash\n\n- 支持 Quad/Oct SPI PSRAM",
+      "line_num": 403,
+      "summary": "## 1.2.7 外部存储器\n\n外部存储器接口包括：\n\n- 1 个串行总线控制器 XPI，可以连接片外的各种 SPI 串行存储设备，也可以连接支持串行总线的器件，每个 XPI:\n\n- 支持 1/2/4 位数据模式，支持 2 个 CS 片选信号\n\n- 支持 SDR 和 DDR，最高支持 166MHz\n\n- 支持 Quad-SPI 和 Octal-SPI 的串行 NOR Flash\n\n- 支持串行 NAND Flash\n\n- 支持 HyperBus，HyperRAM 和 HyperFlash\n\n- 支持 Quad/Oct SPI PSRAM"
+    },
+    {
+      "title": "1.2.8 运动控制系统",
+      "node_id": "0014",
+      "text": "## 1.2.8 运动控制系统\n\n运动控制系统包括：\n\n- 2 个 8 通道 PWM 定时器 PWM，PWM 调制精度达 3.0ns，支持产生互补 PWM 输出，死区插入和故障保护\n\n• 2 个正交编码器输入 QEIV2\n\n• 2 个正交编码器输出 QEO\n\n• 2 个运动管理控制器 MMC\n\n• 1 个旋转变压器解码 RDC\n\n• 1 个可编程逻辑单元 PLB\n\n• 2 个串行编码器接口 SEI\n\n- 1 个互联管理器 TRGM，各模块支持通过互联管理器 TRGM 与电机控制系统内部或外部的模块交互\n\n---\n\n- 1 个同步定时器，用于同步",
+      "line_num": 421,
+      "summary": "概述了HPM5300系列微控制器的运动控制系统组成，包括PWM定时器、正交编码器输入/输出（QEIV2/QEO）、运动管理控制器（MMC）、旋变解码器（RDC）、可编程逻辑单元（PLB）、串行编码器接口（SEI）以及用于模块间交互的互联管理器（TRGM）和同步定时器。"
+    },
+    {
+      "title": "1.2.9 定时器",
+      "node_id": "0015",
+      "text": "## 1.2.9 定时器\n\n定时器包括：\n\n- 5 组 32 位通用定时器，其中一组 (PTMR) 位于电源管理域，支持低功耗唤醒，每组通用定时器包括 4 个 32 位计数器\n\n• 3 个看门狗，其中一个 (PWDG) 位于电源管理域",
+      "line_num": 445,
+      "summary": "## 1.2.9 定时器\n\n定时器包括：\n\n- 5 组 32 位通用定时器，其中一组 (PTMR) 位于电源管理域，支持低功耗唤醒，每组通用定时器包括 4 个 32 位计数器\n\n• 3 个看门狗，其中一个 (PWDG) 位于电源管理域"
+    },
+    {
+      "title": "1.2.10 通讯外设",
+      "node_id": "0016",
+      "text": "## 1.2.10 通讯外设\n\n支持丰富的通讯外设，包括：\n\n- 9 个通用异步收发器 UART，其中 1 个 (PUART) 位于电源管理域，支持低功耗唤醒\n\n• 4 个串行外设接口 SPI\n\n• 4 个集成电路总线 I2C，支持标准（100kbps），快速（400kbps）和快速 +（1 Mbps）\n\n• 4 个控制器局域网 CAN，支持 CAN_FD\n\n- 支持 CAN 2.0B 标准，1Mbps\n\n- 支持 CAN FD，8 Mbps\n\n- 支持时间戳\n\n- 1 个精确时间协议模块 PTPC，PTPC 支持 2 组时间戳模块，每组包含 64 位计数器，连接到 CAN 模块，CAN 模块可以随时从端口读取时间戳信息\n\n• 1 个 USB OTG 控制器，集成 1 个高速 USB-PHY\n\n- 符合 Universal Serial Bus Specification Rev. 2.0",
+      "line_num": 453,
+      "summary": "列出了HPM5300系列微控制器支持的丰富通信外设，包括多个UART、SPI、I2C、CAN-FD控制器、一个USB 2.0 OTG控制器（集成HS-PHY）以及一个精确时间协议模块（PTPC）。"
+    },
+    {
+      "title": "1.2.11 模拟外设",
+      "node_id": "0017",
+      "text": "## 1.2.11 模拟外设\n\n模拟外设包括：\n\n• 2 个 16 位模拟数字转换器 ADC\n\n- 16 位逐次逼近型 ADC\n\n- 支持 16 个输入通道\n\n- 2M 采样率，4M 采样率（转换精度设置为 12 位）\n\n• 2 个高速比较器\n\n- 工作电压 3.0 ~ 3.6V，支持轨到轨输入\n\n- 内置 8 位 DAC\n\n• 2 个数模转换器 DAC\n\n- 12 位精度，1MSPS，支持输出缓存\n\n• 2 个运算放大器 OPAMP\n\n- 支持 PGA 模式",
+      "line_num": 477,
+      "summary": "介绍了HPM5300系列微控制器集成的模拟外设，包括两个16位ADC、两个高速比较器、两个12位DAC和两个运算放大器（OPAMP），并给出了关键性能参数。"
+    },
+    {
+      "title": "1.2.12 输入输出",
+      "node_id": "0018",
+      "text": "## 1.2.12 输入输出\n\n• 提供 PA~PY 共 8 组最多 56 个 GPIO 功能复用引脚\n\n• IO 支持 3V 电压模式，分组供电\n\n- IO 支持开漏控制、内部上下拉、驱动能力调节，内置施密特触发器\n\n• GPIO 控制器\n\n- 支持读取任意 IO 的输入或者控制 IO 的输出\n\n---\n\n- 支持 IO 输入触发中断\n\n- 快速 GPIO 控制器 FGPIO，作为处理器私有的 IO 快速访问接口\n\n- 提供一个 GPIO 管理器，管理各 GPIO 控制器的 IO 控制权限\n\n- 电源管理域专属 IO PYxx 拥有专属 GPIO 控制器和 IO 配置模块，支持低功耗模式下状态保持",
+      "line_num": 503,
+      "summary": "描述了HPM5300系列微控制器的输入输出功能，包括最多56个GPIO引脚、支持3.3V和1.8V电压模式、以及GPIO控制器的各种功能，如中断触发、快速访问（FGPIO）和低功耗模式下的状态保持。"
+    },
+    {
+      "title": "1.2.13 信息安全系统",
+      "node_id": "0019",
+      "text": "## 1.2.13 信息安全系统\n\n信息安全模块包含：\n\n- 安全数据处理器 SDP，为片上加解密算法引擎：\n\n- 支持 AES-128/256，SM4，支持 ECB 模式和 CBC 模式\n\n- 支持 SHA-1/SHA-256，SM3\n\n- 在线解密模块 EXIP:\n\n- 与串行总线控制器 XPI 紧密耦合，支持外部 NOR Flash 在线解密\n\n- AES-128 CTR 模式，零等待周期解密\n\n- 支持 RFC3394 的密钥解封，通过密钥加密密钥 KEK 保护数据加密密钥 DEK\n\n- 密钥管理器 KEYM:\n\n- 支持通过独立的数据通路从 OTP 的密钥区载入密钥\n\n- 支持密钥混淆\n\n- 支持从真随机数发生器 RNG 载入随机密钥\n\n- 支持生成 Session Key\n\n- 支持独立的数据通路将密钥传送到安全数据处理器 SDP\n\n- OTP 中的密钥区，支持存放并保护；\n\n- SDP, EXIP 的相关密钥\n\n- 安全启动的相关密钥\n\n- 安全调试相关密钥\n\n- 产品生命周期配置\n\n- 真随机数发生器 RNG:\n\n- 3 个独立熵源为内部模拟噪声源\n\n- 安全管理器 SEC:\n\n- 监测产品生命周期\n\n- 配置系统安全状态，\n\n- 制定安全规则并监测安全规则违反的事件\n\n- 关联监视器 MON，监测 VPMC 供电和时钟 OSC24M\n\n- 基于 BOOT ROM 的安全启动机制，支持加密启动，支持可信的执行环境",
+      "line_num": 525,
+      "summary": "详细说明了HPM5300系列微控制器的信息安全系统，包括安全数据处理器（SDP）、在线解密模块（EXIP）、密钥管理器（KEYM）、真随机数发生器（RNG）、安全管理器（SEC）、监视器（MON）以及基于OTP和BOOT ROM的安全启动机制。"
+    },
+    {
+      "title": "1.2.14 系统调试",
+      "node_id": "0020",
+      "text": "## 1.2.14 系统调试\n\n系统调试模块包括：\n\n- 支持 JTAG 接口\n\n- 支持 RISC-V External Debug Support V0.13 规范\n\n- 支持 IEEE1149.1\n\n- 访问 RISC-V 内核寄存器和 CSR，访问存储器\n\n- 调试端口锁定功能\n\n- 开放模式，调试功能开放\n\n---\n\n- 锁定模式，调试功能关闭，可以通过调试密钥解锁\n\n- 关闭模式，调试功能关闭\n\n---",
+      "line_num": 581,
+      "summary": "## 1.2.14 系统调试\n\n系统调试模块包括：\n\n- 支持 JTAG 接口\n\n- 支持 RISC-V External Debug Support V0.13 规范\n\n- 支持 IEEE1149.1\n\n- 访问 RISC-V 内核寄存器和 CSR，访问存储器\n\n- 调试端口锁定功能\n\n- 开放模式，调试功能开放\n\n---\n\n- 锁定模式，调试功能关闭，可以通过调试密钥解锁\n\n- 关闭模式，调试功能关闭\n\n---"
+    },
+    {
+      "title": "2 引脚及功能描述",
+      "node_id": "0021",
+      "text": "## 2 引脚及功能描述",
+      "line_num": 605,
+      "summary": "## 2 引脚及功能描述"
+    },
+    {
+      "title": "2.1 LQFP100 引脚分布",
+      "node_id": "0022",
+      "text": "## 2.1 LQFP100 引脚分布\n\nLQFP100 分布 (顶部视图) 如图 2。\n\n![](images/14_0.jpg)\n\n图 2: LQFP100 引脚分布\n\n---",
+      "line_num": 607,
+      "summary": "## 2.1 LQFP100 引脚分布\n\nLQFP100 分布 (顶部视图) 如图 2。\n\n![](images/14_0.jpg)\n\n图 2: LQFP100 引脚分布\n\n---"
+    },
+    {
+      "title": "2.2 LQFP64 引脚分布",
+      "node_id": "0023",
+      "text": "## 2.2 LQFP64 引脚分布\n\nLQFP64 分布 (顶部视图) 如图 3。\n\n![](images/15_0.jpg)\n\n图 3: LQFP64 引脚分布\n\n---",
+      "line_num": 617,
+      "summary": "## 2.2 LQFP64 引脚分布\n\nLQFP64 分布 (顶部视图) 如图 3。\n\n![](images/15_0.jpg)\n\n图 3: LQFP64 引脚分布\n\n---"
+    },
+    {
+      "title": "2.3 QFN48 引脚分布",
+      "node_id": "0024",
+      "text": "## 2.3 QFN48 引脚分布\n\nQFN48 分布 (顶部视图) 如图 4。\n\n![](images/16_0.jpg)\n\n图 4: QFN48 引脚分布\n\n---",
+      "line_num": 627,
+      "summary": "## 2.3 QFN48 引脚分布\n\nQFN48 分布 (顶部视图) 如图 4。\n\n![](images/16_0.jpg)\n\n图 4: QFN48 引脚分布\n\n---"
+    },
+    {
+      "title": "2.4 引脚配置及功能 PINMUX",
+      "node_id": "0025",
+      "text": "## 2.4 引脚配置及功能 PINMUX\n\nHPM5300 系列的引脚配置及功能如下:\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>25</td><td>16</td><td>12</td><td>PA00</td><td>GPIO_A_00(ALTO)GPTMR1_COMP_0(ALT1)UARTO_TXD(ALT2)MCAN0_TXD(ALT7)PWMO_FAULT_0(ALT16)PWM1_P_0(ALT17)TRGMO_P_00(ALT18)PWM1_FAULT_0(ALT19)SYSCTL_CLK_OBS_0(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>24</td><td>15</td><td>11</td><td>PA01</td><td>GPIO_A_01(ALTO)GPTMR1_CAPT_0(ALT1)UARTO_RXD(ALT2)MCAN0_RXD(ALT7)PWMO_FAULT_1(ALT16)PWM1_P_1(ALT17)TRGMO_P_01(ALT18)ACMP_COMP_0(ALT19)SYSCTL_CLK_OBS_1(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>19</td><td>11</td><td>8</td><td>PA02</td><td>GPIO_A_02(ALTO)GPTMR1_COMP_1(ALT1)UARTO_DE(ALT2)UARTO_RTS(ALT3)I2C0_SCL(ALT4)MCAN0_STBY(ALT7)ACMP_COMP_0(ALT16)PWM1_P_2(ALT17)TRGMO_P_02(ALT18)ACMP_COMP_1(ALT19)QE11_F(ALT20)SYSCTL_CLK_OBS_2(ALT24)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>18</td><td>10</td><td>7</td><td>PA03</td><td>GPIO_A_03(ALT0)GPTMR1_CAPT_1(ALT1)UART0_CTS(ALT3)I2C0_SDA(ALT4)SPI3_CS_3(ALT5)MCAN1_STBY(ALT7)ACMP_COMP_1(ALT16)PWM1_P_3(ALT17)TRGM0_P_03(ALT18)PWM1_FAULT_1(ALT19)QE11_H1(ALT20)SYSCTL_CLK_OBS_3(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>2</td><td>64</td><td>1</td><td>PA04</td><td>GPIO_A_04(ALT0)UART1_CTS(ALT3)SPI0_CS_0(ALT5)MCAN1_RXD(ALT7)PWM0_P_0(ALT16)PWM1_P_4(ALT17)TRGM0_P_04(ALT18)RDC0_EXC_P(ALT19)QE11_A(ALT20)QEO1_A(ALT21)SE11_DE(ALT22)JTAG_TDO(ALT24)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>1</td><td>63</td><td>48</td><td>PA05</td><td>GPIO_A_05(ALT0)GPTMR1_COMP_2(ALT1)UART1_DE(ALT2)UART1_RTS(ALT3)SPI0_SCLK(ALT5)MCAN1_TXD(ALT7)PWMO_P_1(ALT16)PWM1_P_5(ALT17)TRGMO_P_05(ALT18)RDC0_EXC_N(ALT19)QE11_B(ALT20)QEO1_B(ALT21)SEI1_CK(ALT22)JTAG_TDI(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>100</td><td>62</td><td>47</td><td>PA06</td><td>GPIO_A_06(ALT0)GPTMR0_CAPT_0(ALT1)UART1_RXD(ALT2)I2C1_SDA(ALT4)SPI0_MISO(ALT5)PWMO_P_2(ALT16)PWM1_P_6(ALT17)TRGMO_P_06(ALT18)QE11_Z(ALT20)QEO1_Z(ALT21)SEI1_TX(ALT22)JTAG_TCK(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>99</td><td>61</td><td>46</td><td>PA07</td><td>GPIO_A_07(ALT0)GPTMR0_COMP_0(ALT1)UART1_TXD(ALT2)I2C1_SCL(ALT4)SPI0_MOSI(ALT5)PWMO_P_3(ALT16)PWM1_P_7(ALT17)TRGMO_P_07(ALT18)QE11_H0(ALT20)SEI1_RX(ALT22)JTAG_TMS(ALT24)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>3</td><td>1</td><td>2</td><td>PA08</td><td>GPIO_A_08(ALTO)GPTMRO_COMP_1(ALT1)UART2_TXD(ALT2)I2C2_SCL(ALT4)SPI3_CS_2(ALT5)MCAN2_TXD(ALT7)PWMO_P_4(ALT16)PWMO_FAULT_0(ALT18)JTAG_TRST(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>4</td><td>2</td><td>3</td><td>PA09</td><td>GPIO_A_09(ALTO)GPTMRO_CAPT_1(ALT1)UART2_RXD(ALT2)I2C2_SDA(ALT4)SPI3_CS_1(ALT5)MCAN2_RXD(ALT7)PWMO_P_5(ALT16)PWMO_FAULT_1(ALT18)SOC_REF0(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>5</td><td>3</td><td>4</td><td>PA10</td><td>GPIO_A_10(ALTO)GPTMRO_COMP_2(ALT1)UART2_DE(ALT2)UART2_RTS(ALT3)SPI3_CS_0(ALT5)MCAN2_STBY(ALT7)PWMO_P_6(ALT16)PWM1_FAULT_0(ALT17)ACMP_COMP_0(ALT18)QE11_A(ALT20)QEO0_A(ALT21)SEI1_DE(ALT22)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>6</td><td>4</td><td>-</td><td>PA11</td><td>GPIO_A_11(ALT0)UART2_CTS(ALT3)SPI3_SCLK(ALT5)PWM0_P_7(ALT16)PWM1_FAULT_1(ALT17)ACMP_COMP_1(ALT18)QE11_B(ALT20)QEO0_B(ALT21)SEI1_CK(ALT22)EWDGO_RST(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>11</td><td>8</td><td>-</td><td>PA12</td><td>GPIO_A_12(ALT0)UART3_CTS(ALT3)I2C3_SDA(ALT4)SPI3_MISO(ALT5)PWM0_P_0(ALT16)PWM1_FAULT_0(ALT17)PWM0_FAULT_0(ALT18)RDC0_EXC_P(ALT19)QE11_Z(ALT20)QEO0_Z(ALT21)SEI1_TX(ALT22)</td><td>-</td><td>B00</td><td></td></tr><tr><td>12</td><td>9</td><td>-</td><td>PA13</td><td>GPIO_A_13(ALT0)GPTMR1_COMP_3(ALT1)UART3_DE(ALT2)UART3_RTS(ALT3)I2C3_SCL(ALT4)SPI3_MOSI(ALT5)MCAN3_STBY(ALT7)PWM0_P_1(ALT16)PWM1_FAULT_1(ALT17)PWM0_FAULT_1(ALT18)RDC0_EXC_N(ALT19)QE11_H0(ALT20)SEI1_RX(ALT22)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>13</td><td>-</td><td>-</td><td>PA14</td><td>GPIO_A_14(ALT0)UART3_RXD(ALT2)SPI3_DAT2(ALT5)MCAN3_RXD(ALT7)PWM0_P_2(ALT16)ACMP_COMP_0(ALT18)QE11_H1(ALT20)EWDG1_RST(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>14</td><td>-</td><td>-</td><td>PA15</td><td>GPIO_A_15(ALT0)GPTMR0_COMP_3(ALT1)UART3_TXD(ALT2)SPI3_DAT3(ALT5)MCAN3_TXD(ALT7)PWM0_P_3(ALT16)ACMP_COMP_1(ALT18)QE11_F(ALT20)SOC_REF0(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>98</td><td>-</td><td>-</td><td>PA16</td><td>GPIO_A_16(ALT0)GPTMR3_COMP_0(ALT1)UART4_TXD(ALT2)MCAN0_TXD(ALT7)PWM0_P_4(ALT16)PWM1_P_0(ALT17)TRGM0_P_04(ALT18)QEO0_A(ALT21)SEI1_DE(ALT22)</td><td>-</td><td>B00</td><td></td></tr><tr><td>97</td><td>-</td><td>-</td><td>PA17</td><td>GPIO_A_17(ALT0)GPTMR3_CAPT_0(ALT1)UART4_RXD(ALT2)MCAN0_RXD(ALT7)PWM0_P_5(ALT16)PWM1_P_1(ALT17)TRGM0_P_05(ALT18)QEO0_B(ALT21)SEI1_CK(ALT22)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>93</td><td>-</td><td>-</td><td>PA18</td><td>GPIO_A_18(ALTO)GPTMR3_COMP_1(ALT1)UART4_DE(ALT2)UART4_RTS(ALT3)I2C0_SCL(ALT4)MCAN0_STBY(ALT7)PWM0_P_6(ALT16)PWM1_P_2(ALT17)TRGM0_P_06(ALT18)QEO0_Z(ALT21)SEI1_TX(ALT22)</td><td>-</td><td>B00</td><td></td></tr><tr><td>92</td><td>-</td><td>-</td><td>PA19</td><td>GPIO_A_19(ALTO)GPTMR3_CAPT_1(ALT1)UART4_CTS(ALT3)I2C0_SDA(ALT4)SPI1_CS_3(ALT5)MCAN1_STBY(ALT7)PWM0_P_7(ALT16)PWM1_P_3(ALT17)TRGM0_P_07(ALT18)SEI1_RX(ALT22)</td><td>-</td><td>B00</td><td></td></tr><tr><td>91</td><td>-</td><td>-</td><td>PA20</td><td>GPIO_A_20(ALTO)UART5_CTS(ALT3)SPI2_CS_0(ALT5)MCAN1_RXD(ALT7)PWM0_FAULT_0(ALT16)PWM1_P_4(ALT17)TRGM0_P_00(ALT18)QEIO_A(ALT20)QEO0_A(ALT21)SEI0_DE(ALT22)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>90</td><td>-</td><td>-</td><td>PA21</td><td>GPIO_A_21(ALT0)GPTMR3_COMP_2(ALT1)UART5_DE(ALT2)UART5_RTS(ALT3)SPI2_SCLK(ALT5)MCAN1_TXD(ALT7)PWMO_FAULT_1(ALT16)PWM1_P_5(ALT17)TRGM0_P_01(ALT18)QEIO_B(ALT20)QEO0_B(ALT21)SEI0_CK(ALT22)</td><td>-</td><td>B00</td><td></td></tr><tr><td>89</td><td>-</td><td>-</td><td>PA22</td><td>GPIO_A_22(ALT0)GPTMR2_CAPT_0(ALT1)UART5_RXD(ALT2)I2C1_SDA(ALT4)SPI2_MISO(ALT5)PWM1_P_6(ALT17)TRGM0_P_02(ALT18)PWM1_FAULT_0(ALT19)QEIO_Z(ALT20)QEO0_Z(ALT21)SEI0_TX(ALT22)</td><td>-</td><td>B00</td><td></td></tr><tr><td>88</td><td>-</td><td>-</td><td>PA23</td><td>GPIO_A_23(ALT0)GPTMR2_COMP_0(ALT1)UART5_TXD(ALT2)I2C1_SCLK(ALT4)SPI2_MOSI(ALT5)PWM1_P_7(ALT17)TRGM0_P_03(ALT18)PWM1_FAULT_1(ALT19)QEIO_H0(ALT20)SEI0_RX(ALT22)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>87</td><td>57</td><td>44</td><td>PA24</td><td>GPIO_A_24(ALTO)GPTMR2_COMP_1(ALT1)UART6_TXD(ALT2)I2C2_SCL(ALT4)SPI1_CS_2(ALT5)MCAN2_TXD(ALT7)XPIO_CA_CS1(ALT14)PWM0_P_0(ALT16)PWM1_P_0(ALT17)TRGM0_P_00(ALT18)QEIO_H1(ALT20)</td><td>-</td><td>B00</td><td></td></tr><tr><td>86</td><td>56</td><td>43</td><td>PA25</td><td>GPIO_A_25(ALTO)GPTMR2_CAPT_1(ALT1)UART6_RXD(ALT2)I2C2_SDA(ALT4)SPI1_CS_1(ALT5)MCAN2_RXD(ALT7)XPIO_CA_DQS(ALT14)PWM0_P_1(ALT16)PWM1_P_1(ALT17)TRGM0_P_01(ALT18)QEIO_F(ALT20)</td><td>-</td><td>B00</td><td></td></tr><tr><td>82</td><td>55</td><td>42</td><td>PA26</td><td>GPIO_A_26(ALTO)GPTMR2_COMP_2(ALT1)UART6_DE(ALT2)UART6_RTS(ALT3)SPI1_CS_0(ALT5)MCAN2_STBY(ALT7)XPIO_CA_D_3(ALT14)PWM0_P_2(ALT16)PWM1_P_2(ALT17)TRGM0_P_02(ALT18)QEIO_A(ALT20)QEO0_A(ALT21)SEIO_DE(ALT22)SYSCTL_CLK_OBS_0(ALT24)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>81</td><td>54</td><td>41</td><td>PA27</td><td>GPIO_A_27(ALT0)UART6_CTS(ALT3)SPI1_SCLK(ALT5)XPIO_CA_SCLK(ALT14)PWM0_P_3(ALT16)PWM1_P_3(ALT17)TRGM0_P_03(ALT18)QEIO_B(ALT20)QEO0_B(ALT21)SEIO_ClK(ALT22)SYSCTL_CLK_OBS_1(ALT24)</td><td>-</td><td>B00</td><td></td></tr><tr><td>80</td><td>53</td><td>40</td><td>PA28</td><td>GPIO_A_28(ALT0)UART7_CTS(ALT3)I2C3_SDA(ALT4)SPI1_MISO(ALT5)XPIO_CA_D_0(ALT14)PWM0_P_4(ALT16)PWM1_P_4(ALT17)TRGM0_P_04(ALT18)RDC0_EXC_P(ALT19)QEIO_Z(ALT20)QEO0_Z(ALT21)SEIO_TX(ALT22)SYSCTL_CLK_OBS_2(ALT24)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>79</td><td>52</td><td>39</td><td>PA29</td><td>GPIO_A_29(ALT0)GPTMR3_COMP_3(ALT1)UART7_DE(ALT2)UART7_RTS(ALT3)I2C3_SCL(ALT4)SPI1_MOSI(ALT5)MCAN3_STBY(ALT7)XPIO_CA_D_2(ALT14)PWM0_P_5(ALT16)PWM1_P_5(ALT17)TRGM0_P_05(ALT18)RDC0_EXC_N(ALT19)QE10_HO(ALT20)SE10_RX(ALT22)SYSCTL_CLK_OBS_3(ALT24)USB0_OC(ALT25)</td><td>-</td><td>B00</td><td></td></tr><tr><td>78</td><td>51</td><td>38</td><td>PA30</td><td>GPIO_A_30(ALT0)UART7_RXD(ALT2)SPI1_DAT2(ALT5)MCAN3_RXD(ALT7)XPIO_CA_D_1(ALT14)PWM0_P_6(ALT16)PWM1_P_6(ALT17)TRGM0_P_06(ALT18)QE10_H1(ALT20)SOC_REF0(ALT24)USB0_PWR(ALT25)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>77</td><td>50</td><td>37</td><td>PA31</td><td>GPIO_A_31(ALTO)GPTMR2_COMP_3(ALT1)UART7_TXD(ALT2)SPI1_DAT3(ALT5)MCAN3_TXD(ALT7)XPI0_CA_CS0(ALT14)PWM0_P_7(ALT16)PWM1_P_7(ALT17)TRGM0_P_07(ALT18)QEI0_F(ALT20)USB0_ID(ALT25)</td><td>-</td><td>B00</td><td></td></tr><tr><td>63</td><td>41</td><td>-</td><td>PB00</td><td>GPIO_B_00(ALTO)GPTMR1_COMP_0(ALT1)UART0_TXD(ALT2)MCAN0_TXD(ALT7)PWM0_P_0(ALT16)PWM1_FAULT_0(ALT17)TRGM0_P_04(ALT18)ACMP_COMP_0(ALT19)</td><td>ADC0_IN15ADC1_IN15ACMP_CMP0_IN7OPA0_OUT</td><td>B01</td><td></td></tr><tr><td>62</td><td>40</td><td>-</td><td>PB01</td><td>GPIO_B_01(ALTO)GPTMR1_CAPT_0(ALT1)UART0_RXD(ALT2)MCAN0_RXD(ALT7)PWM0_P_1(ALT16)PWM1_FAULT_1(ALT17)TRGM0_P_05(ALT18)ACMP_COMP_1(ALT19)</td><td>ADC0_IN14ADC1_IN14ACMP_CMP1_IN7OPA1_OUT</td><td>B01</td><td></td></tr><tr><td>61</td><td>-</td><td>-</td><td>PB02</td><td>GPIO_B_02(ALTO)GPTMR1_COMP_1(ALT1)UART0_DE(ALT2)UART0_RTS(ALT3)I2C0_SCL(ALT4)MCAN0_STBY(ALT7)PWM0_P_2(ALT16)ACMP_COMP_1(ALT17)TRGM0_P_06(ALT18)PWM0_FAULT_0(ALT19)</td><td>ADC0_IN12ADC1_IN12ACMP_CMP0_IN7OPA0_EXT</td><td>B01</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>60</td><td>-</td><td>-</td><td>PB03</td><td>GPIO_B_03(ALT0)GPTMR1_CAPT_1(ALT1)UART0_CTS(ALT3)I2C0_SDA(ALT4)SPI2_CS_3(ALT5)MCAN1_STBY(ALT7)PWM0_P_3(ALT16)ACMP_COMP_0(ALT17)TRGM0_P_07(ALT18)PWM0_FAIL_1(ALT19)</td><td>ADC0_IN8ADC1_IN8ACMP_CMP1_INP7OPA1_EXT</td><td>B01</td><td></td></tr><tr><td>59</td><td>-</td><td>-</td><td>PB04</td><td>GPIO_B_04(ALT0)UART1_CTS(ALT3)SPI3_CS_0(ALT5)MCAN1_RXD(ALT7)PWM0_P_4(ALT16)PWM1_P_0(ALT17)TRGM0_P_00(ALT18)QE11_A(ALT20)QEO1_A(ALT21)SEI0_DE(ALT22)</td><td>ADC0_IN0ADC1_IN0ACMP_CMP0_IN5ACMP_CMP1_IN5OPA0_INP0</td><td>B01</td><td></td></tr><tr><td>58</td><td>-</td><td>-</td><td>PB05</td><td>GPIO_B_05(ALT0)GPTMR1_COMP_2(ALT1)UART1_DE(ALT2)UART1_RTS(ALT3)SPI3_SCLK(ALT5)MCAN1_TXD(ALT7)PWM0_P_5(ALT16)PWM1_P_1(ALT17)TRGM0_P_01(ALT18)QE11_B(ALT20)QEO1_B(ALT21)SEI0_CK(ALT22)</td><td>ADC0_IN13ADC1_IN13ACMP_CMP0_IN3ACMP_CMP1_IN3OPA0_INN0</td><td>B01</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>54</td><td>-</td><td>-</td><td>PB06</td><td>GPIO_B_06(ALT0)GPTMRO_CAPT_0(ALT1)UART1_RXD(ALT2)I2C1_SDA(ALT4)SPI3_MISO(ALT5)PWM0_P_6(ALT16)PWM1_P_2(ALT17)TRGM0_P_02(ALT18)RDC0_EXC_P(ALT19)QE11_Z(ALT20)QEO1_Z(ALT21)SEI0_TX(ALT22)</td><td>ADC0_IN9ADC1_IN9ACMP_CMP0_INP5ACMP_CMP1_INP5OPA0_INP1</td><td>B01</td><td></td></tr><tr><td>53</td><td>-</td><td>-</td><td>PB07</td><td>GPIO_B_07(ALT0)GPTMRO_COMP_0(ALT1)UART1_TXD(ALT2)I2C1_SCL(ALT4)SPI3_MOSI(ALT5)PWM0_P_7(ALT16)PWM1_P_3(ALT17)TRGM0_P_03(ALT18)RDC0_EXC_N(ALT19)QE11_H0(ALT20)SEI0_RX(ALT22)</td><td>ADC0_IN10ADC1_IN10ACMP_CMP0_INP3ACMP_CMP1_INP3OPA0_INN1</td><td>B01</td><td></td></tr><tr><td>52</td><td>36</td><td>27</td><td>PB08</td><td>GPIO_B_08(ALT0)GPTMRO_COMP_1(ALT1)UART2_TXD(ALT2)I2C2_SCL(ALT4)SPI2_CS_2(ALT5)MCAN2_TXD(ALT7)ACMP_COMP_0(ALT16)PWM1_P_4(ALT17)QE11_H1(ALT20)QEO1_A(ALT21)SEI1_DE(ALT22)USB0_ID(ALT25)</td><td>ADC0_IN11ADC1_IN11DAC0_OUTACMP_CMP0_INN6ACMP_CMP1_INN6OPA0_INP2OPA1_INP2</td><td>B01</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>51</td><td>35</td><td>26</td><td>PB09</td><td>GPIO_B_09(ALT0)GPTMR0_CAPT_1(ALT1)UART2_RXD(ALT2)I2C2_SDA(ALT4)SPI2_CS_1(ALT5)MCAN2_RXD(ALT7)ACMP_COMP_1(ALT16)PWM1_P_5(ALT17)QE11_F(ALT20)QEO1_B(ALT21)SEI1_CK(ALT22)USB0_OC(ALT25)</td><td>ADC0_IN1ADC1_IN1DAC1_OUTACMP_CMP0_INP6ACMP_CMP1_INP6OPA0_INN2OPA1_INN2</td><td>B01</td><td></td></tr><tr><td>50</td><td>34</td><td>25</td><td>PB10</td><td>GPIO_B_10(ALT0)GPTMR0_COMP_2(ALT1)UART2_DE(ALT2)UART2_RTS(ALT3)SPI2_CS_0(ALT5)MCAN2_STBY(ALT7)ACMP_COMP_0(ALT16)PWM1_P_6(ALT17)QE10_H1(ALT20)QEO1_Z(ALT21)SEI1_TX(ALT22)USB0_PWR(ALT25)</td><td>ADC0_IN2ADC1_IN2ACMP_CMP0_INP4ACMP_CMP1_INP4OPA0_INP3OPA1_INP3</td><td>B01</td><td></td></tr><tr><td>49</td><td>33</td><td>24</td><td>PB11</td><td>GPIO_B_11(ALT0)UART2_CTS(ALT3)SPI2_SCLK(ALT5)ACMP_COMP_1(ALT16)PWM1_P_7(ALT17)QE10_F(ALT20)SEI1_RX(ALT22)</td><td>ADC0_IN3ADC1_IN3ACMP_CMP0_INN4ACMP_CMP1_INN4OPA0_INN3OPA1_INN3</td><td>B01</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>48</td><td>32</td><td>23</td><td>PB12</td><td>GPIO_B_12(ALT0)UART3_CTS(ALT3)I2C3_SDA(ALT4)SPI2_MISO(ALT5)PWM1_FAULT_0(ALT16)PWM1_P_0(ALT17)TRGM0_P_00(ALT18)QEI0_A(ALT20)QEO1_A(ALT21)SEI0_DE(ALT22)</td><td>ADC0_IN4ADC1_IN4ACMP_CMP0_IN2ACMP_CMP1_IN2OPA1_INP0</td><td>B01</td><td></td></tr><tr><td>47</td><td>31</td><td>22</td><td>PB13</td><td>GPIO_B_13(ALT0)GPTMR1_COMP_3(ALT1)UART3_DE(ALT2)UART3_RTS(ALT3)I2C3_SCL(ALT4)SPI2_MOSI(ALT5)MCAN3_STBY(ALT7)PWM1_FAULT_1(ALT16)PWM1_P_1(ALT17)TRGM0_P_01(ALT18)QEI0_B(ALT20)QEO1_B(ALT21)SEI0_CK(ALT22)</td><td>ADC0_IN5ADC1_IN5ACMP_CMP0_IN2ACMP_CMP1_IN2OPA1_INN0</td><td>B01</td><td></td></tr><tr><td>46</td><td>30</td><td>21</td><td>PB14</td><td>GPIO_B_14(ALT0)UART3_RXD(ALT2)SPI2_DAT2(ALT5)MCAN3_RXD(ALT7)PWM0_FAULT_0(ALT16)PWM1_P_2(ALT17)TRGM0_P_02(ALT18)RDC0_EXC_P(ALT19)QEI0_Z(ALT20)QEO1_Z(ALT21)SEI0_TX(ALT22)</td><td>ADC0_IN6ADC1_IN6ACMP_CMP0_IN1ACMP_CMP1_IN1OPA1_INP1</td><td>B01</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>45</td><td>29</td><td>20</td><td>PB15</td><td>GPIO_B_15(ALTO)GPTMRO_COMP_3(ALT1)UART3_TXD(ALT2)SPI2_DAT3(ALT5)MCAN3_TXD(ALT7)PWM0_FAULT_1(ALT16)PWM1_P_3(ALT17)TRGM0_P_03(ALT18)RDC0_EXC_N(ALT19)QE10_H0(ALT20)SEI0_RX(ALT22)</td><td>ADC0_IN7ADC1_IN7ACMP_CMP0_INP1ACMP_CMP1_INP1OPA1_INN1</td><td>B01</td><td></td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX00</td><td>GPIO_X_00(ALTO)GPTMR2_COMP_0(ALT1)UART4_TXD(ALT2)MCAN0_TXD(ALT7)XPIO_CA_D_2(ALT14)</td><td>-</td><td>B00</td><td></td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX01</td><td>GPIO_X_01(ALTO)GPTMR2_CAPT_0(ALT1)UART4_RXD(ALT2)MCAN0_RXD(ALT7)XPIO_CA_D_1(ALT14)</td><td>-</td><td>B00</td><td></td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX02</td><td>GPIO_X_02(ALTO)GPTMR2_COMP_1(ALT1)UART4_DE(ALT2)UART4_RTS(ALT3)I2C0_SCL(ALT4)MCAN0_STBY(ALT7)XPIO_CA_CS0(ALT14)</td><td>-</td><td>B00</td><td></td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX03</td><td>GPIO_X_03(ALTO)GPTMR2_CAPT_1(ALT1)UART4_CTS(ALT3)I2C0_SDA(ALT4)MCAN1_STBY(ALT7)XPIO_CA_DQS(ALT14)</td><td>-</td><td>B00</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX04</td><td>GPIO_X_04(ALTO)UART5_CTS(ALT3)SPI1_CS_0(ALT5)MCAN1_RXD(ALT7)XPI0_CA_CS1(ALT14)</td><td>-</td><td>B00</td><td></td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX05</td><td>GPIO_X_05(ALTO)GPTMR2_COMP_2(ALT1)UART5_DE(ALT2)UART5_RTS(ALT3)SPI1_SCLK(ALT5)MCAN1_TXD(ALT7)XPI0_CA_D_0(ALT14)</td><td>-</td><td>B00</td><td></td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX06</td><td>GPIO_X_06(ALTO)GPTMR3_CAPT_0(ALT1)UART5_RXD(ALT2)I2C1_SDA(ALT4)SPI1_MISO(ALT5)XPI0_CA_SCLK(ALT14)</td><td>-</td><td>B00</td><td></td></tr><tr><td>-</td><td>-</td><td>-</td><td>PX07</td><td>GPIO_X_07(ALTO)GPTMR3_COMP_0(ALT1)UART5_TXD(ALT2)I2C1_SCL(ALT4)SPI1_MOSI(ALT5)XPI0_CA_D_3(ALT14)</td><td>-</td><td>B00</td><td></td></tr><tr><td>41</td><td>28</td><td>19</td><td>PY00</td><td>GPIO_Y_00(ALTO)GPTMR3_COMP_0(ALT1)UART0_TXD(ALT2)MCAN2_TXD(ALT7)PWM0_P_0(ALT16)PWM1_P_4(ALT17)PWM0_FAULT_0(ALT18)USB0_ID(ALT25)</td><td>-</td><td>VPMC</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>40</td><td>27</td><td>18</td><td>PY01</td><td>GPIO_Y_01(ALT0)GPTMR3_CAPT_0(ALT1)UART0_RXD(ALT2)MCAN2_RXD(ALT7)PWM0_P_1(ALT16)PWM1_P_5(ALT17)PWM0_FAULT_1(ALT18)EWDG0_RST(ALT24)USB0_OC(ALT25)</td><td>-</td><td>VPMC</td><td></td></tr><tr><td>39</td><td>26</td><td>-</td><td>PY02</td><td>GPIO_Y_02(ALT0)GPTMR3_COMP_1(ALT1)UART0_DE(ALT2)UART0_RTS(ALT3)I2C2_SCL(ALT4)MCAN2_STBY(ALT7)PWM0_P_2(ALT16)PWM1_P_6(ALT17)ACMP_COMP_0(ALT18)PWM1_FAULT_0(ALT19)EWDG1_RST(ALT24)USB0_PWR(ALT25)</td><td>-</td><td>VPMC</td><td></td></tr><tr><td>38</td><td>25</td><td>-</td><td>PY03</td><td>GPIO_Y_03(ALT0)GPTMR3_CAPT_1(ALT1)UART0_CTS(ALT3)I2C2_SDA(ALT4)MCAN3_STBY(ALT7)PWM0_P_3(ALT16)PWM1_P_7(ALT17)ACMP_COMP_1(ALT18)PWM1_FAULT_1(ALT19)</td><td>-</td><td>VPMC</td><td></td></tr><tr><td>37</td><td>-</td><td>-</td><td>PY04</td><td>GPIO_Y_04(ALT0)UART1_CTS(ALT3)SPI2_CS_0(ALT5)MCAN3_RXD(ALT7)PWM0_P_4(ALT16)TRGM0_P_04(ALT18)</td><td>-</td><td>VPMC</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO电源</td><td rowspan=\"2\">IO电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>36</td><td>-</td><td>-</td><td>PY05</td><td>GPIO_Y_05(ALT0)GPTMR3_COMP_2(ALT1)UART1_DE(ALT2)UART1_RTS(ALT3)SPI2_SCLK(ALT5)MCAN3_TXD(ALT7)PWM0_P_5(ALT16)TRGM0_P_05(ALT18)EWDG0_RST(ALT24)</td><td>-</td><td>VPMC</td><td></td></tr><tr><td>35</td><td>-</td><td>-</td><td>PY06</td><td>GPIO_Y_06(ALT0)GPTMR2_CAPT_0(ALT1)UART1_RXD(ALT2)I2C3_SDA(ALT4)SPI2_MISO(ALT5)PWM0_P_6(ALT16)TRGM0_P_06(ALT18)EWDG1_RST(ALT24)</td><td>-</td><td>VPMC</td><td></td></tr><tr><td>34</td><td>-</td><td>-</td><td>PY07</td><td>GPIO_Y_07(ALT0)GPTMR2_COMP_0(ALT1)UART1_TXD(ALT2)I2C3_SCL(ALT4)SPI2_MOSI(ALT5)PWM0_P_7(ALT16)TRGM0_P_07(ALT18)</td><td>-</td><td>VPMC</td><td></td></tr><tr><td>7,17,20,44,57,69,83,94</td><td>5,12,39,45,58</td><td>5,9,28,33,45</td><td>VDD_SOC</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>8,10,16,22,32,43,56,66,70,76,84,95</td><td>6,13,23,38,46,59</td><td>-</td><td>VSS</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>9,15,85,96</td><td>7,47,60</td><td>6,34</td><td>VIO_B00</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN 名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">模拟功能</td><td rowspan=\"2\">IO 电源</td><td rowspan=\"2\">IO 电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN _48</td></tr><tr><td>21</td><td>-</td><td>-</td><td>DCDC_SNS</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>23</td><td>14</td><td>10</td><td>VDD_OTP \\( \\varphi \\) AP</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>26</td><td>17</td><td>13</td><td>RESETN</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>27</td><td>18</td><td>14</td><td>WAKEUP</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>28</td><td>19</td><td>-</td><td>DCDC_GND</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>29</td><td>20</td><td>15</td><td>DCDC_LP</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>30</td><td>21</td><td>-</td><td>DCDC_IN</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>31</td><td>22</td><td>16</td><td>VPMC</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>33</td><td>24</td><td>17</td><td>VDD_PMCCAP</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>42,55</td><td>37</td><td>29</td><td>VIO_B01</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>64</td><td>42</td><td>30</td><td>VREFL</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>65</td><td>43</td><td>31</td><td>VREFH</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>67</td><td>44</td><td>32</td><td>VANA</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>68</td><td>-</td><td>-</td><td>USBVBUS</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>71</td><td>-</td><td>-</td><td>VPLL</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>72</td><td>-</td><td>-</td><td>USB_DP</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>73</td><td>-</td><td>-</td><td>USB_DM</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>74</td><td>48</td><td>35</td><td>XTAL1</td><td>-</td><td>-</td><td>-</td><td>-</td></tr><tr><td>75</td><td>49</td><td>36</td><td>XTAL0</td><td>-</td><td>-</td><td>-</td><td>-</td></tr></table>\n\n表 2: SOC IOMUX\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN 名称</td><td rowspan=\"2\">数字功能</td><td row span=\"2\">IO 电源</td><td rowspan=\"2\">IO 电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_6 4</td><td>QFN _48</td></tr><tr><td>41</td><td>28</td><td>19</td><td>PY00</td><td>PGPIO_Y_00(ALT0) PUART_TXD(ALT1) PTMR_COMP_0(ALT2) SOC_GPIO_Y_00(ALT3)</td><td>VPMC</td><td></td></tr></table>\n\n---\n\n<table><tr><td colspan=\"3\">封装</td><td rowspan=\"2\">PIN 名称</td><td rowspan=\"2\">数字功能</td><td rowspan=\"2\">IO 电源</td><td rowspan=\"2\">IO 电压/V</td></tr><tr><td>LQF P_10 0</td><td>LQF P_64</td><td>QFN_48</td></tr><tr><td>40</td><td>27</td><td>18</td><td>PY01</td><td>PGPIO_Y_01(ALT0)PUART_RXD(ALT1)PTMR_COMP_1(ALT2)SOC_GPIO_Y_01(ALT3)</td><td>VPMC</td><td></td></tr><tr><td>39</td><td>26</td><td>-</td><td>PY02</td><td>PGPIO_Y_02(ALT0)PUART_RTS(ALT1)PTMR_COMP_2(ALT2)SOC_GPIO_Y_02(ALT3)</td><td>VPMC</td><td></td></tr><tr><td>38</td><td>25</td><td>-</td><td>PY03</td><td>PGPIO_Y_03(ALT0)PUART_CTS(ALT1)PTMR_COMP_3(ALT2)SOC_GPIO_Y_03(ALT3)</td><td>VPMC</td><td></td></tr><tr><td>37</td><td>-</td><td>-</td><td>PY04</td><td>PGPIO_Y_04(ALT0)PTMR_COMP_0(ALT2)SOC_GPIO_Y_04(ALT3)</td><td>VPMC</td><td></td></tr><tr><td>36</td><td>-</td><td>-</td><td>PY05</td><td>PGPIO_Y_05(ALT0)PEWDG_RST(ALT1)PTMR_CAPT_0(ALT2)SOC_GPIO_Y_05(ALT3)</td><td>VPMC</td><td></td></tr><tr><td>35</td><td>-</td><td>-</td><td>PY06</td><td>PGPIO_Y_06(ALT0)PTMR_COMP_1(ALT2)SOC_GPIO_Y_06(ALT3)</td><td>VPMC</td><td></td></tr><tr><td>34</td><td>-</td><td>-</td><td>PY07</td><td>PGPIO_Y_07(ALT0)PTMR_CAPT_1(ALT2)SOC_GPIO_Y_07(ALT3)</td><td>VPMC</td><td></td></tr></table>\n\n表 3: PMIC IOMUX\n\n---",
+      "line_num": 637,
+      "summary": "以表格形式详细列出了HPM5300系列微控制器部分引脚（PA00-PA23）在不同封装（LQFP100, LQFP64, QFN48）下的引脚编号、名称、数字功能复用选项（ALT0-ALT24）、模拟功能以及对应的IO电源组。"
+    },
+    {
+      "title": "2.5 特殊功能引脚",
+      "node_id": "0026",
+      "text": "## 2.5 特殊功能引脚\n\n芯片默认是通过 BOOT_MODE[1:0]=[PA03:PA02] 引脚选择三种不同的启动模式，启动配置如表 4。其他特殊引脚配置如表 5。\n\n<table><tr><td colspan=\"2\">启动模式选择引脚</td><td rowspan=\"2\">启动模式</td><td rowspan=\"2\">说明</td></tr><tr><td>BOOT_MODE1</td><td>BOOT_MODE0</td></tr><tr><td>0</td><td>0</td><td>XP1 NOR 启动</td><td>从连接在 XPIO 上的串行 NOR FLASH 启动</td></tr><tr><td>0</td><td>1</td><td>在系统编程 (ISP)/串行启动</td><td>从 UART0/USB0 上烧写固件, OTP, 或从 UART0/USB0 上启动</td></tr><tr><td>1</td><td>0</td><td>在系统编程 (ISP)/串行启动</td><td>从 UART0/USB0 上烧写固件, OTP, 或从 UARTO/USB0 上启动</td></tr><tr><td>1</td><td>1</td><td>保留模式</td><td>保留模式</td></tr></table>\n\n表 4: 启动配置表\n\n<table><tr><td>引脚名称</td><td>描述</td><td>建议用法</td></tr><tr><td>XTAL1</td><td>24MHz 时钟输入</td><td>接 24MHz 晶体或有源时钟</td></tr><tr><td>XTAL0</td><td>24MHz 时钟输出</td><td>接 24MHz 晶体或悬空</td></tr></table>\n\n表 5: 特殊功能引脚配置\n\n注意：本产品的 LQFP64、QFN48 封装上：\n\n- USB\\_DP 与 PA24 复用，当用作 USB 功能时，应当配置 PA24 为模拟功能（PAD\\[FUNC\\_CTL].ANALOG 位置 1）\n\n- USB_DM 与 PA25 复用，当用作 USB 功能时，应当配置 PA25 为模拟功能（PAD\\[FUNC_CTL].ANALOG 位置 1）\n\n- PA24 和 PA25 不用做 USB 时，应当配置 USB 的 PHY_CTRL0 寄存器 (PHY_CTRL0 |= 0x0x001000E0u)，关闭 DP，DM 的下拉电阻。\n\n- 在系统编程（ISP）模式下，仅支持从 UART0 烧写固件，或从 UART0 启动",
+      "line_num": 735,
+      "summary": "说明了HPM5300系列微控制器的特殊功能引脚配置，包括通过PA02和PA03引脚选择启动模式（XPI NOR启动、ISP串行启动、保留）的配置表，以及XTAL时钟引脚和USB引脚复用的注意事项。"
+    },
+    {
+      "title": "2.6 IO 复位状态",
+      "node_id": "0027",
+      "text": "## 2.6 IO 复位状态\n\n表 6 总结了本产品所有 IO 在系统复位后的状态:\n\n<table><tr><td>名称</td><td>复位后状态</td><td>复位后功能</td></tr><tr><td>PA04</td><td>高阻</td><td>JTAG.TDO</td></tr><tr><td>PA05</td><td>输入内部上拉</td><td>JTAG.TDI</td></tr><tr><td>PA06</td><td>输入内部下拉</td><td>JTAG.TCK</td></tr><tr><td>PA07</td><td>输入内部上拉</td><td>JTAG.TMS</td></tr><tr><td>PA08</td><td>输入内部上拉</td><td>JTAG.TRST</td></tr><tr><td>PY00</td><td>输出高电平</td><td>PUART.TXD</td></tr></table>\n\n---\n\n<table><tr><td>名称</td><td>复位后状态</td><td>复位后功能</td></tr><tr><td>PY01</td><td>输入内部上拉</td><td>PUART.RXD</td></tr><tr><td>PY02</td><td>输出高电平</td><td>PUART.RTS</td></tr><tr><td>PY03</td><td>输入内部上拉</td><td>PUART.CTS</td></tr><tr><td>PY05</td><td>输出高电平</td><td>PWDG.RST</td></tr><tr><td>其余 IO</td><td>输入状态保持器</td><td>GPIO</td></tr></table>\n\n表 6: IO 复位状态表",
+      "line_num": 757,
+      "summary": "总结了HPM5300系列微控制器所有IO引脚在系统复位后的初始状态（如高阻、上拉、下拉、输出高）和复位后默认的功能（如JTAG、PUART、GPIO）。"
+    },
+    {
+      "title": "2.7 IO 供电引脚",
+      "node_id": "0028",
+      "text": "## 2.7 IO 供电引脚\n\n本产品上，GPIO 端口 A 的 IO(PA00~PA31) 供电引脚为 VIO_B00。\n\nGPIO 端口 B 的 IO(PB00~PA15) 供电引脚为 VIO_B01。\n\nGPIO 端口 Y 的 IO(PY00~PY07) 供电引脚为 VPMC。\n\n---",
+      "line_num": 769,
+      "summary": "## 2.7 IO 供电引脚\n\n本产品上，GPIO 端口 A 的 IO(PA00~PA31) 供电引脚为 VIO_B00。\n\nGPIO 端口 B 的 IO(PB00~PA15) 供电引脚为 VIO_B01。\n\nGPIO 端口 Y 的 IO(PY00~PY07) 供电引脚为 VPMC。\n\n---"
+    },
+    {
+      "title": "3 电源",
+      "node_id": "0029",
+      "text": "## 3 电源\n\n该系列芯片供电是通过对 DCDC_IN 和 VPMC 脚输入 3.0-3.6V 单一电源，并通过内置的电压调节器提供系统所需的 VDD_SOC, VDD_PMCCAP, VDD_OTPCAP。当电源 DCDC_IN 掉电后，通过 VPMC 脚为电源管理域和 PDGO 提供电源。每个 I/O 电源 VIO_Bxx 根据相应负载接 3.3V 电源。",
+      "line_num": 779,
+      "summary": "## 3 电源\n\n该系列芯片供电是通过对 DCDC_IN 和 VPMC 脚输入 3.0-3.6V 单一电源，并通过内置的电压调节器提供系统所需的 VDD_SOC, VDD_PMCCAP, VDD_OTPCAP。当电源 DCDC_IN 掉电后，通过 VPMC 脚为电源管理域和 PDGO 提供电源。每个 I/O 电源 VIO_Bxx 根据相应负载接 3.3V 电源。"
+    },
+    {
+      "title": "3.1 电源框图",
+      "node_id": "0030",
+      "text": "## 3.1 电源框图\n\n![](images/41_0.jpg)\n\n图 5: 系统供电框图\n\n其中电感电容建议值如表 7。\n\n<table><tr><td>位号</td><td>参考值</td></tr><tr><td>L1</td><td>2.2uH~10uF，典型 4.7uH</td></tr><tr><td>C1</td><td>33~66uF</td></tr><tr><td>C2</td><td>0.1uF</td></tr><tr><td>C3</td><td>0.1uF</td></tr><tr><td>C4</td><td>4.7uF+0.1uF</td></tr><tr><td>C5</td><td>4.7uF+0.1uF</td></tr></table>\n\n表 7: 电源部分电感，电容参考值",
+      "line_num": 783,
+      "summary": "展示了HPM5300系列微控制器的系统供电框图，并提供了电源部分所需外部电感（L1）和电容（C1-C5）的参考值表格。"
+    },
+    {
+      "title": "3.2 上下电时序",
+      "node_id": "0031",
+      "text": "## 3.2 上下电时序\n\n上电要求 VPMC 不能迟于其他电源上电即可，下电要求 VPMC 不早于其他电源下电即可。",
+      "line_num": 795,
+      "summary": "## 3.2 上下电时序\n\n上电要求 VPMC 不能迟于其他电源上电即可，下电要求 VPMC 不早于其他电源下电即可。"
+    },
+    {
+      "title": "4 电气特性",
+      "node_id": "0032",
+      "text": "## 4 电气特性",
+      "line_num": 799,
+      "summary": "## 4 电气特性"
+    },
+    {
+      "title": "4.1 工作条件",
+      "node_id": "0033",
+      "text": "## 4.1 工作条件\n\n若无另行说明，所有电压都以 VSS 为基准。\n\n---",
+      "line_num": 801,
+      "summary": "## 4.1 工作条件\n\n若无另行说明，所有电压都以 VSS 为基准。\n\n---"
+    },
+    {
+      "title": "4.1.1 最大值和最小值",
+      "node_id": "0034",
+      "text": "## 4.1.1 最大值和最小值\n\n表 8 给出了此芯片支持工作环境的最大值和最小值；超过表 8 所列的值，可能会对芯片造成永久伤害。\n\n<table><tr><td>符号</td><td>描述</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td>DCDC_IN</td><td>DCDC 输入电压</td><td>-0.3</td><td>3.6</td><td>V</td></tr><tr><td>VPMC</td><td>VPMC 输入电压</td><td>-0.3</td><td>3.6</td><td>V</td></tr><tr><td>VDD_SOC</td><td>VDD_SOC 输入电压</td><td>-0.3</td><td>1.3</td><td>V</td></tr><tr><td>VDD_USB</td><td>USB CORE 输入电压</td><td>-0.3</td><td>1.3</td><td>V</td></tr><tr><td>VANA</td><td>VANA 输入电压</td><td>-0.3</td><td>3.6</td><td>V</td></tr><tr><td>VREFH</td><td>ADC 参考电压</td><td>2.4</td><td>3.6</td><td>V</td></tr><tr><td>USB0_VBUS</td><td>USB0 输入检测电压</td><td>-</td><td>5.5</td><td>V</td></tr><tr><td>VUSB</td><td>USB 输入电压</td><td>-0.3</td><td>3.6</td><td>V</td></tr><tr><td>VIO_Bxx(3.3V 模式)</td><td>IO 对应电源 3.3V 供电</td><td>-0.3</td><td>3.6</td><td>V</td></tr><tr><td>VIO_Bxx(1.8V 模式)</td><td>IO 对应电源 1.8V 供电</td><td>-0.3</td><td>1.98</td><td>V</td></tr><tr><td>ESD HBM</td><td>HBM 模型的抗 ESD 电压</td><td>-</td><td>1000</td><td>V</td></tr><tr><td>ESD CDM</td><td>CDM 模型的抗 ESD 电压</td><td>-</td><td>500</td><td>V</td></tr><tr><td>TSTG</td><td>存储温度</td><td>-40</td><td>150</td><td>℃</td></tr></table>\n\n表 8: 最大值和最小值\n\n---",
+      "line_num": 807,
+      "summary": "以表格形式列出了HPM5300系列微控制器各电源域（如DCDC_IN, VPMC, VDD_SOC等）、IO电压、ESD等级和存储温度的最大和最小绝对值，超出此范围可能对芯片造成永久损坏。"
+    },
+    {
+      "title": "4.1.2 正常工作条件",
+      "node_id": "0035",
+      "text": "## 4.1.2 正常工作条件\n\n表 9 列出了芯片的正常工作条件，若超出此表所列的工作条件，将不保证芯片的正常功能和性能。\n\n<table><tr><td>符号</td><td>描述</td><td>工作场景</td><td>最大主频</td><td>最小值</td><td>典型值</td><td>最大值 \\( ^{(1)} \\)</td><td>单位</td></tr><tr><td rowspan=\"4\">VDD_SOC \\( ^{(2)} \\)</td><td rowspan=\"4\">VDD_SOC 输入电压</td><td>性能模式</td><td>480 MHz</td><td>1.25</td><td>1.275</td><td>1.30</td><td>V</td></tr><tr><td>平衡模式</td><td>400 MHz</td><td>1.15</td><td>1.175</td><td>1.30</td><td>V</td></tr><tr><td>节能模式</td><td>280 MHz</td><td>1.05</td><td>1.075</td><td>1.30</td><td>V</td></tr><tr><td>休眠模式 \\( ^{(3)} \\)</td><td>-</td><td>0.9</td><td>-</td><td>1.30</td><td>V</td></tr><tr><td>DCDC_IN</td><td>DCDC 输入电压</td><td>-</td><td>-</td><td>3.0</td><td>3.3</td><td>3.6</td><td>V</td></tr><tr><td>VPMC</td><td>VPMC 输入电压</td><td>-</td><td>-</td><td>3.0</td><td>3.3</td><td>3.6</td><td>V</td></tr><tr><td>VANA</td><td>VANA 输入电压</td><td>-</td><td>-</td><td>3.0</td><td>3.3</td><td>3.6</td><td>V</td></tr><tr><td>VBUS0</td><td>VBUS0 输入电压</td><td>-</td><td>-</td><td>-</td><td>5.0</td><td>5.5</td><td>V</td></tr><tr><td>VUSB</td><td>VUSB 输入电压</td><td>-</td><td>-</td><td>3.0</td><td>3.3</td><td>3.6</td><td>V</td></tr><tr><td>VIO_Bxx (3.3V 模式)</td><td>对应 IO 电源 3.3V</td><td>-</td><td>-</td><td>3.0</td><td>3.3</td><td>3.6</td><td>V</td></tr><tr><td>VIO_Bxx (1.8V 模式)</td><td>对应 IO 电源 1.8V</td><td>-</td><td>-</td><td>1.62</td><td>1.8</td><td>1.98</td><td>V</td></tr><tr><td>T_A</td><td>工作环境温度</td><td>-</td><td>-</td><td>-40</td><td>-</td><td>105</td><td>°C</td></tr><tr><td>T_J</td><td>工作芯片结温</td><td>-</td><td>-</td><td>-40</td><td>-</td><td>125</td><td>°C</td></tr></table>\n\n表 9: 正常工作条件\n\n1. 芯片工作在最大电压下会导致较大的功耗和发热，长期在最大电压下工作会导致芯片使用寿命缩短\n\n2. 先精推荐通常情况下将 VDD_SOC 电压设定为典型值。\n\n3. 休眠模式下，片上 DCDC 可保持较低电压输出，从而保存片上 SRAM 内的数据。",
+      "line_num": 817,
+      "summary": "以表格形式定义了HPM5300系列微控制器在正常工作条件下的各项参数，包括不同性能模式下的VDD_SOC电压范围、其他电源电压、IO电压、环境温度和结温的限制。"
+    },
+    {
+      "title": "4.2 内置闪存特性",
+      "node_id": "0036",
+      "text": "## 4.2 内置闪存特性\n\n本产品内置 1MB 闪存。\n\n内置的 1MB 闪存，分为 4096 个页（page），每个页包含 256 字节（Byte）。一次编程最多可以烧写 256 字节。闪存的擦除可以按照每 4 页 (1K 字节)，16 页 (4K 字节)，128 页 (32K 字节)，256 页 (64K 字节) 和全片来进行。内置闪存的特性如表 10。\n\n<table><tr><td>符号</td><td>描述</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>ICC Standby</td><td>闪存待机电流</td><td>-</td><td>7.0</td><td>35</td><td>uA</td></tr><tr><td>ICC DPD</td><td>闪存深度休眠电流</td><td>-</td><td>0.6</td><td>4</td><td>uA</td></tr><tr><td>ICC Read</td><td>闪存读取电流</td><td>-</td><td>3</td><td>13</td><td>mA</td></tr><tr><td>ICC P</td><td>闪存编程电流</td><td>-</td><td>1.5</td><td>4</td><td>mA</td></tr><tr><td>ICC 1KE</td><td>闪存 1KB 擦除电流</td><td>-</td><td>1</td><td>5</td><td>mA</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>ICC 4KE</td><td>闪存 4KB 擦除电流</td><td>-</td><td>1</td><td>6</td><td>mA</td></tr><tr><td>ICC 32KE</td><td>闪存 32KB 擦除电流</td><td>-</td><td>1</td><td>7</td><td>mA</td></tr><tr><td>ICC 64KE</td><td>闪存 64KB 擦除电流</td><td>-</td><td>1</td><td>8</td><td>mA</td></tr><tr><td>ICC CE</td><td>闪存全擦除电流</td><td>-</td><td>1</td><td>9</td><td>mA</td></tr><tr><td>t BP</td><td>闪存字节编程时间</td><td>-</td><td>100</td><td>200</td><td>us</td></tr><tr><td>t PP</td><td>闪存页编程时间</td><td>-</td><td>1</td><td>2</td><td>ms</td></tr><tr><td>t SE</td><td>闪存 1KB/4KB 扇区擦除时间</td><td>-</td><td>2.3</td><td>5</td><td>ms</td></tr><tr><td>t BE</td><td>闪存 32KB/64KB 块擦除时间</td><td>-</td><td>2.3</td><td>5</td><td>s</td></tr><tr><td>t CE</td><td>闪存全擦除时间</td><td>-</td><td>5</td><td>9</td><td>ms</td></tr><tr><td>Endurance</td><td>25℃ 编程/擦除周期数</td><td>200k</td><td></td><td>-</td><td>Cycles</td></tr><tr><td>Data Retention</td><td>25℃ 数据保存时间</td><td>-</td><td>50</td><td>-</td><td>Years</td></tr></table>\n\n表 10: 内置闪存特性",
+      "line_num": 831,
+      "summary": "详细列出了HPM5300系列微控制器内置1MB闪存的电气特性，包括各种操作模式（待机、读取、编程、擦除）下的电流消耗、操作时间（编程、擦除）、耐久性和数据保存年限。"
+    },
+    {
+      "title": "4.3 VPMC 欠压检测",
+      "node_id": "0037",
+      "text": "## 4.3 VPMC 欠压检测\n\nVPMC 欠压检测 BOR 的特性如表 11。\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>欠压警告生效电压</td><td>VBOR Warning Assert</td><td>-</td><td>2.8</td><td>-</td><td>V</td><td>-</td></tr><tr><td>欠压警告释放电压</td><td>VBOR Warning Release</td><td>-</td><td>2.9</td><td>-</td><td>V</td><td>-</td></tr><tr><td>欠压复位生效电压</td><td>VBOR Reset Assert</td><td>-</td><td>2.6</td><td>-</td><td>V</td><td>-</td></tr><tr><td>欠压复位释放电压</td><td>VBOR Reset Release</td><td>-</td><td>2.7</td><td>-</td><td>V</td><td>-</td></tr></table>\n\n表 11: VPMC 欠压检测特性",
+      "line_num": 845,
+      "summary": "提供了HPM5300系列微控制器VPMC电源欠压检测（BOR）模块的特性参数表，包括欠压警告和欠压复位的生效与释放电压阈值。"
+    },
+    {
+      "title": "4.4 复位引脚 RESET_N",
+      "node_id": "0038",
+      "text": "## 4.4 复位引脚 RESET_N\n\nRESET_N 保持低电平以触发正常复位的时间长度要求，请参考表 12。\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>RESET_N 低电平时问</td><td>T reset low</td><td>300</td><td>1000</td><td>-</td><td>us</td><td>-</td></tr></table>\n\n表 12: RESET_N 低电平复位特性",
+      "line_num": 853,
+      "summary": "## 4.4 复位引脚 RESET_N\n\nRESET_N 保持低电平以触发正常复位的时间长度要求，请参考表 12。\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>RESET_N 低电平时问</td><td>T reset low</td><td>300</td><td>1000</td><td>-</td><td>us</td><td>-</td></tr></table>\n\n表 12: RESET_N 低电平复位特性"
+    },
+    {
+      "title": "4.5 振荡器",
+      "node_id": "0039",
+      "text": "## 4.5 振荡器\n\n---",
+      "line_num": 861,
+      "summary": "## 4.5 振荡器\n\n---"
+    },
+    {
+      "title": "4.5.1 24MHz 振荡器特性",
+      "node_id": "0040",
+      "text": "## 4.5.1 24MHz 振荡器特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>频率</td><td>FREQ</td><td>-</td><td>24</td><td>-</td><td>MHz</td><td>-</td></tr><tr><td>等效串联电阻</td><td>ESR</td><td>-</td><td>40~80</td><td>-</td><td>Ω</td><td>-</td></tr><tr><td>负载电容</td><td>CL</td><td>-</td><td>6</td><td>-</td><td>pF</td><td>-</td></tr></table>\n\n表 13: 24MHz 晶振",
+      "line_num": 865,
+      "summary": "提供了HPM5300系列微控制器外部24MHz振荡器（用于连接晶体）的特性参数表，包括典型频率、等效串联电阻（ESR）和负载电容（CL）的建议值。"
+    },
+    {
+      "title": "4.5.2 32KHz RC 振荡器时钟特性",
+      "node_id": "0041",
+      "text": "## 4.5.2 32KHz RC 振荡器时钟特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>频率</td><td>\\( FREQ \\)</td><td>-</td><td>32</td><td>-</td><td>\\( KHz \\)</td><td>-</td></tr><tr><td>频率准确度 (未校准)</td><td></td><td>-10</td><td>-</td><td>10</td><td>%</td><td>-</td></tr></table>\n\n表 14: 32KHz RC 振荡器",
+      "line_num": 871,
+      "summary": "## 4.5.2 32KHz RC 振荡器时钟特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>频率</td><td>\\( FREQ \\)</td><td>-</td><td>32</td><td>-</td><td>\\( KHz \\)</td><td>-</td></tr><tr><td>频率准确度 (未校准)</td><td></td><td>-10</td><td>-</td><td>10</td><td>%</td><td>-</td></tr></table>\n\n表 14: 32KHz RC 振荡器"
+    },
+    {
+      "title": "4.5.3 24MHz RC 振荡器时钟特性",
+      "node_id": "0042",
+      "text": "## 4.5.3 24MHz RC 振荡器时钟特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>频率</td><td>FREEQ</td><td>-</td><td>24</td><td>-</td><td>MHz</td><td>-</td></tr><tr><td>频率准确度</td><td></td><td>-2</td><td>-</td><td>2</td><td>%</td><td>-</td></tr></table>\n\n表 15: 24MHz RC 振荡器",
+      "line_num": 877,
+      "summary": "## 4.5.3 24MHz RC 振荡器时钟特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>频率</td><td>FREEQ</td><td>-</td><td>24</td><td>-</td><td>MHz</td><td>-</td></tr><tr><td>频率准确度</td><td></td><td>-2</td><td>-</td><td>2</td><td>%</td><td>-</td></tr></table>\n\n表 15: 24MHz RC 振荡器"
+    },
+    {
+      "title": "4.5.4 PLL 特性",
+      "node_id": "0043",
+      "text": "## 4.5.4 PLL 特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>参考频率</td><td>fREF</td><td>-</td><td>24</td><td>-</td><td>MHz</td><td>-</td></tr><tr><td>VCO 频率</td><td>fVCO</td><td>400</td><td>-</td><td>1000</td><td>MHz</td><td>-</td></tr><tr><td>锁定时间</td><td>tLOCK</td><td>-</td><td>-</td><td>2400</td><td>cycle</td><td>参考时钟周期</td></tr></table>\n\n表 16: PLL 特性参数",
+      "line_num": 883,
+      "summary": "提供了HPM5300系列微控制器内部锁相环（PLL）的特性参数表，包括参考时钟频率、压控振荡器（VCO）频率范围以及锁定时间（以参考时钟周期计）。"
+    },
+    {
+      "title": "4.6 外设时钟特性",
+      "node_id": "0044",
+      "text": "## 4.6 外设时钟特性\n\n表 17 列举了本产品各个外设时钟的特性。\n\n---\n\n<table><tr><td>符号</td><td>条件</td><td>最小</td><td>典型</td><td>最大</td><td>单位</td></tr><tr><td>clk_top_cpu0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>480</td><td>MHz</td></tr><tr><td>clk_top_mct0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>24</td><td>MHz</td></tr><tr><td>clk_top_can0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>clk_top_can1</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>clk_t0p_can2</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>clk_to0_can3</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>clk_0p_tmr0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>clk_0p_tmr1</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>clk_to0_tmr2</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>clk_t0p_tmr3</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>clk_top_i2c0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_k0p_i2c1</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_k_0p_i2c2</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_k_to0_i2c3</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_k_top_spi0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_0p_spi1</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_1p_spi2</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_2p_spi3</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>80</td><td>MHz</td></tr><tr><td>cl_3p_urt0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_4p_urt1</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_5p_urt2</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_6p_urt3</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_7p_urt4</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_8p_urt5</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_9p_urt6</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_10p_urt7</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_11p_xpi0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>333</td><td>MHz</td></tr><tr><td>cl_12p_ana0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>200</td><td>MHz</td></tr><tr><td>cl_13p_ana1</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>200</td><td>MHz</td></tr><tr><td>cl_14p_ana2</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>200</td><td>MHz</td></tr><tr><td>cl_15p_ana3</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>200</td><td>MHz</td></tr><tr><td>cl_16p_ref0</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr><tr><td>cl_k0p_ref1</td><td>1.05V≤VDD_SOC≤1.30V</td><td>-</td><td>-</td><td>100</td><td>MHz</td></tr></table>\n\n表 17: 外设时钟特性\n\n---",
+      "line_num": 889,
+      "summary": "以表格形式列出了HPM5300系列微控制器各个外设模块（如CPU、CAN、定时器、SPI、UART、XPI、模拟模块等）所支持的最大时钟频率。"
+    },
+    {
+      "title": "4.7 工作模式",
+      "node_id": "0045",
+      "text": "## 4.7 工作模式\n\n芯片在不同模式下的各模块电源配置如表 18\n\n<table><tr><td>模式</td><td>CPU0 子系统电源</td><td>VDD_SOC</td><td>VPMC</td><td>DGO</td></tr><tr><td>等待模式</td><td>开</td><td>开</td><td>开</td><td>开</td></tr><tr><td>停止模式</td><td>可选</td><td>开</td><td>开</td><td>开</td></tr><tr><td>休眠模式</td><td>关</td><td>关</td><td>开</td><td>开</td></tr><tr><td>关机模式</td><td>关</td><td>关</td><td>关</td><td>开</td></tr></table>\n\n表 18: 工作模式配置表",
+      "line_num": 901,
+      "summary": "以表格形式列出了HPM5300系列微控制器在不同工作模式（等待、停止、休眠、关机）下，各电源域（CPU0子系统、VDD_SOC、VPMC、DGO）的开关状态配置。"
+    },
+    {
+      "title": "4.8 供电电流特性",
+      "node_id": "0046",
+      "text": "## 4.8 供电电流特性\n\n电流消耗受多个参数和因素影响，其中包括工作电压、环境温度、I/O 引脚负载、器件软件配置、工作频率、I/O 引脚开关速率、程序在存储器中的位置以及运行的代码等。\n\nIDD(DCDC_IN) 的供电电流如表 19 所示。DCDC_IN、VPMC 由外部 3.3V 供电，VDD_SOC 由片上 DCDC 产生。CPU 运行 CoreMark 程序，代码是从指令本地存储器（ILM）执行。外设时钟打开后均处于默认频率（详情请参考 HPM5300 用户手册）。测试都是在典型工艺参数下的芯片上测试所得，仅供参考。\n\nIDD(VPMC) 的供电电流如表 20 所示。\n\nIDD(VANA) 的供电电流如表 21 所示。\n\nIDD(VPLL) 的供电电流如表 22 所示。\n\n<table><tr><td>符号</td><td>测试条件</td><td>CPU0</td><td>外设状态</td><td>\\( T_{A}=25^{\\circ}C \\)</td><td>\\( T_{A}=85^{\\circ}C \\)</td><td>\\( T_{A}=105^{\\circ}C \\)</td><td>单位</td></tr><tr><td rowspan=\"8\">IDD DCDC_IN = 3.3V</td><td rowspan=\"2\">VDD_SOC=1.175V CPU/BUS@480/160MHz</td><td>开</td><td>全开</td><td>59.9</td><td>64.7</td><td>67.8</td><td>mA</td></tr><tr><td>开</td><td>全关</td><td>33.5</td><td>36.8</td><td>39.6</td><td>mA</td></tr><tr><td rowspan=\"2\">VDD_SOC=1.10V CPU/BUS@240/120MHz</td><td>开</td><td>全开</td><td>36.2</td><td>39.1</td><td>41.4</td><td>mA</td></tr><tr><td>开</td><td>全关</td><td>18.3</td><td>20.7</td><td>22.8</td><td>mA</td></tr><tr><td rowspan=\"2\">VDD_SOC=1.10V CPU/BUS@100/100MHz</td><td>开</td><td>全开</td><td>28.7</td><td>31.3</td><td>33.6</td><td>mA</td></tr><tr><td>开</td><td>全关</td><td>13.1</td><td>15.4</td><td>17.3</td><td>mA</td></tr><tr><td rowspan=\"2\">VDD_SOC=1.05V CPU/BUS@24/24MHz</td><td>开</td><td>全开</td><td>5.5</td><td>7.3</td><td>8.8</td><td>mA</td></tr><tr><td>开</td><td>全关</td><td>3.2</td><td>4.8</td><td>6.4</td><td>mA</td></tr></table>\n\n表 19: 运行模式的典型电流\n\n<table><tr><td>符号</td><td>测试条件</td><td>工作状态</td><td>\\( T_{A}=25^{\\circ}C \\)</td><td>\\( T_{A}=85^{\\circ}C \\)</td><td>\\( T_{A}=105^{\\prime}C \\)</td><td>单位</td></tr><tr><td>IDD PMC</td><td>VPMC = 3.3V</td><td>运行模式DCDC ON</td><td>1.06</td><td>1.14</td><td>1.20</td><td>mA</td></tr><tr><td>IDD PMC</td><td>VPMC = 3.3V</td><td>休眠模式DCDC OFF</td><td>0.53</td><td>0.59</td><td>0.64</td><td>mA</td></tr><tr><td>IDD PMC</td><td>VPMC = 3.3V</td><td>关机模式DGO Only</td><td>2.3</td><td>3.1</td><td>4.8</td><td>uA</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>测试条件</td><td>工作状态</td><td>\\( T_{A}=25^{\\circ}C \\)</td><td>\\( T_{A}=85^{\\circ}C \\)</td><td>\\( T_{A}=105^{\\circ}C \\)</td><td>单位</td></tr></table>\n\n表 20: IDD(VPMC) 典型电流\n\n<table><tr><td>符号</td><td>测试条件</td><td>工作状态</td><td>\\( T_{A}=25^{\\circ}C \\)</td><td>\\( T_{A} \\) =85℃</td><td>\\( T_{A} \\) =105℃</td><td>单位</td></tr><tr><td>IDD VANA</td><td>VANA = 3.3V</td><td>ADC0 10K SPS</td><td>0.17</td><td>0.18</td><td>0.19</td><td>mA</td></tr><tr><td>IDD VANA</td><td>VANA = 3.3V</td><td>ALL Analog OFF</td><td>0.09</td><td>0.10</td><td>0.10</td><td>mA</td></tr></table>\n\n表 21: IDD(VANA) 典型电流\n\n<table><tr><td>符号</td><td>测试条件</td><td>工作状态</td><td>\\( T_{A}=25^{\\circ}C \\)</td><td>\\( T_{A}=\\pm85^{\\circ}C \\)</td><td>\\( T_{A}=\\pm105^{\\circ}C \\)</td><td>单位</td></tr><tr><td>IDD VPLL</td><td>VPLL = 3.3V</td><td>ALL PLL ON</td><td>2.55</td><td>2.64</td><td>2.67</td><td>mA</td></tr><tr><td>IDD VPLL</td><td>VPLL = 3.3V</td><td>PLLO ON</td><td>1.75</td><td>1.79</td><td>1.81</td><td>mA</td></tr><tr><td>IDD VPLL</td><td>VPPL = 3.3V</td><td>ALL PLL OFF</td><td>0.83</td><td>0.83</td><td>0.84</td><td>mA</td></tr></table>\n\n表 22: IDD(VPLL) 典型电流\n\n---",
+      "line_num": 909,
+      "summary": "提供了HPM5300系列微控制器在不同工作电压、频率、温度及外设开关状态下的典型供电电流测试数据表格，涵盖了DCDC_IN、VPMC、VANA和VPLL等电源域的消耗。"
+    },
+    {
+      "title": "4.9 I/O 特性",
+      "node_id": "0047",
+      "text": "## 4.9 I/O 特性",
+      "line_num": 943,
+      "summary": "## 4.9 I/O 特性"
+    },
+    {
+      "title": "4.9.1 I/O DC 特性",
+      "node_id": "0048",
+      "text": "## 4.9.1 I/O DC 特性\n\nI/O 特性如表 23。\n\n<table><tr><td>符号</td><td>参数</td><td>最小</td><td>典型</td><td>最大</td><td>单位</td></tr><tr><td>VDDIO 1.8V</td><td>IO 电源</td><td>1.62</td><td>1.8</td><td>1.98</td><td>V</td></tr><tr><td>VDDIO 3.3V</td><td>IO 电源</td><td>2.97</td><td>3.3</td><td>3.63</td><td>V</td></tr><tr><td>VIL 1.8V</td><td>输入低电平</td><td>0</td><td>-</td><td>0.3*VDDIO</td><td>V</td></tr><tr><td>VIH 1.8V</td><td>输入高电平</td><td>0.7*VDDIO</td><td>-</td><td>VDDIO</td><td>V</td></tr><tr><td>VOL 1.8V</td><td>输出低电平</td><td>-</td><td>-</td><td>0.15</td><td>V</td></tr><tr><td>VOH 1.8V</td><td>输出高电平</td><td>VDDIO-0.15</td><td>-</td><td>-</td><td>V</td></tr><tr><td>VIL 3.3V</td><td>输入低电平</td><td>0</td><td>-</td><td>0.3*VDDIO</td><td>V</td></tr><tr><td>VIH 3.3V</td><td>输入高电平</td><td>0.7*VDDIO</td><td>-</td><td>VDDIO</td><td>V</td></tr><tr><td>VOL 3.3V</td><td>输出低电平</td><td>-</td><td>-</td><td>0.15</td><td>V</td></tr><tr><td>VOH 3.3V</td><td>输出高电平</td><td>VDDIO-0.15</td><td>-</td><td>-</td><td>V</td></tr><tr><td>RPU22K</td><td>上拉电阻</td><td>17.1</td><td>22</td><td>28.3</td><td>kΩ</td></tr><tr><td>RPU47K</td><td>上拉电阻</td><td>36</td><td>47</td><td>60</td><td>kΩ</td></tr><tr><td>RPU100K</td><td>上拉电阻</td><td>75</td><td>100</td><td>125</td><td>kΩ</td></tr><tr><td>RPD100K</td><td>下拉电阻</td><td>75</td><td>100</td><td>125</td><td>kΩ</td></tr></table>\n\n表 23: IO 工作条件",
+      "line_num": 945,
+      "summary": "以表格形式定义了HPM5300系列微控制器I/O引脚的直流（DC）电气特性，包括在1.8V和3.3V供电模式下的输入/输出电平阈值、以及内部上拉/下拉电阻的典型值。"
+    },
+    {
+      "title": "4.9.2 I/O AC 特性",
+      "node_id": "0049",
+      "text": "## 4.9.2 I/O AC 特性\n\n![](images/49_0.jpg)\n\n图 6: I/O AC 特性\n\n<table><tr><td>类型</td><td>参数</td><td>符号</td><td>最小</td><td>最大</td><td>单位</td><td>测试条件</td></tr><tr><td>3.3/1.8V IO 1.8V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>4.4/4.3</td><td>ns</td><td>15pf 负载，fast slew rate，驱动强度 111b</td></tr><tr><td>3.3/1.8V IO 1.8V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>8.2/7.9</td><td>ns</td><td>15pf 负载，slow slew rate，驱动强度 111b</td></tr></table>\n\n---\n\n<table><tr><td>类型</td><td>参数</td><td>符号</td><td>最小</td><td>最大</td><td>单位</td><td>测试条件</td></tr><tr><td>3.3/1.8V IO 1.8V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>4.6/4.4</td><td>ns</td><td>15pf负载，fast slew rate，驱动强度011b</td></tr><tr><td>3.3/1.8V IO 1.8V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>8.6/8.3</td><td>ns</td><td>15pf负载，slow slew rate，驱动强度011b</td></tr><tr><td>3.3/1.8V IO 3.3V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>2.6/2.5</td><td>ns</td><td>15pf负载，fast slew rate，驱动强度111b</td></tr><tr><td>3.3/1.8V IO 3.3V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td rowspan=\"2\">4.3/4.2</td><td rowspan=\"2\">ns</td><td rowspan=\"2\">15pf负载，slow slew rate，驱动强度111b</td></tr><tr><td>3.3/1.8V IO 3.3V</td><td>上升/下降时间</td><td>tr/f</td><td>-</td></tr><tr><td>3.3/1.8V IO 3.3V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>3.4/3.2</td><td>ns</td><td>15pf负载，fast slew rate，驱动强度011b</td></tr><tr><td>3.3/1.8V IO 3.3V</td><td>上升/下降时间</td><td>tr/f</td><td>-</td><td>2.9/2.7</td><td>ns</td><td>15pf负载，slow slew rate，驱动强度011b</td></tr><tr><td>3.3/1.8V IO 3.3</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>4.5/4.4</td><td>ns</td><td>15pf负载，slow slew rate，驱动强度011b</td></tr><tr><td>3.3V IO 3.3V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>2.1/1.6</td><td>ns</td><td>15pf负载，fast slew rate，驱动强度111b</td></tr><tr><td>3.3V IO 3.3V</td><td>上升/下降时间</td><td>tr/tf</td><td>-</td><td>3.4/3.3</td><td>ns</td><td>15pf负载，slow slew rate，驱动强度111b</td></tr><tr><td>3.3V IO 3.3V</td><td>上升/下降时间</td><td>tr/tf</td><td>2.2/1.7</td><td>ns</td><td>15pf负载，fast slew rate，驱动强度011b</td><td></td></tr><tr><td>3.3V IO 3.3V</td><td>上升/下降时间</td><td>tr/tf</td><td>3.6/3.4</td><td>ns</td><td>15pf负载，slow slew rate，驱动强度011b</td><td></td></tr></table>\n\n表 24: I/O AC 特性\n\n---",
+      "line_num": 953,
+      "summary": "描述了HPM5300系列微控制器I/O引脚的交流（AC）特性，通过时序图定义了上升/下降时间，并以表格形式给出了在不同电压模式、负载、驱动强度和压摆率设置下的具体参数。"
+    },
+    {
+      "title": "4.10 JTAG 接口",
+      "node_id": "0050",
+      "text": "## 4.10 JTAG 接口\n\nJTAG 时序如图 7。\n\n![](images/51_0.jpg)\n\n图 7: JTAG 时序图\n\n<table><tr><td>符号</td><td>描述</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td>tCK</td><td>一个时钟周期持续的时间</td><td>40</td><td>-</td><td>ns</td></tr><tr><td>tCKH</td><td>一个时钟周期内高电平持续时间</td><td>0.48*P</td><td>0.52*P</td><td>ns</td></tr><tr><td>tCKL</td><td>一个时钟周期内低电平持续时间</td><td>0.48*P</td><td>0.52*P</td><td>ns</td></tr><tr><td>tSU(TDI-TCK)</td><td>输入建立时间,从TCK高到TDI有效</td><td>8</td><td>-</td><td>ns</td></tr><tr><td>tSU(TMS-TCK)</td><td>输入建立时间,从TCK高到TMS有效</td><td>8</td><td>-</td><td>ns</td></tr><tr><td>tHO(TCK-TDI)</td><td>输入保持时间,从TCK高到TDI有效</td><td>15</td><td>-</td><td>ns</td></tr><tr><td>tHO(TCK-TMS)</td><td>输入保持时间,从TCK高到TMS有效</td><td>15</td><td>-</td><td>ns</td></tr><tr><td>tTDO(TCK-TDO)</td><td>TCK下降沿到TDO数据有效时间</td><td>-</td><td>15</td><td>ns</td></tr></table>\n\n表 25: JTAG 时序参数\n\n---",
+      "line_num": 969,
+      "summary": "描述了HPM5300系列微控制器JTAG接口的时序要求，通过时序图和相关参数表定义了时钟周期、数据建立/保持时间以及TDO有效时间等关键参数。"
+    },
+    {
+      "title": "4.11 XPI 存储器接口",
+      "node_id": "0051",
+      "text": "## 4.11 XPI 存储器接口",
+      "line_num": 983,
+      "summary": "## 4.11 XPI 存储器接口"
+    },
+    {
+      "title": "4.11.1 DC 特性",
+      "node_id": "0052",
+      "text": "## 4.11.1 DC 特性\n\n参考 I/O 即可",
+      "line_num": 985,
+      "summary": "## 4.11.1 DC 特性\n\n参考 I/O 即可"
+    },
+    {
+      "title": "4.11.2 AC 特性",
+      "node_id": "0053",
+      "text": "## 4.11.2 AC 特性\n\nXPI 采样时钟有三种源：\n\n● 由 XPI 控制器生成并在内部回送 (XPI_GCR0[RXCLLKSRC] = 0x0)\n\n● 由 XPI 控制器生成并通过 DQS 回送 (XPI_GCR0[RXCLLKSRC] = 0x1)\n\n- 来自外部 DQS 的输入 (XPI_GCR0[RXCLLKSRC] = 0x3)\n\n以下是三种采样时钟源以及 SDR、DDR 模式对应的输入读操作的特性和时序。测量数据基于电容负载为 15pF，输入 slew rate 为 1V/ns。",
+      "line_num": 989,
+      "summary": "## 4.11.2 AC 特性\n\nXPI 采样时钟有三种源：\n\n● 由 XPI 控制器生成并在内部回送 (XPI_GCR0[RXCLLKSRC] = 0x0)\n\n● 由 XPI 控制器生成并通过 DQS 回送 (XPI_GCR0[RXCLLKSRC] = 0x1)\n\n- 来自外部 DQS 的输入 (XPI_GCR0[RXCLLKSRC] = 0x3)\n\n以下是三种采样时钟源以及 SDR、DDR 模式对应的输入读操作的特性和时序。测量数据基于电容负载为 15pF，输入 slew rate 为 1V/ns。"
+    },
+    {
+      "title": "4.11.2.1 SDR 模式",
+      "node_id": "0054",
+      "text": "## 4.11.2.1 SDR 模式\n\nXPI_GCR0[RXCLLKSRC] = 0X0,0X1 对应时序如图 8。\n\n![](images/52_0.jpg)\n\n图 8: XPI SDR 模式的输入时序（XPI_GCR0[RXCLLKSRC] = 0X0,0X1）\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td></td><td>时钟频率</td><td>—</td><td>60</td><td>MHz</td></tr><tr><td>tIS</td><td>输入数据的建立时间</td><td>8.67</td><td>—</td><td>ns</td></tr><tr><td>tIH</td><td>输入数据的保持时间</td><td>0</td><td>—</td><td>ns</td></tr></table>\n\n表 26: XPI SDR 模式的输入特性（XPI_GCR0[RXCLLKSRC] = 0X0）\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td></td><td>时钟频率</td><td>—</td><td>133</td><td>MHz</td></tr><tr><td>tIS</td><td>输入数据的建立时间</td><td>2</td><td>—</td><td>ns</td></tr><tr><td>tIH</td><td>输入数据的保持时间</td><td>1</td><td>—</td><td>ns</td></tr></table>\n\n表 27: XPI SDR 模式的输入特性（XPI_GCR0[RXCLLKSRC] = 0X1）\n\n图 8 所示时序基于存储器在 SCK 下降沿生成读取数据，以及 XPI 控制器在下降沿采样读取数据。\n\n在 SDR 模式下，XPI_GCR0[RXCLLKSRC] = 0X3，由存储器提供读数据和读选通时，有两种情况：\n\n● 情形 1：存储器在 SCK 上升沿（或下降沿）上生成读数据和读选通信号。\n\nXPI_GCR0[RXCLLKSRC] = 0X3, 情形 1 对应时序如图 9。\n\n---\n\n![](images/53_0.jpg)\n\n图 9: XPI SDR 模式的输入时序（XPI_GCR0[RXCKLSRC] = 0X3，情形 1）\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td></td><td>时钟频率</td><td>—</td><td>166</td><td>MHz</td></tr><tr><td>tSCKD - tSCKDQS</td><td>tSCKD 和 tSCKDQS 时差</td><td>-2</td><td>2</td><td>ns</td></tr></table>\n\n表 28: XPI SDR 模式的输入特性（XPI_GCR0[RXCKLSRC] = 0X3，情形 1）\n\n图 9 所示时序基于存储器在 SCK 上升沿生成读数据和读选通，XPI 控制器在 DQS 下降沿采样读取数据。\n● 情形 2: 存储器在 SCK 下降沿产生读数据，在 SCK 上升沿产生读选通。\n\nXPI_GCR0[RXCKLSRC] = 0X3, 情形 2 对应时序如图 10。\n\n![](images/53_1.jpg)\n\n图 10: XPI SDR 模式的输入时序（XPI_GCR0[RXCKLSRC] = 0X3，情形 2）\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td></td><td>时钟频率</td><td>—</td><td>166 MHz</td><td></td></tr><tr><td>tSCKD - tSCKDQS</td><td>tSCKD 和 tSCKDQS 时差</td><td>-2</td><td>2 ns</td><td></td></tr></table>\n\n表 29: XPI SDR 模式的输入特性（XPI_GCR0[RXCKLSRC] = 0X3，情形 2）\n\n图 10 是存储器在 SCK 下降沿生成读取数据并在 SCK 上升沿生成读取选通，XPI 控制器在半周期延迟的 DQS 下降沿上采样读取数据。",
+      "line_num": 1001,
+      "summary": "详细描述了HPM5300系列微控制器外部存储器接口（XPI）在单数据速率（SDR）模式下的输入时序特性，包括两种时钟源配置（0X0, 0X1）和一种由存储器提供读选通（0X3）的配置及其对应的时序图和参数表。"
+    },
+    {
+      "title": "4.11.2.2 DDR 模式",
+      "node_id": "0055",
+      "text": "## 4.11.2.2 DDR 模式\n\nXPI DDR 模式的输入时序（XPI_GCR0[RXCKLSRC] = 0X0,0X1）对应时序如图 11。\n\n---\n\n![](images/54_0.jpg)\n\n图 11: XPI DDR 模式的输入时序（XPI_GCR0[RXCKLKSRC] = 0X0, 0X1）\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td></td><td>时钟频率</td><td>—</td><td>30</td><td>MHz</td></tr><tr><td>tIS</td><td>输入数据的建立时间</td><td>8.67</td><td>—</td><td>ns</td></tr><tr><td>tIH</td><td>输入数据的保持时间</td><td>0</td><td>—</td><td>ns</td></tr></table>\n\n表 30: XPI DDR 模式的输入特性（XPI_GCR0[RXCKLKSRC] = 0X0）\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td></td><td>时钟频率</td><td>—</td><td>66</td><td>MHz</td></tr><tr><td>tIS</td><td>输入数据的建立时间</td><td>2</td><td>—</td><td>ns</td></tr><tr><td>tIH</td><td>输入数据的保持时间</td><td>1</td><td>—</td><td>ns</td></tr></table>\n\n表 31: XPI DDR 模式的输入特性（XPI_GCR0[RXCKLKSRC] = 0X1）\n\n在 DDR 模式下，XPI_GCR0[RXCKLKSRC] = 0X3，存储器在 SCK 上升沿（或下降沿）上生成读数据和读选通信号。\n\nXPI DDR 模式的输入时序（XPI_GCR0[RXCKLKSRC] = 0X3）对应时序如图 12。\n\n![](images/54_1.jpg)\n\n图 12: XPI DDR 模式的输入时序（XPI_GCR0[RXCKLKSRC] = 0X3）\n\n---\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td></td><td>时钟频率</td><td>—</td><td>166</td><td>MHz</td></tr><tr><td>tSCKD - tSCKDQS</td><td>tSCKD 和 tSCKDQS 时差</td><td>-1</td><td>1</td><td>ns</td></tr></table>\n\n表 32: XPI DDR 模式的输入特性（XPI_GCRO[RXCKSRC] = 0X3",
+      "line_num": 1050,
+      "summary": "详细描述了HPM5300系列微控制器外部存储器接口（XPI）在双数据速率（DDR）模式下的输入时序特性，包括两种时钟源配置（0X0, 0X1）和一种由存储器提供读选通（0X3）的配置及其对应的时序图和参数表。"
+    },
+    {
+      "title": "4.11.2.3 XPI 输出/写操作",
+      "node_id": "0056",
+      "text": "## 4.11.2.3 XPI 输出/写操作\n\n以下部分描述了 XPI 控制器的输出信号时序，包括控制信号和数据输出。\n\n• SDR 模式\n\nXPI SDR 模式的输出信号时序对应时序如图 13。\n\n![](images/55_0.jpg)\n\n图 13: XPI SDR 模式的输出信号\n\n<table><tr><td>符号</td><td>参数</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td>fCK</td><td>时钟频率</td><td>—</td><td>166</td><td>MHz</td></tr><tr><td>tCK</td><td>SCK 时钟周期</td><td>6</td><td>—</td><td>ns</td></tr><tr><td>tDVO</td><td>输出信号有效时间</td><td>—</td><td>1</td><td>ns</td></tr><tr><td>tDHO</td><td>输出信号保持时间</td><td>1</td><td>—</td><td>ns</td></tr><tr><td>tCSS</td><td>片选信号建立时间</td><td>3 x tCK - 1</td><td>—</td><td>ns</td></tr><tr><td>tCSH</td><td>片选信号保持时间</td><td>3 x tCK + 2</td><td>—</td><td>ns</td></tr></table>\n\n表 33: XPI SDR 模式的输出信号时序\n\n• DDR 模式\n\nXPI DDR 模式的输出信号时序对应时序如图 14。\n\n![](images/55_1.jpg)\n\n图 14: XPI DDR 模式的输出信号\n\n---\n\n<table><tr><td>符号</td><td>参数</td><td>Min</td><td>Max</td><td>Unit</td></tr><tr><td>fCK</td><td>时钟频率</td><td>—</td><td>166</td><td>MHz</td></tr><tr><td>tCK</td><td>SCK 时钟周期\n(XPI_GCR0[RXCLKSRC] = 0X0)</td><td>6</td><td>—</td><td>ns</td></tr><tr><td>tDVO</td><td>输出信号有效时间</td><td>—</td><td>2.2</td><td>ns</td></tr><tr><td>tDHO</td><td>输出信号保持时间</td><td>0.8</td><td>—</td><td>ns</td></tr><tr><td>tCSS</td><td>片选信号建立时间</td><td>3 x tCK/2 - 0.7</td><td>—</td><td>ns</td></tr><tr><td>tCSH</td><td>片选信号保持时间</td><td>3 x tCK/2 + 0.8</td><td>—</td><td>ns</td></tr></table>\n\n表 34: XPI DDR 模式的输出信号时序\n\n---",
+      "line_num": 1082,
+      "summary": "详细描述了HPM5300系列微控制器外部存储器接口（XPI）在SDR和DDR模式下的输出/写操作时序特性，分别通过时序图和参数表定义了时钟频率、数据有效/保持时间、片选建立/保持时间等关键参数。"
+    },
+    {
+      "title": "4.12 模拟接口",
+      "node_id": "0057",
+      "text": "## 4.12 模拟接口",
+      "line_num": 1115,
+      "summary": "## 4.12 模拟接口"
+    },
+    {
+      "title": "4.12.1 16 位模数转换 ADC 特性",
+      "node_id": "0058",
+      "text": "## 4.12.1 16 位模数转换 ADC 特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>电源电压</td><td>VDDA</td><td>3</td><td>3.3</td><td>3.6</td><td>V</td><td>-</td></tr><tr><td>输入信号电压</td><td>Vin</td><td>VREFL</td><td>-</td><td>VREFH</td><td>V</td><td>-</td></tr><tr><td>输入采样电容</td><td>Cs</td><td>-</td><td>4</td><td>-</td><td>pF</td><td>-</td></tr><tr><td>采样开关电阻</td><td>Ron</td><td>-</td><td>300</td><td>-</td><td>ohm</td><td>-</td></tr><tr><td>参考高电平</td><td>VREFH</td><td>2.4</td><td>-</td><td>VDDA</td><td>V</td><td>-</td></tr><tr><td>参考低电平</td><td>VREFL</td><td>0</td><td>-</td><td>-</td><td>V</td><td>-</td></tr><tr><td>采样速率</td><td>fs</td><td>-</td><td>2</td><td>-</td><td>MHz</td><td>-</td></tr><tr><td>差分非线性</td><td>DNL</td><td>-</td><td>+1/-0.89</td><td>-</td><td>LSB</td><td>单端信号</td></tr><tr><td>积分非线性</td><td>INL</td><td>-</td><td>+3.1/-5.2</td><td>-</td><td>LSB</td><td>单端信号</td></tr><tr><td>偏移误差</td><td>VOS</td><td>-</td><td>4</td><td>-</td><td>LSB</td><td>单端信号输入接地</td></tr><tr><td>增益误差(全摆幅误差)</td><td>GE</td><td>-</td><td>3</td><td>-</td><td>LSB</td><td>单端信号输入接VREFH</td></tr><tr><td>总未调整误差</td><td>TUE</td><td>-</td><td>7.2</td><td>-</td><td>-</td><td>单端信号</td></tr><tr><td>信号噪声失真比</td><td>SINAD</td><td>-</td><td>74</td><td>-</td><td>dB</td><td>单端信号(VREFH=3.0V)</td></tr><tr><td>有效位数</td><td>ENOB</td><td>-</td><td>12</td><td>-</td><td>位</td><td>单端信号(VREFH=3.0V)</td></tr><tr><td>总谐波失真</td><td>THD</td><td>-</td><td>93</td><td>-</td><td>dB</td><td>单端信号</td></tr></table>\n\n表 35: 16 位 ADC 参数\n\n---",
+      "line_num": 1117,
+      "summary": "以表格形式列出了HPM5300系列微控制器16位模数转换器（ADC）的详细特性参数，包括电源电压、输入范围、参考电压、采样率、线性度（DNL, INL）、误差（偏移、增益）以及动态性能（SINAD, ENOB, THD）。"
+    },
+    {
+      "title": "4.12.2 比较器 ACMP 特性",
+      "node_id": "0059",
+      "text": "## 4.12.2 比较器 ACMP 特性\n\n<table><tr><td>参数</td><td>符号</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td><td>备注</td></tr><tr><td>电源电压</td><td>VDDA</td><td>3</td><td>3.3</td><td>3.6</td><td>V</td><td>-</td></tr><tr><td>输入信号电平</td><td>Vin</td><td>0</td><td>-</td><td>VDDA</td><td>V</td><td>-</td></tr><tr><td rowspan=\"2\">输入偏移</td><td rowspan=\"2\">Vos</td><td>-3</td><td>-</td><td>3</td><td>mV</td><td>HPMODE=1</td></tr><tr><td>-6</td><td>-</td><td>6</td><td>mV</td><td>HPMODE=0</td></tr><tr><td rowspan=\"8\">迟滞电压</td><td rowspan=\"8\">Vhyst</td><td>18</td><td>24</td><td>30</td><td>mV</td><td>HPMODE=0;HYST&lt;1:0&gt;=00</td></tr><tr><td>12</td><td>16</td><td>20</td><td>mV</td><td>HPMODE=0;HYST&lt;1:0&gt;=01</td></tr><tr><td>6</td><td>8</td><td>10</td><td>mV</td><td>HPMODE=0;HYST&lt;1:0&gt;=10</td></tr><tr><td>0</td><td>0</td><td>0</td><td>mV</td><td>HPMODE=0;HYST&lt;1:0&gt;=11</td></tr><tr><td>24</td><td>30</td><td>36</td><td>mV</td><td>HPMODE=1;HYST&lt;1:0&gt;=00</td></tr><tr><td>16</td><td>20</td><td>24</td><td>mV</td><td>HPMODE=1;HYST&lt;1:0&gt;=01</td></tr><tr><td>8</td><td>10</td><td>12</td><td>mV</td><td>HPMODE=1;HYST&lt;1:0&gt;=10</td></tr><tr><td>0</td><td>0</td><td>0</td><td>mV</td><td>HPMODE=1;HYST&lt;1:0&gt;=11</td></tr><tr><td rowspan=\"2\">传输延迟</td><td rowspan=\"2\">Tp</td><td>60</td><td>80</td><td>100</td><td>ns</td><td>HPMODE=0</td></tr><tr><td>5</td><td>6.5</td><td>8.5</td><td>ns</td><td>HPMODE=1</td></tr></table>\n\n表 36: 比较器参数",
+      "line_num": 1125,
+      "summary": "以表格形式列出了HPM5300系列微控制器模拟比较器（ACMP）的详细特性参数，包括电源电压、输入范围、输入偏移电压、可配置的迟滞电压以及在不同模式下的传输延迟时间。"
+    },
+    {
+      "title": "4.12.3 12 位数模转换器 DAC 特性",
+      "node_id": "0060",
+      "text": "## 4.12.3 12 位数模转换器 DAC 特性\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>VDDA</td><td>供电电压</td><td>3.0</td><td>3.3</td><td>3.6</td><td>V</td></tr><tr><td>VDACR</td><td>参考电压</td><td>1.71</td><td>3.6</td><td>3.6</td><td>V</td></tr><tr><td>CLD</td><td>输出负载电容</td><td>-</td><td>-</td><td>400</td><td>pF</td></tr><tr><td>RLD</td><td>输出负载电阻</td><td>3k</td><td>-</td><td>-</td><td>ohm</td></tr><tr><td>IDDA DACLP</td><td>DAC LP 模式供电电流，无负载</td><td>-</td><td>360</td><td>-</td><td>uA</td></tr><tr><td>IDDA DACHP</td><td>DAC HP 模式供电电流，无负载</td><td>-</td><td>1.6</td><td>-</td><td>mA</td></tr><tr><td>Tpwrup</td><td>DAC 上电到输出有效的时间</td><td>-</td><td>-</td><td>10</td><td>uA</td></tr><tr><td>Tdachp</td><td>DAC HP 模式的输出建立时间RLD = 3K ohm, CLD = 400 pF数字编码 410~3891</td><td>-</td><td>1</td><td>1.2</td><td>uS</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>Tdaclp</td><td>DAC LP 模式的输出建立时间RLD = 3K ohm, CLD = 400 pF数字编码 410~3891</td><td>-</td><td>3.5</td><td>4</td><td>uS</td></tr><tr><td>SRHP</td><td>DAC HP 模式 Slew RateRLD = 3K ohm, CLD = 400 pF数字编码 410~3891</td><td>-</td><td>3</td><td>-</td><td>V/us</td></tr><tr><td>SRLP</td><td>DAC LP 模式 Slew RateRLD = 3K ohm, CLD = 400 pF数字编码 410~3891</td><td>-</td><td>7.2</td><td>-</td><td>V/us</td></tr><tr><td>INL</td><td>积分非线性</td><td>-</td><td>±3</td><td>-</td><td>LSB</td></tr><tr><td>DNL</td><td>差分非线性</td><td>-</td><td>±0.8</td><td>-</td><td>LSB</td></tr><tr><td>voffset</td><td>偏置误差数字编码 410~3891</td><td>-</td><td>±6</td><td>-</td><td>mV</td></tr><tr><td>Egain</td><td>增益误差</td><td>-</td><td>±0.5</td><td>-</td><td>%</td></tr><tr><td>Vout</td><td>输出电压范围</td><td>VSSA+0.04</td><td>-</td><td>VDDA-0.04</td><td>V</td></tr></table>\n\n表 37: 12 位 DAC 参数",
+      "line_num": 1131,
+      "summary": "以表格形式列出了HPM5300系列微控制器12位数模转换器（DAC）的详细特性参数，包括供电与参考电压、负载条件、高低功耗模式下的电流与建立时间、压摆率、线性度（INL, DNL）、偏移与增益误差以及输出电压范围。"
+    },
+    {
+      "title": "4.12.4 运算放大器 OPAMP 特性",
+      "node_id": "0061",
+      "text": "## 4.12.4 运算放大器 OPAMP 特性\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>VDDA</td><td>供电电压</td><td>3.0</td><td>3.3</td><td>3.6</td><td>V</td></tr><tr><td>CMIR</td><td>共模输入范围</td><td>0</td><td>-</td><td>VDDA</td><td>V</td></tr><tr><td>Vloffset</td><td>Input Offset VoltageVcm = VDDA/2, all temprature, no load</td><td>-</td><td>-</td><td>±2</td><td>mV</td></tr><tr><td>Vloffset</td><td>Input Offset VoltageAll common mode input range, all temprature, no load</td><td>-</td><td>-</td><td>±3</td><td>mV</td></tr><tr><td>Iload</td><td>Drive Current, source or sink current250mV≤output Voltage≤VDDA-250mV</td><td>-</td><td>-</td><td>3300</td><td>uA</td></tr><tr><td>Rload</td><td>Resistive Load</td><td>1k</td><td>-</td><td>-</td><td>ohm</td></tr><tr><td>Cload</td><td>Capacitive Load</td><td>1</td><td>-</td><td>-</td><td>pF</td></tr><tr><td>CMRR</td><td>共模抑制比</td><td>-</td><td>76</td><td>-</td><td>dB</td></tr><tr><td>PSRR</td><td>电源抑制比1KHz, Cload = 50pF,250mV≤output Voltage≤VDDA-250mVFollower Configuration</td><td>83</td><td>87</td><td>-</td><td>dB</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>PSRR</td><td>电源抑制比1KHz, Cload = 50pF, 250mV≤output Voltage≤VDDA-250mVNon-inv amplify Configuration</td><td>55</td><td>77</td><td>-</td><td>dB</td></tr><tr><td>PSRR</td><td>电源抑制比1KHz, Cload = 50pF, 250mV≤output Voltage≤VDDA-250mInv amplify Configuration</td><td>50</td><td>78</td><td>-</td><td>dB</td></tr><tr><td>GBW</td><td>Gain bandwidth productCload≤50pF,No Rload or Rload≥1Kohm250mV≤output Voltage≤VDDA-250mVFollower Configuration</td><td>3</td><td>10</td><td>16</td><td>MHz</td></tr><tr><td>GBW</td><td>Gain bandwidth productCload≤5pF,No Rload or Rload≥1Kohm250mV≤output Voltage≤VDDA-250mVFollower Configuration</td><td>7</td><td>27</td><td>43</td><td>MHz</td></tr><tr><td>SR</td><td>Slew RateFrom 10% to 90% Output voltage,Cload≤50pFFollower Configuration</td><td>-</td><td>7</td><td>-</td><td>V/us</td></tr><tr><td>SR</td><td>Slew RateFrom 10% to 90% Output voltage,Cload≤5pFFollower Configuration</td><td>-</td><td>18</td><td>-</td><td>V/us</td></tr><tr><td>AO</td><td>Open Loop GainNo Rload,250mV≤output Voltage≤VDDA-250mV</td><td>92</td><td>115</td><td>118</td><td>dB</td></tr><tr><td>AO</td><td>Open Loop GainRload≥1Kohm,250mV≤output Voltage≤VDDA-250mV</td><td>92</td><td>115</td><td>118</td><td>dB</td></tr><tr><td>PM</td><td>Phase MarginCload≤50pF,No Rload or Rload≥1Kohm250mV≤output Voltage≤VDDA-250mVFollower Configuration</td><td>-</td><td>76</td><td>-</td><td>°</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>PM</td><td>Phase MarginCload≤5pF,No Rload or Rload≥1Kohm250mV≤output Voltage≤VDDA-250mVFollower Configuration</td><td>-</td><td>66</td><td>-</td><td>°</td></tr><tr><td>GM</td><td>Gain MarginCload≤50pF,No Rload or Rload≥1Kohm250mV≤output Voltage≤VDDA-250mVFollower Configuration</td><td>-</td><td>16</td><td>-</td><td>dB</td></tr><tr><td>PM</td><td>Gain MarginCload≤5pF,No Rload or Rload≥1Kohm250mV≤output Voltage≤VDDA-250mVFollower Configuration</td><td></td><td>11</td><td>-</td><td>dB</td></tr><tr><td>Vohsat</td><td>High Saturation Output Voltage</td><td>VDDA-150mV</td><td>-</td><td>-</td><td>mV</td></tr><tr><td>Volsat</td><td>Low Saturation Output Voltage</td><td>-</td><td>-</td><td>150</td><td>mV</td></tr><tr><td>Twakeup</td><td>Wake up time from disable stateCload≤50pF, Rload≥1KohmFollower Configuration</td><td>-</td><td>1.7</td><td>2.8</td><td>us</td></tr><tr><td>Twakeup</td><td>Wake up time from disable stateCload≤5pF, Rload≥1KohmFollower Configuration</td><td>-</td><td>1.5</td><td>3.2</td><td>us</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = 2,250mV≤output Voltage≤VDDA-250mV</td><td>0</td><td>-</td><td>0.5</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = 4,250mV≤output Voltage≤VDDA-250mV</td><td>-0.3</td><td>-</td><td>0.2</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = 8,250mV≤output Voltage≤VDDA-250mV</td><td>-0.9</td><td>-</td><td>0.1</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = 16,250mV≤output Voltage≤VDDA-250mV</td><td>-2.2</td><td>-</td><td>0</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = 32,250mV≤output Voltage≤VDDA-250mV</td><td>-5.3</td><td>-</td><td>0</td><td>%</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = 64,250mV≤output Voltage≤VDDA-250mV</td><td>-7.2</td><td>-</td><td>0</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = 128,250mV≤output Voltage≤VDDA-250mV</td><td>-10.3</td><td>-</td><td>0</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = -2,250mV≤output Voltage≤VDDA-250mV</td><td>-0.9</td><td>-</td><td>0</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = -4,250mV≤output Voltage≤VDDA-250mV</td><td>-0.9</td><td>-</td><td>0</td><td>%</td></tr><tr><td>Gerr</td><td colspan=\"5\">Gain ErrorPGA Gain = -8,250mV≤output Voltage≤VDDA-250mV</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = -16,250mV≤output Voltage≤VDDA-250mV</td><td>-1.2</td><td>-</td><td>0.3</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = -32,250mV≤output Voltage≤VDDA-250mV</td><td>-1.7</td><td>-</td><td>0.8</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = -64,250mV≤output Voltage≤VDDA-250mV</td><td>-3</td><td>-</td><td>1.8</td><td>%</td></tr><tr><td>Gerr</td><td>Gain ErrorPGA Gain = -128,250mV≤output Voltage≤VDDA-250mV</td><td>-5.8</td><td>-</td><td>3.7</td><td>%</td></tr><tr><td>Rpga</td><td colspan=\"5\">PGA R2/R1 resistor value, non-inverting configuration,PGA gain = 2</td></tr><tr><td>Rpga</td><td colspan=\"5\">PGA R2/R1 resistor value, non-inverting configuration,PGA gain = 4</td></tr><tr><td>Rpga</td><td colspan=\"5\">PGA R2/R1 resistor value, non-inverting configuration,PGA gain = 8</td></tr><tr><td>Rpga</td><td colspan=\"5\">PGA R2/R1 resistor value, non-inverting configuration,PGA gain = 16</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, non-inverting configuration, PGA gain = 32</td><td>-</td><td>310/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, non-inverting configuration, PGA gain = 64</td><td>-</td><td>630/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, non-inverting configuration, PGA Gain = 128</td><td>-</td><td>1270/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, inverting configuration, PGA gain = -2</td><td>-</td><td>20/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, inverting configuration, PGA gain =-4</td><td>-</td><td>40/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, inverting configuration, PGA gain=-8</td><td>-</td><td>80/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, inverting configuration, PGA gain= -16</td><td>-</td><td>160/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, inverting configuration, PGA gain=−32</td><td>-</td><td>320/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, inverting configuration, PGA gain＝-64</td><td>-</td><td>640/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Rpga</td><td>PGA R2/R1 resistor value, inverting configuration, PGA gain ＝-128</td><td>-</td><td>1280/10</td><td>-</td><td>Kohm/Kohm</td></tr><tr><td>Delta R</td><td>Resistor Variation</td><td>-5</td><td>-</td><td>5</td><td>%</td></tr><tr><td>PGA BW</td><td>PGA Bandwith, non-inverting configuration, PGA gain = 2~128</td><td>-</td><td>GBW/gain</td><td>-</td><td>MHz</td></tr><tr><td>PGA BW</td><td>PGA Bandwith, inverting configuration, PGA gain = -2~128</td><td>-</td><td>GBW/(gain | +1)</td><td>-</td><td>MHz</td></tr><tr><td>Ndensity</td><td>Voltage Noise Density 1KHz, Rload = 1Kohm</td><td>-</td><td>55</td><td>-</td><td>nV/√Hz</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述/条件</td><td>最小值</td><td>典型值</td><td>最大值</td><td>单位</td></tr><tr><td>Ndensity</td><td>Voltage Noise Density 10KHz, Rload = 1Kohm</td><td>-</td><td>22</td><td>-</td><td>nV/ \\( \\sqrt{Hz} \\)</td></tr><tr><td>IDD</td><td>OPAMP 功耗电流 No Rload, Follower Configuration</td><td>-</td><td>810</td><td>-</td><td>uA</td></tr></table>\n\n表 38: OPAMP 参数\n\n---",
+      "line_num": 1141,
+      "summary": "以表格形式列出了HPM5300系列微控制器运算放大器（OPAMP）的详细特性参数，涵盖供电电压、输入偏移、驱动能力、共模/电源抑制比（CMRR/PSRR）、增益带宽积（GBW）、压摆率（SR）、开环增益、相位/增益裕量、建立时间以及可编程增益放大器（PGA）模式下的增益误差和电阻值。"
+    },
+    {
+      "title": "4.13 SPI 接口",
+      "node_id": "0062",
+      "text": "## 4.13 SPI 接口",
+      "line_num": 1169,
+      "summary": "## 4.13 SPI 接口"
+    },
+    {
+      "title": "4.13.1 SPI 主模式时序图",
+      "node_id": "0063",
+      "text": "## 4.13.1 SPI 主模式时序图\n\n![](images/65_0.jpg)\n\n图 15: SPI 主模式时序（CPHA=0）\n\n![](images/65_1.jpg)\n\n图 16: SPI 主模式时序（CPHA=1）\n\n<table><tr><td>符号</td><td>描述</td><td>最小</td><td>最大</td><td>单位</td></tr><tr><td>tSCK</td><td>SCK 周期</td><td>12.5</td><td>—</td><td>ns</td></tr><tr><td>tLEDA</td><td>CS 建立时间</td><td>1</td><td>—</td><td>tperiph</td></tr><tr><td>tLAG</td><td>CS 保持时间</td><td>1</td><td>—</td><td>tperiph</td></tr><tr><td>tWSCK</td><td>时钟高或低时间</td><td>tSCK / 2 - 3</td><td>—</td><td>ns</td></tr><tr><td>tSU</td><td>数据建立时间（输入）</td><td>10</td><td>—</td><td>ns</td></tr><tr><td>tHI</td><td>数据保持时间（输入）</td><td>2</td><td>—</td><td>ns</td></tr><tr><td>tV</td><td>数据有效（SCLK 延后）</td><td>—</td><td>8</td><td>ns</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述</td><td>最小</td><td>最大</td><td>单位</td></tr><tr><td>tHO</td><td>数据保持时间（输出）</td><td>0</td><td>—</td><td>ns</td></tr></table>\n\n表 39: SPI 主模式参数 (注: tperiph = 1000 / fperiph)",
+      "line_num": 1171,
+      "summary": "展示了HPM5300系列微控制器SPI接口在主模式下的两种时序图（CPHA=0和CPHA=1），并提供了相应的时序参数表，定义了SCK周期、片选建立/保持时间、数据建立/保持/有效时间等。"
+    },
+    {
+      "title": "4.13.2 SPI 从模式时序图",
+      "node_id": "0064",
+      "text": "## 4.13.2 SPI 从模式时序图\n\n![](images/66_0.jpg)\n\n图 17: SPI 从模式时序（CPHA=0）\n\n![](images/66_1.jpg)\n\n图 18: SPI 从模式时序（CPHA=1）\n\n<table><tr><td>符号</td><td>描述</td><td>最小</td><td>最大</td><td>单位</td></tr><tr><td>tSCK</td><td>SCK 周期</td><td>4 x tperiph</td><td>—</td><td>ns</td></tr><tr><td>tLEAD</td><td>CS 建立时间</td><td>1</td><td>—</td><td>tperiph</td></tr><tr><td>tLAG</td><td>CS 保持时间</td><td>1</td><td>—</td><td>tperiph</td></tr><tr><td>tWSCK</td><td>时钟高或低时间</td><td>tSCK / 2 - 5</td><td>—</td><td>ns</td></tr><tr><td>tSU</td><td>数据建立时间（输入）</td><td>2.7</td><td>—</td><td>ns</td></tr><tr><td>tHI</td><td>数据保持时间（输入）</td><td>3.8</td><td>—</td><td>ns</td></tr><tr><td>tA</td><td>从访问时间</td><td>—</td><td>tperiph</td><td>ns</td></tr><tr><td>tDIS</td><td>从 MISO 失效时间</td><td>—</td><td>tperiph</td><td>ns</td></tr></table>\n\n---\n\n<table><tr><td>符号</td><td>描述</td><td>最小</td><td>最大</td><td>单位</td></tr><tr><td>tV</td><td>数据有效（SCLK 延后）</td><td>—</td><td>14.5</td><td>ns</td></tr><tr><td>tHO</td><td>数据保持时间（输出）</td><td>0</td><td>—</td><td>ns</td></tr></table>\n\n表 40: SPI 从模式参数 (注: tperiph = 1000 / fperiph)\n\n---",
+      "line_num": 1189,
+      "summary": "展示了HPM5300系列微控制器SPI接口在从模式下的两种时序图（CPHA=0和CPHA=1），并提供了相应的时序参数表，定义了SCK周期、片选建立/保持时间、数据建立/保持时间、从设备访问/失效时间等。"
+    },
+    {
+      "title": "4.14 I2C 接口",
+      "node_id": "0065",
+      "text": "## 4.14 I2C 接口\n\n<table><tr><td>符号</td><td>描述</td><td>工作模式</td><td>最小值</td><td>最大值</td><td>单位</td></tr><tr><td rowspan=\"3\">fSCL</td><td rowspan=\"3\">SCL 时钟频率</td><td>标准模式 (Sm)</td><td>0</td><td>100</td><td>KHz</td></tr><tr><td>快速模式 (Fm)</td><td>0</td><td>400</td><td>KHz</td></tr><tr><td>快速模式加 (Fm+)</td><td>0</td><td>1000</td><td>KHz</td></tr></table>\n\n表 41: I2C 工作模式及参数\n\n---",
+      "line_num": 1209,
+      "summary": "以表格形式列出了HPM5300系列微控制器I2C接口所支持的工作模式（标准模式、快速模式、快速模式+）及其对应的SCL时钟频率范围。"
+    },
+    {
+      "title": "5 封装",
+      "node_id": "0066",
+      "text": "## 5 封装",
+      "line_num": 1217,
+      "summary": "## 5 封装"
+    },
+    {
+      "title": "5.1 LQFP100 封装尺寸",
+      "node_id": "0067",
+      "text": "## 5.1 LQFP100 封装尺寸\n\nLQFP100 尺寸如图 19。\n\n![](images/69_0.jpg)\n\n<table><tr><td rowspan=\"2\">SYMBOL</td><td colspan=\"3\">MILLIMETER</td></tr><tr><td>MIN</td><td>NOM</td><td>MAX</td></tr><tr><td>A</td><td>—</td><td>—</td><td>1.60</td></tr><tr><td>A1</td><td>0.05</td><td>—</td><td>0.15</td></tr><tr><td>A2</td><td>1.35</td><td>1.40</td><td>1.45</td></tr><tr><td>A3</td><td>0.59</td><td>0.64</td><td>0.69</td></tr><tr><td>b</td><td>0.18</td><td>—</td><td>0.26</td></tr><tr><td>b1</td><td>0.17</td><td>0.20</td><td>0.23</td></tr><tr><td>c</td><td>0.13</td><td>—</td><td>0.17</td></tr><tr><td>c1</td><td>0.12</td><td>0.13</td><td>0.14</td></tr><tr><td>D</td><td>15.80</td><td>16.00</td><td>16.20</td></tr><tr><td>D1</td><td>13.90</td><td>14.00</td><td>14.10</td></tr><tr><td>E</td><td>15.80</td><td>16.00</td><td>16.20</td></tr><tr><td>E1</td><td>13.90</td><td>14.00</td><td>14.10</td></tr><tr><td>eB</td><td>15.05</td><td>—</td><td>15.35</td></tr><tr><td>e</td><td colspan=\"3\">0.50BSC</td></tr><tr><td>L</td><td>0.45</td><td>—</td><td>0.75</td></tr><tr><td>L1</td><td colspan=\"3\">1.00REF</td></tr><tr><td>0</td><td>0</td><td>—</td><td>7</td></tr></table>\n\n图 19: LQFP100 封装尺寸图\n\n---",
+      "line_num": 1219,
+      "summary": "提供了HPM5300系列微控制器LQFP100封装的机械尺寸图，并附有详细的尺寸参数表格，包括封装体大小、引脚间距、高度、引脚宽度等关键尺寸的公差范围。"
+    },
+    {
+      "title": "5.2 LQFP64 封装尺寸",
+      "node_id": "0068",
+      "text": "## 5.2 LQFP64 封装尺寸\n\nLQFP64 尺寸如图 20。\n\n![](images/70_0.jpg)\n\n![](images/70_1.jpg)\n\n![](images/70_2.jpg)\n\n![](images/70_3.jpg)\n\n![](images/70_4.jpg)\n\nSECTION B-B\n\n<table><tr><td rowspan=\"2\">SYM/MB</td><td colspan=\"4\">MILLIMETER</td></tr><tr><td>MIN</td><td>NOM</td><td>MAX</td><td></td></tr><tr><td>A</td><td>—</td><td>—</td><td>1.60</td><td></td></tr><tr><td>A1</td><td>0.05</td><td>—</td><td>0.15</td><td></td></tr><tr><td>A2</td><td>1.35</td><td>1.40</td><td>1.45</td><td></td></tr><tr><td>A3</td><td>0.59</td><td>0.64</td><td>0.69</td><td></td></tr><tr><td>b</td><td>0.18</td><td>—</td><td>0.26</td><td></td></tr><tr><td>b1</td><td>0.17</td><td>0.20</td><td>0.23</td><td></td></tr><tr><td>c</td><td>0.13</td><td>—</td><td>0.17</td><td></td></tr><tr><td>c1</td><td>0.12</td><td>0.13</td><td>0.14</td><td></td></tr><tr><td>D</td><td>11.80</td><td>12.00</td><td>12.20</td><td></td></tr><tr><td>D1</td><td>9.90</td><td>10.00</td><td>10.10</td><td></td></tr><tr><td>E</td><td>11.80</td><td>12.00</td><td>12.20</td><td></td></tr><tr><td>E1</td><td>9.90</td><td>10.00</td><td>10.10</td><td></td></tr><tr><td>c</td><td></td><td>0.50BSC</td><td></td><td></td></tr><tr><td>cB</td><td>11.05</td><td>—</td><td>11.25</td><td></td></tr><tr><td>L</td><td>0.45</td><td>—</td><td>0.75</td><td></td></tr><tr><td>L1</td><td></td><td>1.00REF</td><td></td><td></td></tr><tr><td>0</td><td>0</td><td>—</td><td>7°</td><td></td></tr></table>\n\n图 20: LQFP64 封装尺寸图\n\n---",
+      "line_num": 1231,
+      "summary": "提供了HPM5300系列微控制器LQFP64封装的机械尺寸图，并附有详细的尺寸参数表格，包括封装体大小、引脚间距、高度、引脚宽度等关键尺寸的公差范围。"
+    },
+    {
+      "title": "5.3 QFN48 封装尺寸",
+      "node_id": "0069",
+      "text": "## 5.3 QFN48 封装尺寸\n\nQFN48 尺寸如图 21。\n\n![](images/71_0.jpg)\n\n![](images/71_1.jpg)\n\n![](images/71_2.jpg)\n\n![](images/71_3.jpg)\n\n图 21: QFN48 封装尺寸图",
+      "line_num": 1253,
+      "summary": "## 5.3 QFN48 封装尺寸\n\nQFN48 尺寸如图 21。\n\n![](images/71_0.jpg)\n\n![](images/71_1.jpg)\n\n![](images/71_2.jpg)\n\n![](images/71_3.jpg)\n\n图 21: QFN48 封装尺寸图"
+    },
+    {
+      "title": "5.4 封装热阻系数",
+      "node_id": "0070",
+      "text": "## 5.4 封装热阻系数\n\n \\( T_{J} \\)  max =  \\( T_{A} \\)  max + ( \\( P_{D} \\)  max x  \\( \\theta_{JA} \\) )\n\n•  \\( T_{A} \\)  指芯片工作时的环境温度, 单位是  \\( ^{\\circ} \\) C;\n\n●  \\( \\theta_{JA} \\)  是指封装对工作环境的热阻系数, 单位是  \\( ^{\\circ} \\) C/W;\n\n●  \\( P_{D} \\)  是指芯片的内部功耗和 I/O 功耗之和, 单位是 W;\n\n●  \\( T_{J} \\)  是指芯片表面的结温。\n\n芯片在指定环境温度下工作时芯片内部的结温  \\( T_{J} \\) ，不可以超出芯片可容许的最大结温  \\( T_{J} \\)  max 即可。\n\n<table><tr><td>符号</td><td>参数</td><td>值</td><td>单位</td></tr><tr><td>\\( \\theta_{JA} \\)</td><td>LQFP100 14X14 mm/0.5mm 间距</td><td>50+/-5%</td><td>°C/W</td></tr><tr><td>\\( \\theta_{JA} \\)</td><td>LQFP64 10X10 mm/0.5mm 间距</td><td>47+/-5%</td><td>°C/W</td></tr><tr><td>\\( \\theta_{JA} \\)</td><td>QFN48 6X6 mm/0.4mm 间距</td><td>29+/-5%</td><td>°C/W</td></tr></table>\n\n表 42: 各封装热阻系数表\n\n---",
+      "line_num": 1267,
+      "summary": "解释了芯片结温（Tj）的计算方法（Tj = Ta + Pd * θJA），并提供了HPM5300系列微控制器三种不同封装（LQFP100, LQFP64, QFN48）对应的结到环境热阻系数（θJA）的典型值。"
+    },
+    {
+      "title": "6 订购信息",
+      "node_id": "0071",
+      "text": "## 6 订购信息",
+      "line_num": 1287,
+      "summary": "## 6 订购信息"
+    },
+    {
+      "title": "6.1 产品命名规则",
+      "node_id": "0072",
+      "text": "## 6.1 产品命名规则\n\n产品命名规则如图 22",
+      "line_num": 1289,
+      "summary": "## 6.1 产品命名规则\n\n产品命名规则如图 22"
+    },
+    {
+      "title": "HPM5361ICB1",
+      "node_id": "0073",
+      "text": "## HPM5361ICB1\n\n![](images/72_0.jpg)\n\n图 22: 产品命名规则",
+      "line_num": 1293,
+      "summary": "## HPM5361ICB1\n\n![](images/72_0.jpg)\n\n图 22: 产品命名规则"
+    },
+    {
+      "title": "6.2 订购信息",
+      "node_id": "0074",
+      "text": "## 6.2 订购信息\n\n订购信息如表 43:\n\n<table><tr><td>产品型号</td><td>HPM5361</td><td>HPM5331</td><td>HPM5321</td><td>HPM5301</td></tr><tr><td>CPU</td><td colspan=\"4\">RV32-IMAFDCBP</td></tr><tr><td>主频 MHz</td><td>480</td><td>480</td><td>480</td><td>360</td></tr><tr><td>片上总内存</td><td colspan=\"4\">288 KB</td></tr><tr><td>片上闪存</td><td colspan=\"4\">1 MB</td></tr><tr><td>ROM</td><td colspan=\"4\">128 KB</td></tr></table>\n\n---\n\n<table><tr><td>产品型号</td><td>HPM5361</td><td>HPM5331</td><td>HPM5321</td><td>HPM5301</td></tr><tr><td>OTP</td><td colspan=\"4\">4096位</td></tr><tr><td>SDP</td><td colspan=\"3\">AES-128/256,SHA-256</td><td>/</td></tr><tr><td>EXIP</td><td colspan=\"3\">XPI0:EXIP AES-128 CTR</td><td>/</td></tr><tr><td>RNG</td><td colspan=\"3\">真随机数发生器</td><td>/</td></tr><tr><td>安全启动</td><td colspan=\"3\">加密启动、可信启动</td><td>/</td></tr><tr><td>UID</td><td colspan=\"4\">128位</td></tr><tr><td>USB</td><td colspan=\"4\">1个,集成HSPHY</td></tr><tr><td>CAN-FD</td><td>4</td><td>/</td><td>4</td><td>/</td></tr><tr><td>UART</td><td>9</td><td>5(1)</td><td>9</td><td>5(1)</td></tr><tr><td>SPI</td><td>4</td><td>4</td><td>4</td><td>4</td></tr><tr><td>I2C</td><td>4</td><td>4</td><td>4</td><td>4</td></tr><tr><td>PWM</td><td colspan=\"2\">2x 8CH</td><td>/</td><td>/</td></tr><tr><td>QEIV2</td><td>2</td><td>2</td><td>/</td><td>/</td></tr><tr><td>QEO</td><td>2</td><td>2</td><td>/</td><td>/</td></tr><tr><td>SEI</td><td>2</td><td>2</td><td>/</td><td>/</td></tr><tr><td>MMC</td><td>2</td><td>2</td><td>/</td><td>/</td></tr><tr><td>RDC</td><td>1</td><td>1</td><td>/</td><td>/</td></tr><tr><td>PLB</td><td>1</td><td>1</td><td>1</td><td>/</td></tr><tr><td>TMR</td><td colspan=\"3\">5</td><td>3(2)</td></tr><tr><td>WDG</td><td colspan=\"4\">3</td></tr><tr><td>DMA</td><td colspan=\"4\">HDMA 32CH</td></tr><tr><td>ADC</td><td colspan=\"3\">2×16b</td><td>1×16b(3)</td></tr><tr><td>DAC</td><td colspan=\"2\">2×12b</td><td>/</td><td>/</td></tr><tr><td>CMP</td><td colspan=\"4\">2</td></tr><tr><td>OPAMP</td><td>2</td><td>2</td><td>/</td><td>/</td></tr><tr><td>GPIO</td><td colspan=\"4\">56(HPM53XXICB1),36(HPM53XXICF1),29(HPM53XXIEG1)</td></tr><tr><td>封装</td><td colspan=\"4\">14*14 LQFP100 P0.5 (HPM53XXICB1)10*10 LQFP64 P0.5 (HPM53XXICF1)6*6 QFN48 P0.4 (HPM53XXIEG1)</td></tr><tr><td>温度范围 TA</td><td colspan=\"4\">-40~105℃</td></tr></table>\n\n表 43: 订购信息\n\n(1) UART0, UART1, UART2, UART3 和 PUART 可用。\n\n(2) GPTMRO, GPTMR1, PTMR 可用。\n\n(3) ADC0 可用。",
+      "line_num": 1299,
+      "summary": "以对比表格形式列出了HPM5300系列不同型号产品（HPM5361, HPM5331, HPM5321, HPM5301）的关键配置差异，包括主频、安全模块（SDP, EXIP, RNG）、外设数量（CAN, UART, PWM, 运动控制, ADC, DAC等）以及封装和温度范围。"
+    },
+    {
+      "title": "6.3 封装引出功能差异",
+      "node_id": "0075",
+      "text": "## 6.3 封装引出功能差异\n\n本产品不同封装引出功能差异如表 44。\n\n---\n\n<table><tr><td></td><td>HPM53xxxCBx</td><td>HPM53xxxCFx</td><td>HPM53xxlEGx</td></tr><tr><td>封装</td><td>LQFP10014mm×14mmp0.5mm</td><td>LQFP64 10mm×10mmp0.5mm</td><td>QFN48 6mm×6mmp0.4mm</td></tr><tr><td>GPIO</td><td>56</td><td>36</td><td>29</td></tr><tr><td>模拟功能引脚</td><td>16</td><td>10</td><td>8</td></tr><tr><td>通讯接口</td><td>9x UART, 4x SPI, 4x I2CUART, 4x SPI, 4x I2CUART4, UART5 未引出</td><td>7x UART, 4x SPI, 4x I2CUART4, UART5 未引出</td><td>7x UART, 3x SPI, 4x I2CUART4, UART5, SPI3 未引出</td></tr><tr><td>BOOT ROMISP</td><td>USB/UART0</td><td>UART0</td><td>UART0</td></tr><tr><td>内部IRC24M启动</td><td>不支持</td><td>支持 \\( ^{(1)} \\)</td><td>支持 \\( ^{(1)} \\)</td></tr></table>\n\n表 44: 封装引出功能差异\n\n(1) MCU 由内部振荡器 IRC24M 启动并作为 PLL 的参考时钟输入，用户如有需要，应手动打开外部晶振 OSC24M 并做 PLL 参考时钟切换。\n\n---",
+      "line_num": 1317,
+      "summary": "以表格形式对比了HPM5300系列微控制器三种不同封装（LQFP100, LQFP64, QFN48）在GPIO数量、模拟引脚数量、可用通信接口、ISP启动方式以及内部IRC24M启动支持等方面的功能差异。"
+    },
+    {
+      "title": "7 版本信息",
+      "node_id": "0076",
+      "text": "## 7 版本信息\n\n<table><tr><td>日期</td><td>版本</td><td>描述</td></tr><tr><td>Rev0.0</td><td>2023/05/12</td><td>Rev0.0 发布。</td></tr><tr><td>Rev0.1</td><td>2023/05/19</td><td>Rev0.1 发布。\n调整产品型号信息。\n更新简介章节信息。\n更新系统框图。</td></tr><tr><td>Rev0.2</td><td>2023/06/25</td><td>Rev0.2 发布。\n调整封面产品特征信息。\n更新简介章节信息。\n更新 IO 复位状态表格。\n更新 IDD 电流特性表格。\n更新产品选型表格。</td></tr><tr><td>Rev0.3</td><td>2023/07/28</td><td>Rev0.3 发布。\n更新简介章节信息。\n增加 OPAMP 特性表格。\n更新 ballmap 示意图。\n更新内置闪存特性。</td></tr><tr><td>Rev0.4</td><td>2023/08/15</td><td>Rev0.4 发布。\n更新产品型号信息。\n更新产品订购信息表格。\n更新功耗电流数据。</td></tr><tr><td>Rev0.5</td><td>2023/08/31</td><td>Rev0.5 发布。\n更新产品订购信息表格。\n更新 ADC 电气特性。</td></tr><tr><td>Rev0.6</td><td>2023/10/27</td><td>Rev0.6 发布。\n更新产品订购信息表格。\n更新封面产品型号信息。\n更新 IO 复位状态，增加 IO 供电引脚描述。\n更新电源章节部分描述。</td></tr><tr><td>Rev0.7</td><td>2024/03/08</td><td>Rev0.7 发布。\n更正产品简介章节运动控制系统部分描述。\n增加复位引脚特性描述。\n修正 IO AC 特性表格描述。</td></tr><tr><td>Rev0.8</td><td>2024/04/17</td><td>Rev0.8 发布。\n更正订购信息部分描述。</td></tr><tr><td>Rev0.9</td><td>2024/05/15</td><td>Rev0.9 发布。\n添加外设时钟信息。</td></tr></table>\n\n---\n\n<table><tr><td>日期</td><td>版本</td><td>描述</td></tr><tr><td>Rev0.10</td><td>2024/08/01</td><td>Rev0.10 发布。更正 PINMUX PA12，PA13 上的功能列表错误</td></tr><tr><td>Rev0.11</td><td>2025/01/15</td><td>Rev0.11 发布。细化不同工作场景下频率和电压的对应关系更正 QFN48 封装下的引脚间距</td></tr></table>\n\n表 45: 版本信息\n\n---",
+      "line_num": 1331,
+      "summary": "以表格形式记录了HPM5300系列微控制器数据手册的版本修订历史，列出了从Rev0.0到Rev0.11每个版本的发布日期和主要更新内容描述。"
+    },
+    {
+      "title": "8 免责声明",
+      "node_id": "0077",
+      "text": "## 8 免责声明\n\n上海先楫半导体科技有限公司（以下简称：“先楫”）保留随时更改、更正、增强、修改先楫半导体产品和/或本文档的权利，恕不另行通知。用户可在先楫官方网站 https://www.hpmicro.com 获取最新相关信息。\n\n本声明中的信息取代并替换先前版本中声明的信息。",
+      "line_num": 1369,
+      "summary": "## 8 免责声明\n\n上海先楫半导体科技有限公司（以下简称：“先楫”）保留随时更改、更正、增强、修改先楫半导体产品和/或本文档的权利，恕不另行通知。用户可在先楫官方网站 https://www.hpmicro.com 获取最新相关信息。\n\n本声明中的信息取代并替换先前版本中声明的信息。"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Project specific
+data/              # Uploaded PDFs, metadata, indexes
+*.pdf
+*.mmd
+*.png
+*.jpg
+*.jpeg
+
+# Configurations with secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+
+# Ruff cache
+.ruff_cache/
+.ruff_cache
+
+# Model weights (large files)
+*.bin
+*.safetensors
+*.pth
+*.pt
+
+# Temporary files
+temp/
+tmp/
