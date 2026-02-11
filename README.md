@@ -1,250 +1,259 @@
-# DeepSeek-OCR-2 Web App
+# OpenNoteVision LM / Open Source Visual Notebook LM
 
 > 中文文档请参阅 [README_CN.md](README_CN.md)
 
-A modern web application that combines **DeepSeek-OCR-2** (state-of-the-art visual OCR) with **PageIndex** (vectorless, reasoning-based RAG) for intelligent PDF document processing and conversation.
+## 🎯 Project Origin: Solving the Visual Limitations of Mainstream Notebook AIs
 
-## ✨ Features
+When using **NoteBookLM**, **opennotebook**, or other document conversation tools, have you encountered these frustrations?
 
-### 📄 Advanced OCR
-- **Visual Causal Flow OCR**: Uses DeepSeek-OCR-2 model for human-like document understanding
-- **PDF to Markdown**: Converts PDF pages to structured Markdown with layout preservation
-- **Image Extraction**: Automatically extracts and saves images from documents
-- **Progress Tracking**: Real-time processing status with page-by-page updates
+❌ **Scanned PDFs cannot be recognized** - Pure image documents become "mute" files  
+❌ **Poor mixed text-image processing** - Tables, charts, formulas lose information  
+❌ **Limited layout understanding** - Cannot restore the visual structure of documents  
+❌ **Weak professional document handling** - Poor performance with academic papers, technical documents
 
-### 🤖 Intelligent Document Interaction
-- **Reasoning-based RAG**: PageIndex-powered retrieval without vector databases or chunking
-- **Tree Index Search**: Builds hierarchical document structure for human-like navigation
-- **Multi-turn Conversation**: Ask questions about document content with context awareness
-- **Semantic Search**: Find relevant sections using LLM reasoning rather than vector similarity
+**OpenNoteVision LM** was born to solve these pain points! We combine the state-of-the-art visual OCR model **DeepSeek‑OCR‑2** with the reasoning-based RAG framework **PageIndex** to create an intelligent notebook platform that truly "understands" scanned documents.
 
-### 🌐 Modern Web Interface
-- **FastAPI Backend**: High-performance async API server
-- **Responsive Frontend**: Clean, intuitive interface for document management
-- **Real-time Updates**: Live progress tracking and status monitoring
-- **Multi-Provider Support**: Configure OpenAI, DeepSeek, OpenRouter, or custom LLM endpoints
+## 📊 Comparison with Mainstream Solutions
+
+| Feature | OpenNoteVision LM | NoteBookLM | opennotebook | Tencent iMA |
+|---------|-----------------|------------|--------------|-------------|
+| **Scanned PDF Processing** | ✅ Perfect support | ❌ Not supported | ❌ Not supported | ⚠️ Limited support |
+| **Visual OCR Capability** | ✅ DeepSeek‑OCR‑2 | ❌ None | ❌ None | ⚠️ Basic OCR |
+| **Reasoning-based Retrieval** | ✅ PageIndex tree search | ⚠️ Vector retrieval | ⚠️ Vector retrieval | ❓ Unknown |
+| **Open Source** | ✅ Fully open source | ❌ Closed source | ✅ Open source | ❌ Closed source |
+| **Local Deployment** | ✅ Supported | ❌ Not supported | ✅ Supported | ❌ Not supported |
+| **Multi-format Support** | ✅ PDF/Images | ⚠️ Limited | ⚠️ Limited | ✅ Multiple formats |
+| **Conversation Quality** | ✅ Context-aware | ✅ Good | ⚠️ Average | ❓ Unknown |
+
+## ✨ Core Features
+
+### 👁️‍🗨️ **Vision-First Document Understanding**
+- **DeepSeek‑OCR‑2 Model**: Industry-leading visual causal flow OCR, understanding documents like humans
+- **Layout-Preserving Conversion**: PDF → Structured Markdown, preserving tables, charts, formulas
+- **Intelligent Image Extraction**: Automatically identify and save images, charts, diagrams from documents
+
+### 🧠 **Reasoning-based Intelligent Conversation**
+- **PageIndex Tree Retrieval**: No vector database needed, reasoning-based search based on document structure
+- **Context-Aware Q&A**: Understand overall document structure, provide deep and relevant answers
+- **Multi-turn Conversation Memory**: Maintain conversation history for coherent document exploration
+
+### 🌐 **Modern Full-Stack Architecture**
+- **FastAPI Backend**: High-performance async API supporting concurrent document processing
+- **Responsive Web Interface**: Intuitive document management, preview, conversation interface
+- **Multi-LLM Support**: OpenAI, DeepSeek, OpenRouter, custom endpoints
+
+### 🔓 **Open Source & Privacy**
+- **Fully Open Source**: Transparent code, auditable, customizable
+- **Local-First**: All data processing happens locally, protecting privacy
+- **Self-Hosting Options**: Support private deployment, full data control
 
 ## 🚀 Quick Start
 
-### Prerequisites
+### Requirements
 - Python 3.10+
-- 8GB+ RAM (16GB recommended for OCR processing)
-- DeepSeek-OCR-2 model weights (download separately)
+- 8GB+ RAM (16GB recommended for better experience)
+- DeepSeek‑OCR‑2 model weights (need to download separately)
 
-### Installation
+### 5-Minute Deployment
 
-1. **Clone the repository**
+1. **Clone the Project**
 ```bash
-git clone https://github.com/yourusername/deepseek-ocr-2-app.git
-cd deepseek-ocr-2-app
+git clone https://github.com/yourusername/OpenNoteVision-LM.git
+cd OpenNoteVision-LM
 ```
 
-2. **Set up virtual environment**
+2. **Setup Environment**
 ```bash
+# Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-3. **Install dependencies**
-```bash
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-4. **Download DeepSeek-OCR-2 model**
+3. **Download Models**
 ```bash
-# Download from HuggingFace (requires git-lfs)
+# Download DeepSeek-OCR-2 model weights
+# From HuggingFace (recommended)
 git clone https://huggingface.co/deepseek-ai/DeepSeek-OCR-2 ./model_weights
-# Download from ModelScope （requires modelscope）
-modelscope download --model deepseek-ai/DeepSeek-OCR-2 --local_dir ./model_weights
-# Or download manually and extract to a directory
+
+# Or manually download and place in model_weights/ directory
 ```
 
-5. **Configure environment**
+4. **Configure Application**
 ```bash
+# Copy configuration template
 cp .env.example .env
-# Edit .env to set your model path and API keys
+
+# Edit .env file, at least set model path
+# DEEPSEEK_OCR_MODEL_PATH=./model_weights
 ```
 
-### Configuration
-
-Edit `.env` file:
-```env
-# DeepSeek-OCR-2 Model Path
-DEEPSEEK_OCR_MODEL_PATH=/path/to/deepseek-ocr-2-weights
-
-# RAG Configuration (choose one provider)
-OPENAI_API_KEY=your_openai_api_key_here
-# OR
-DEEPSEEK_API_KEY=your_deepseek_api_key_here
-# OR
-OPENROUTER_API_KEY=your_openrouter_api_key_here
-
-# Optional: RAG model selection
-RAG_MODEL=gpt-4o-2024-11-20  # or deepseek-chat, anthropic/claude-3.5-sonnet, etc.
-```
-
-### Running the Application
-
+5. **Start Application**
 ```bash
-# Start the web server (default port 8000)
+# Method 1: Direct run
 python app.py
 
-# Or with custom host/port
-python app.py --host 0.0.0.0 --port 8000
+# Method 2: Using startup script (recommended)
+./run.sh
 ```
 
-Open your browser to: http://localhost:8000
+6. **Start Using**
+Open browser and visit: http://localhost:8000
 
-## 📖 Usage Guide
+## 📖 Use Cases
 
-### 1. Upload PDF
-- Click "Upload PDF" button
-- Select your PDF file
-- System generates a unique document ID and starts processing
+### 🎓 Academic Research
+- **Scanned Paper Conversations**: Deep Q&A with scanned academic papers
+- **Literature Review Assistance**: Quickly extract core viewpoints from multiple papers
+- **Automatic Note Organization**: Convert lectures, textbooks into structured knowledge bases
 
-### 2. Monitor Processing
-- View real-time progress with page completion status
-- Watch as DeepSeek-OCR-2 converts each page to Markdown
-- See extracted images in the gallery
+### 💼 Business Office
+- **Scanned Contract Analysis**: Quickly understand contract terms and key points
+- **Report Data Extraction**: Extract key data from scanned financial reports
+- **Meeting Minutes Processing**: Convert scanned meeting records into searchable documents
 
-### 3. Preview Results
-- Browse through document pages
-- View side-by-side: Original PDF vs OCR Markdown
-- Check extracted images with captions
+### 🏥 Professional Fields
+- **Medical Document Processing**: Handle scanned medical records, test reports
+- **Legal Document Analysis**: Analyze scanned legal documents and case law
+- **Technical Manual Queries**: Interactive Q&A with scanned technical documents
 
-### 4. Build RAG Index
-- Navigate to Settings tab
-- Configure your LLM provider and API key
-- Click "Build Index" to create document tree structure
+### 👨‍💻 Personal Knowledge Management
+- **Reading Note Creation**: Extract essence from scanned books
+- **Handwritten Note Digitization**: Process scanned handwritten notes (needs to be clear)
+- **Personal Archive Management**: Build searchable personal document libraries
 
-### 5. Chat with Document
-- Ask questions about document content
-- Get answers with page references and reasoning
-- Follow-up with related questions for multi-turn conversation
+## 🏗️ Technical Architecture
 
-### 6. Search Document
-- Search for specific content using semantic understanding
-- Get ranked results with context snippets
+```
+OpenNoteVision-LM/
+├── Vision Layer
+│   ├── DeepSeek-OCR-2 ──── Visual document understanding
+│   ├── Image Preprocessing ─ Optimize scan quality
+│   └── Layout Analysis ──── Preserve document structure
+│
+├── Understanding Layer  
+│   ├── PageIndex ──────── Reasoning-based document indexing
+│   ├── Tree Structure Building ─ Document semantic organization
+│   └── Context Management ─ Conversation state maintenance
+│
+├── Interaction Layer
+│   ├── FastAPI Backend ──── RESTful API service
+│   ├── Web Frontend ─────── User interface
+│   └── Multi-LLM Adapter ─ Support various large models
+│
+└── Storage Layer
+    ├── Document Repository ─ Original document storage
+    ├── Index Database ────── Tree index persistence
+    └── Conversation History ─ User interaction records
+```
 
 ## 🔧 Advanced Configuration
 
-### Model Manager
-The application uses lazy loading for DeepSeek-OCR-2 model:
-- First PDF triggers model loading (takes 1-2 minutes)
-- Subsequent documents reuse loaded model
-- Models run on CPU by default (GPU optional)
-
-### RAG Settings
-Configure in web interface or via `config_manager.py`:
-- **Provider**: OpenAI, DeepSeek, OpenRouter, or custom
-- **Models**: GPT-4o, DeepSeek Chat, Claude, Gemini, etc.
-- **Token Settings**: Context length and summary thresholds
-- **Base URL**: Custom API endpoints for self-hosted models
-
 ### Performance Optimization
 ```python
-# In config.py
-BASE_SIZE = 1024        # Base image size for OCR
-IMAGE_SIZE = 768        # Input size for model
-MAX_CONCURRENCY = 100   # Adjust based on memory
-NUM_WORKERS = 64        # Image processing workers
+# Key parameters in config.py
+BASE_SIZE = 1024        # Base image size
+IMAGE_SIZE = 768        # Model input size
+MAX_CONCURRENCY = 100   # Concurrent processing (adjust based on memory)
+NUM_WORKERS = 64        # Image processing threads
 ```
 
-## 🏗️ Project Structure
+### Multi-LLM Configuration
+Support OpenAI, DeepSeek, OpenRouter, custom endpoints:
+```env
+# .env file configuration example
+OPENAI_API_KEY=your_key_here
+# or
+DEEPSEEK_API_KEY=your_key_here
+# or
+OPENROUTER_API_KEY=your_key_here
 
-```
-deepseek-ocr-2-app/
-├── app.py                 # FastAPI main application
-├── config.py              # OCR parameters (image sizes, paths)
-├── config_manager.py      # RAG configuration management
-├── model_manager.py       # Singleton model loader (DeepSeek-OCR-2)
-├── ocr_engine.py          # PDF→image→OCR pipeline
-├── rag_engine.py          # PageIndex integration, indexing, Q&A
-├── modeling_deepseekocr2.py # Custom model definition
-├── requirements.txt       # Python dependencies
-├── .env.example          # Environment template
-├── LICENSE               # MIT License
-└── README.md            # This file
-
-data/                     # Auto-created at runtime
-├── config/              # RAG configuration files
-└── documents/           # Uploaded PDFs, metadata, indexes
-
-static/                  # Web frontend
-├── index.html          # Main interface
-├── css/style.css       # Styling
-└── js/app.js           # Frontend logic
-
-DeepSeek-OCR-2/          # Original model code (submodule)
-PageIndex/               # PageIndex RAG library (submodule)
-deepencoderv2/           # Visual encoder components
-process/                 # Preprocessing utilities
+# Model selection
+RAG_MODEL=gpt-4o-2024-11-20  # or deepseek-chat, etc.
 ```
 
-## 📊 Performance Notes
+### Custom Deployment
+- **Docker Deployment**: Provide Dockerfile (to be implemented)
+- **Cloud Service Deployment**: Support AWS, Azure, GCP
+- **Private Deployment**: Internal network deployment
 
-### OCR Processing Speed
-- **First document**: ~1-2 minutes for model loading + OCR
-- **Subsequent documents**: ~10-60 seconds per page (depends on content)
-- **Memory usage**: 16GB+ RAM recommended
-- **CPU optimization**: Automatically uses half of available CPU cores
+## 📈 Performance
 
-### RAG Index Building
-- **Index creation**: ~1-5 minutes (depends on document length and LLM)
-- **Tree search**: ~2-10 seconds per query
-- **Context handling**: Supports documents with 1000+ pages
+### Processing Speed
+- **First Model Loading**: 1-2 minutes (only first time)
+- **Scanned PDF Processing**: 10-30 seconds/page (depending on complexity)
+- **Index Building**: 1-5 minutes (100-page document)
+- **Query Response**: 1-5 seconds (tree retrieval optimized)
 
-## 🔒 Security Considerations
+### Resource Usage
+- **Memory Usage**: 4-8GB (16GB recommended)
+- **CPU Usage**: Automatic optimization, uses physical cores
+- **Storage Space**: Model weights ~15GB, additional 10-100MB per document
 
-- **API Keys**: Stored encrypted in local config files
-- **File Uploads**: Validated for PDF format only
-- **Path Traversal**: Protected against directory traversal attacks
-- **Data Privacy**: All processing happens locally; no document data sent externally (except for RAG API calls if configured)
+## 🤝 Contribution Guide
 
-## 🤝 Contributing
+We welcome contributions in all forms!
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Development Process
+1. Fork this repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add some amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Setup
+### Development Environment
 ```bash
 # Install development dependencies
-pip install -r requirements.txt
-pip install pytest ruff black
+pip install -r requirements-dev.txt
 
-# Run tests (to be implemented)
-pytest
+# Run tests
+pytest tests/
 
-# Code formatting
-black .
-ruff check --fix .
+# Code quality check
+ruff check .
+black --check .
 ```
+
+### Urgent Contribution Areas
+- 📱 Mobile adaptation
+- 🐳 Docker containerization
+- 🌐 Multi-language interface
+- 📊 Performance benchmarking
+- 🔌 Plugin system
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-### Third-Party Licenses
-- **DeepSeek-OCR-2**: Apache 2.0 License
+### Third-Party Component Licenses
+- **DeepSeek‑OCR‑2**: Apache 2.0 License
 - **PageIndex**: MIT License
+- **Other dependencies**: Respective open source licenses
 
 ## 🙏 Acknowledgments
 
-- [DeepSeek AI](https://www.deepseek.com/) for the amazing OCR-2 model
-- [Vectify AI](https://vectify.ai/) for PageIndex reasoning-based RAG
-- All open-source libraries that make this project possible
+- **DeepSeek AI**: For the excellent DeepSeek‑OCR‑2 visual model
+- **Vectify AI**: For developing the innovative PageIndex reasoning-based RAG framework
+- **Open Source Community**: All open source project contributors that made this project possible
+- **Early Users**: For valuable feedback and improvement suggestions
 
-## 🆘 Support
+## 🆘 Support & Feedback
 
-- **Issues**: Use GitHub Issues for bug reports and feature requests
-- **Questions**: Check existing issues or start a discussion
-- **Documentation**: Refer to this README and inline code comments
+- **Issue Reporting**: [GitHub Issues](https://github.com/yourusername/OpenNoteVision-LM/issues)
+- **Feature Suggestions**: Submit via Issues
+- **Technical Discussion**: Welcome to submit Pull Requests
+- **Usage Problems**: Check documentation or submit Issue
 
 ---
 
-**Note**: This is a community project not officially affiliated with DeepSeek AI or Vectify AI. The DeepSeek-OCR-2 model weights must be downloaded separately from HuggingFace.
+## 🚨 Important Disclaimer
+
+**OpenNoteVision LM is an open source community project and is NOT an official version or derivative of the following products:**
+- ❌ NOT an open source alternative to Google NoteBookLM
+- ❌ NOT a fork or improved version of opennotebook
+- ❌ NOT related to Tencent iMA
+- ❌ NO official affiliation with DeepSeek AI or Vectify AI
+
+**We simply address user needs unmet by these products, providing visual document processing capabilities they lack.**

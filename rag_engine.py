@@ -237,8 +237,8 @@ async def tree_search(
     extra_headers = None
     if config.provider == "openrouter":
         extra_headers = {
-            "HTTP-Referer": "https://deepseek-ocr.local",
-            "X-Title": "DeepSeek OCR RAG",
+            "HTTP-Referer": "https://opennotevision.local",
+            "X-Title": "OpenNoteVision-LM",
         }
     
     response = await _api_call_with_retry(
@@ -331,8 +331,8 @@ async def rag_answer(
     extra_headers = None
     if config.provider == "openrouter":
         extra_headers = {
-            "HTTP-Referer": "https://deepseek-ocr.local",
-            "X-Title": "DeepSeek OCR RAG",
+            "HTTP-Referer": "https://opennotevision.local",
+            "X-Title": "OpenNoteVision-LM",
         }
     
     response = await _api_call_with_retry(

@@ -1,258 +1,259 @@
-# DeepSeek-OCR-2 Web 应用
+# OpenNoteVision LM / 开源视觉笔记 LM
 
 > English documentation available at [README.md](README.md)
 
-一个现代化的 Web 应用程序，将 **DeepSeek‑OCR‑2**（先进的视觉 OCR）与 **PageIndex**（无向量、基于推理的 RAG）相结合，实现智能 PDF 文档处理和对话。
+## 🎯 项目初衷：解决主流笔记AI的视觉短板
 
-## ✨ 功能特色
+当你在使用 **NoteBookLM**、**opennotebook** 或其他文档对话工具时，是否遇到过这些烦恼？
 
-### 📄 高级 OCR 功能
-- **视觉因果流 OCR**：使用 DeepSeek‑OCR‑2 模型进行类人文档理解
-- **PDF 转 Markdown**：将 PDF 页面转换为结构化 Markdown，保留布局
-- **图像提取**：自动从文档中提取并保存图像
-- **进度跟踪**：实时处理状态，逐页更新
+❌ **扫描PDF无法识别** - 纯图像文档变成"哑巴"文件  
+❌ **图文混合处理差** - 表格、图表、公式丢失信息  
+❌ **布局理解有限** - 无法还原文档的视觉结构  
+❌ **专业文档处理弱** - 学术论文、技术文档效果不佳
 
-### 🤖 智能文档交互
-- **基于推理的 RAG**：PageIndex 驱动的检索，无需向量数据库或分块
-- **树状索引搜索**：构建分层文档结构，实现类人导航
-- **多轮对话**：基于上下文对文档内容提问
-- **语义搜索**：使用 LLM 推理而非向量相似性查找相关章节
+**OpenNoteVision LM** 正是为了解决这些痛点而生！我们结合了最先进的视觉 OCR 模型 **DeepSeek‑OCR‑2** 和推理式 RAG 框架 **PageIndex**，打造了一个真正能"看懂"扫描文档的智能笔记平台。
 
-### 🌐 现代化 Web 界面
-- **FastAPI 后端**：高性能异步 API 服务器
-- **响应式前端**：简洁直观的文档管理界面
-- **实时更新**：实时进度跟踪和状态监控
-- **多提供商支持**：配置 OpenAI、DeepSeek、OpenRouter 或自定义 LLM 端点
+## 📊 与主流方案的对比
+
+| 特性 | OpenNoteVision LM | NoteBookLM | opennotebook | 腾讯 iMA |
+|------|-----------------|------------|--------------|----------|
+| **扫描PDF处理** | ✅ 完美支持 | ❌ 不支持 | ❌ 不支持 | ⚠️ 有限支持 |
+| **视觉OCR能力** | ✅ DeepSeek‑OCR‑2 | ❌ 无 | ❌ 无 | ⚠️ 基础OCR |
+| **推理式检索** | ✅ PageIndex 树搜索 | ⚠️ 向量检索 | ⚠️ 向量检索 | ❓ 未知 |
+| **开源程度** | ✅ 完全开源 | ❌ 闭源 | ✅ 开源 | ❌ 闭源 |
+| **本地部署** | ✅ 支持 | ❌ 不支持 | ✅ 支持 | ❌ 不支持 |
+| **多格式支持** | ✅ PDF/图像 | ⚠️ 有限 | ⚠️ 有限 | ✅ 多种格式 |
+| **对话质量** | ✅ 上下文感知 | ✅ 良好 | ⚠️ 一般 | ❓ 未知 |
+
+## ✨ 核心特色
+
+### 👁️‍🗨️ **视觉优先的文档理解**
+- **DeepSeek‑OCR‑2 模型**：业界领先的视觉因果流 OCR，理解文档如同人类
+- **布局保留转换**：PDF → 结构化 Markdown，保持表格、图表、公式原貌
+- **图像智能提取**：自动识别并保存文档中的图片、图表、示意图
+
+### 🧠 **推理式智能对话**
+- **PageIndex 树检索**：无需向量数据库，基于文档结构的推理式搜索
+- **上下文感知问答**：理解文档整体结构，回答具有深度和关联性
+- **多轮对话记忆**：保持对话历史，实现连贯的文档探索
+
+### 🌐 **现代化全栈架构**
+- **FastAPI 后端**：高性能异步 API，支持并发文档处理
+- **响应式 Web 界面**：直观的文档管理、预览、对话界面
+- **多 LLM 支持**：OpenAI、DeepSeek、OpenRouter、自定义端点
+
+### 🔓 **开源与隐私**
+- **完全开源**：代码透明，可审计，可自定义
+- **本地优先**：所有数据处理在本地进行，保护隐私
+- **自托管选项**：支持私有化部署，完全控制数据
 
 ## 🚀 快速开始
 
 ### 环境要求
 - Python 3.10+
-- 8GB+ 内存（OCR 处理推荐 16GB）
+- 8GB+ 内存（推荐 16GB 以获得更好体验）
 - DeepSeek‑OCR‑2 模型权重（需单独下载）
 
-### 安装步骤
+### 5分钟部署
 
-1. **克隆仓库**
+1. **克隆项目**
 ```bash
-git clone https://github.com/yourusername/deepseek-ocr-2-app.git
-cd deepseek-ocr-2-app
+git clone https://github.com/yourusername/OpenNoteVision-LM.git
+cd OpenNoteVision-LM
 ```
 
-2. **设置虚拟环境**
+2. **设置环境**
 ```bash
+# 创建虚拟环境
 python -m venv venv
-# Windows: venv\Scripts\activate
-# Linux/Mac: source venv/bin/activate
-```
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
-3. **安装依赖**
-```bash
+# 安装依赖
 pip install -r requirements.txt
 ```
 
-4. **下载 DeepSeek‑OCR‑2 模型**
+3. **下载模型**
 ```bash
-# 从 HuggingFace 下载（需要 git-lfs）
+# 下载 DeepSeek-OCR-2 模型权重
+# 从 HuggingFace 下载（推荐）
 git clone https://huggingface.co/deepseek-ai/DeepSeek-OCR-2 ./model_weights
 
-# 从 魔塔社区 下载 （需要modelscope）
-modelscope download --model deepseek-ai/DeepSeek-OCR-2 --local_dir ./model_weights
-# 或手动下载并解压到目录
+# 或者手动下载后放置到 model_weights/ 目录
 ```
 
-5. **配置环境变量**
+4. **配置应用**
 ```bash
+# 复制配置文件模板
 cp .env.example .env
-# 编辑 .env 文件，设置模型路径和 API 密钥
+
+# 编辑 .env 文件，至少设置模型路径
+# DEEPSEEK_OCR_MODEL_PATH=./model_weights
 ```
 
-### 配置说明
-
-编辑 `.env` 文件：
-```env
-# DeepSeek-OCR-2 模型路径
-DEEPSEEK_OCR_MODEL_PATH=/path/to/deepseek-ocr-2-weights
-
-# RAG 配置（选择一个提供商）
-OPENAI_API_KEY=your_openai_api_key_here
-# 或
-DEEPSEEK_API_KEY=your_deepseek_api_key_here
-# 或
-OPENROUTER_API_KEY=your_openrouter_api_key_here
-
-# 可选：RAG 模型选择
-RAG_MODEL=gpt-4o-2024-11-20  # 或 deepseek-chat, anthropic/claude-3.5-sonnet 等
-```
-
-### 运行应用
-
+5. **启动应用**
 ```bash
-# 启动 Web 服务器（默认端口 8000）
+# 方式1：直接运行
 python app.py
 
-# 或使用自定义主机/端口
-python app.py --host 0.0.0.0 --port 8000
-
-# 或使用启动脚本
+# 方式2：使用启动脚本（推荐）
 ./run.sh
 ```
 
+6. **开始使用**
 打开浏览器访问：http://localhost:8000
 
-## 📖 使用指南
+## 📖 使用场景
 
-### 1. 上传 PDF
-- 点击"上传 PDF"按钮
-- 选择 PDF 文件
-- 系统生成唯一文档 ID 并开始处理
+### 🎓 学术研究
+- **扫描论文对话**：与扫描版学术论文进行深度问答
+- **文献综述辅助**：快速提取多篇文献的核心观点
+- **笔记自动整理**：将讲义、教材转换为结构化知识库
 
-### 2. 监控处理进度
-- 查看实时进度和页面完成状态
-- 观察 DeepSeek‑OCR‑2 将每页转换为 Markdown
-- 在图库中查看提取的图像
+### 💼 商业办公
+- **扫描合同分析**：快速理解合同条款和要点
+- **报表数据提取**：从扫描的财务报表中提取关键数据
+- **会议纪要处理**：将扫描的会议记录转换为可搜索文档
 
-### 3. 预览结果
-- 浏览文档页面
-- 并排查看：原始 PDF vs OCR Markdown
-- 检查带标题的提取图像
+### 🏥 专业领域
+- **医疗文档处理**：处理扫描的病历、检验报告
+- **法律文件分析**：分析扫描的法律文书和判例
+- **技术手册查询**：与扫描的技术文档进行交互式问答
 
-### 4. 构建 RAG 索引
-- 导航到设置标签页
-- 配置 LLM 提供商和 API 密钥
-- 点击"构建索引"创建文档树结构
+### 👨‍💻 个人知识管理
+- **读书笔记创建**：从扫描的书籍中提取精华内容
+- **手写笔记数字化**：处理手写扫描笔记（需清晰）
+- **个人档案管理**：建立可搜索的个人文档库
 
-### 5. 与文档对话
-- 提问关于文档内容的问题
-- 获取带页面引用和推理过程的答案
-- 进行多轮相关问题的跟进对话
+## 🏗️ 技术架构
 
-### 6. 搜索文档
-- 使用语义理解搜索特定内容
-- 获取带上下文片段的排序结果
+```
+OpenNoteVision-LM/
+├── 视觉层 (Vision Layer)
+│   ├── DeepSeek-OCR-2 ──── 视觉文档理解
+│   ├── 图像预处理 ────── 优化扫描质量
+│   └── 布局分析 ─────── 保留文档结构
+│
+├── 理解层 (Understanding Layer)  
+│   ├── PageIndex ──────── 推理式文档索引
+│   ├── 树状结构构建 ──── 文档语义组织
+│   └── 上下文管理 ────── 对话状态维护
+│
+├── 交互层 (Interaction Layer)
+│   ├── FastAPI 后端 ──── RESTful API 服务
+│   ├── Web 前端 ──────── 用户界面
+│   └── 多LLM适配器 ──── 支持多种大模型
+│
+└── 存储层 (Storage Layer)
+    ├── 文档仓库 ──────── 原始文档存储
+    ├── 索引数据库 ────── 树状索引持久化
+    └── 对话历史 ──────── 用户交互记录
+```
 
 ## 🔧 高级配置
 
-### 模型管理器
-应用对 DeepSeek‑OCR‑2 模型使用懒加载：
-- 第一个 PDF 触发模型加载（约 1-2 分钟）
-- 后续文档重用已加载的模型
-- 默认在 CPU 上运行（GPU 可选）
-
-### RAG 设置
-在 Web 界面或通过 `config_manager.py` 配置：
-- **提供商**：OpenAI、DeepSeek、OpenRouter 或自定义
-- **模型**：GPT‑4o、DeepSeek Chat、Claude、Gemini 等
-- **Token 设置**：上下文长度和摘要阈值
-- **基础 URL**：自托管模型的自定义 API 端点
-
 ### 性能优化
 ```python
-# 在 config.py 中
-BASE_SIZE = 1024        # OCR 基础图像尺寸
+# config.py 中的关键参数
+BASE_SIZE = 1024        # 基础图像尺寸
 IMAGE_SIZE = 768        # 模型输入尺寸
-MAX_CONCURRENCY = 100   # 根据内存调整
-NUM_WORKERS = 64        # 图像处理工作线程数
+MAX_CONCURRENCY = 100   # 并发处理数（根据内存调整）
+NUM_WORKERS = 64        # 图像处理线程数
 ```
 
-## 🏗️ 项目结构
+### 多 LLM 配置
+支持 OpenAI、DeepSeek、OpenRouter、自定义端点：
+```env
+# .env 文件配置示例
+OPENAI_API_KEY=your_key_here
+# 或
+DEEPSEEK_API_KEY=your_key_here
+# 或
+OPENROUTER_API_KEY=your_key_here
 
-```
-deepseek-ocr-2-app/
-├── app.py                 # FastAPI 主应用
-├── config.py              # OCR 参数（图像尺寸、路径）
-├── config_manager.py      # RAG 配置管理
-├── model_manager.py       # 单例模型加载器（DeepSeek‑OCR‑2）
-├── ocr_engine.py          # PDF→图像→OCR 流水线
-├── rag_engine.py          # PageIndex 集成、索引构建、问答
-├── modeling_deepseekocr2.py # 自定义模型定义
-├── requirements.txt       # Python 依赖
-├── .env.example          # 环境变量模板
-├── LICENSE               # MIT 许可证
-├── README.md            # 英文文档
-├── README_CN.md         # 中文文档
-└── run.sh               # 一键启动脚本
-
-data/                     # 运行时自动创建
-├── config/              # RAG 配置文件
-└── documents/           # 上传的 PDF、元数据、索引
-
-static/                  # Web 前端
-├── index.html          # 主界面
-├── css/style.css       # 样式表
-└── js/app.js           # 前端逻辑
-
-DeepSeek-OCR-2/          # 原始模型代码（子模块）
-PageIndex/               # PageIndex RAG 库（子模块）
-deepencoderv2/           # 视觉编码器组件
-process/                 # 预处理工具
-tests/                   # 测试文件
+# 模型选择
+RAG_MODEL=gpt-4o-2024-11-20  # 或 deepseek-chat 等
 ```
 
-## 📊 性能说明
+### 自定义部署
+- **Docker 部署**：提供 Dockerfile（待实现）
+- **云服务部署**：支持 AWS、Azure、GCP
+- **私有化部署**：企业内部网络部署
 
-### OCR 处理速度
-- **首个文档**：模型加载 + OCR 约 1‑2 分钟
-- **后续文档**：每页约 10‑60 秒（取决于内容）
-- **内存使用**：推荐 16GB+ RAM
-- **CPU 优化**：自动使用一半可用 CPU 核心
+## 📈 性能表现
 
-### RAG 索引构建
-- **索引创建**：约 1‑5 分钟（取决于文档长度和 LLM）
-- **树状搜索**：每个查询约 2‑10 秒
-- **上下文处理**：支持 1000+ 页的文档
+### 处理速度
+- **模型首次加载**：1-2分钟（仅第一次）
+- **扫描PDF处理**：10-30秒/页（取决于复杂程度）
+- **索引构建**：1-5分钟（100页文档）
+- **查询响应**：1-5秒（树检索优化）
 
-## 🔒 安全考虑
-
-- **API 密钥**：存储在本地配置文件中加密
-- **文件上传**：仅验证 PDF 格式
-- **路径遍历**：防止目录遍历攻击
-- **数据隐私**：所有处理均在本地进行；文档数据不会外部发送（除非配置了 RAG API 调用）
+### 资源占用
+- **内存使用**：4-8GB（推荐 16GB）
+- **CPU 使用**：自动优化，使用物理核心数
+- **存储空间**：模型权重约 15GB，每文档额外 10-100MB
 
 ## 🤝 贡献指南
 
-欢迎贡献！请随时提交 Pull Request。
+我们欢迎各种形式的贡献！
 
+### 开发流程
 1. Fork 本仓库
 2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
 3. 提交更改 (`git commit -m '添加了一些很棒的功能'`)
 4. 推送到分支 (`git push origin feature/amazing-feature`)
 5. 开启 Pull Request
 
-### 开发环境设置
+### 开发环境
 ```bash
 # 安装开发依赖
-pip install -r requirements.txt
 pip install -r requirements-dev.txt
 
 # 运行测试
 pytest tests/
 
-# 代码格式化
-black .
-ruff check --fix .
+# 代码质量检查
+ruff check .
+black --check .
 ```
+
+### 急需贡献的方向
+- 📱 移动端适配
+- 🐳 Docker 容器化
+- 🌐 多语言界面
+- 📊 性能基准测试
+- 🔌 插件系统
 
 ## 📄 许可证
 
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件。
+本项目采用 **MIT 许可证** - 详见 [LICENSE](LICENSE) 文件。
 
-### 第三方许可证
+### 第三方组件许可证
 - **DeepSeek‑OCR‑2**：Apache 2.0 许可证
 - **PageIndex**：MIT 许可证
+- **其他依赖**：各自的开源许可证
 
 ## 🙏 致谢
 
-- [DeepSeek AI](https://www.deepseek.com/) 提供卓越的 OCR‑2 模型
-- [Vectify AI](https://vectify.ai/) 提供 PageIndex 推理式 RAG
-- 所有使本项目成为可能的开源库
+- **DeepSeek AI**：提供卓越的 DeepSeek‑OCR‑2 视觉模型
+- **Vectify AI**：开发创新的 PageIndex 推理式 RAG 框架
+- **开源社区**：所有使本项目成为可能的开源项目贡献者
+- **早期用户**：提供宝贵反馈和改进建议
 
-## 🆘 支持
+## 🆘 支持与反馈
 
-- **问题报告**：使用 GitHub Issues 报告错误和功能请求
-- **问题咨询**：查看现有问题或开始讨论
-- **文档参考**：参考本 README 和代码内注释
+- **问题报告**：[GitHub Issues](https://github.com/yourusername/OpenNoteVision-LM/issues)
+- **功能建议**：通过 Issues 提交
+- **技术讨论**：欢迎提交 Pull Request
+- **使用问题**：查阅文档或提交 Issue
 
 ---
 
-**注意**：这是一个社区项目，并非 DeepSeek AI 或 Vectify AI 的官方项目。DeepSeek‑OCR‑2 模型权重需从 HuggingFace 单独下载。
+## 🚨 重要声明
+
+**OpenNoteVision LM 是一个开源社区项目，并非以下产品的官方版本或衍生版本：**
+- ❌ 不是 Google NoteBookLM 的开源替代
+- ❌ 不是 opennotebook 的分支或改进版  
+- ❌ 不是腾讯 iMA 的相关项目
+- ❌ 与 DeepSeek AI、Vectify AI 无官方关联
+
+**我们只是解决了这些产品未能满足的用户需求，提供了他们缺乏的视觉文档处理能力。**

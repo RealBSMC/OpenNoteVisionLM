@@ -1,10 +1,10 @@
-# Core dependencies for DeepSeek-OCR-2 App
+# Core dependencies for OpenNoteVision LM
 # For CPU-only inference (recommended for most users)
 
 # DeepSeek-OCR-2 dependencies
-torch>=2.6.0
-transformers>=4.46.3
-tokenizers>=0.20.3
+torch==2.6.0
+transformers==4.46.3
+tokenizers==0.20.3
 PyMuPDF>=1.24.0  # fitz
 img2pdf>=0.5.0
 einops>=0.8.0
@@ -27,8 +27,8 @@ pydantic>=2.5.0
 python-multipart>=0.0.6
 
 # Optional: for GPU support
-# torch>=2.6.0 with CUDA (install from pytorch.org based on your CUDA version)
-# flash-attn>=2.7.3  # if using flash attention
+# torch==2.6.0 with CUDA (install from pytorch.org based on your CUDA version)
+# flash-attn==2.7.3  # if using flash attention
 
 # Note: DeepSeek-OCR-2 model weights must be downloaded separately
 # from https://huggingface.co/deepseek-ai/DeepSeek-OCR-2

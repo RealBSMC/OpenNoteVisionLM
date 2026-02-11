@@ -1,5 +1,5 @@
 #!/bin/bash
-# DeepSeek-OCR-2 App启动脚本
+# OpenNoteVision LM 启动脚本
 
 # 设置项目根目录
 PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -53,7 +53,7 @@ else
 fi
 
 # 启动应用
-echo "启动DeepSeek-OCR-2 Web应用..."
+echo "启动OpenNoteVision LM 视觉文档智能平台..."
 echo "访问: http://localhost:8000"
 echo "按Ctrl+C停止"
 echo ""

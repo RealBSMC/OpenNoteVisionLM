@@ -1,5 +1,5 @@
 """
-Basic tests for DeepSeek-OCR-2 Web App
+Basic tests for OpenNoteVision LM
 Run with: pytest tests/test_basic.py
 """
 

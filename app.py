@@ -1,6 +1,7 @@
 """
-DeepSeek OCR 2 - Web Application
+OpenNoteVision LM - Visual Document Intelligence Platform
 FastAPI 后端 + 静态前端
+解决 NoteBookLM / opennotebook 无法处理的扫描 PDF 问题
 """
 
 # ====== CPU 优化（必须在 import torch 之前） ======
@@ -57,7 +58,7 @@ STATIC_DIR = BASE_DIR / "static"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 # ====== FastAPI App ======
-app = FastAPI(title="DeepSeek OCR 2", version="1.0.0")
+app = FastAPI(title="OpenNoteVision LM - Visual Document Intelligence", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -558,7 +559,7 @@ async def search_document(doc_id: str, request: ChatRequest):
 # ============================================================
 
 if __name__ == "__main__":
-    logger.info(f"Starting DeepSeek OCR 2 Web App")
+    logger.info(f"Starting OpenNoteVision LM - Visual Document Intelligence Platform")
     logger.info(f"Data directory: {DATA_DIR}")
     logger.info(f"CPU cores: {_PHYSICAL_CORES}")
     uvicorn.run(app, host="0.0.0.0", port=8000)
