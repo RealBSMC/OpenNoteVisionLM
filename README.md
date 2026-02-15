@@ -1,259 +1,267 @@
-# OpenNoteVision LM / Open Source Visual Notebook LM
+# OpenNoteVision LM / 开源视觉笔记 LM
 
-> 中文文档请参阅 [README_CN.md](README_CN.md)
+> English documentation available at [README_EN.md](README_EN.md)
 
-## 🎯 Project Origin: Solving the Visual Limitations of Mainstream Notebook AIs
+## 🎯 项目初衷：解决主流笔记AI的视觉短板
 
-When using **NoteBookLM**, **opennotebook**, or other document conversation tools, have you encountered these frustrations?
+当你在使用 **NoteBookLM**、**opennotebook** 或其他文档对话工具时，是否遇到过这些烦恼？
 
-❌ **Scanned PDFs cannot be recognized** - Pure image documents become "mute" files  
-❌ **Poor mixed text-image processing** - Tables, charts, formulas lose information  
-❌ **Limited layout understanding** - Cannot restore the visual structure of documents  
-❌ **Weak professional document handling** - Poor performance with academic papers, technical documents
+❌ **扫描PDF无法识别** - 纯图像文档变成"哑巴"文件
+❌ **图文混合处理差** - 表格、图表、公式丢失信息
+❌ **布局理解有限** - 无法还原文档的视觉结构
+❌ **专业文档处理弱** - 学术论文、技术文档效果不佳
 
-**OpenNoteVision LM** was born to solve these pain points! We combine the state-of-the-art visual OCR model **DeepSeek‑OCR‑2** with the reasoning-based RAG framework **PageIndex** to create an intelligent notebook platform that truly "understands" scanned documents.
+**OpenNoteVision LM** 正是为了解决这些痛点而生！我们结合了最先进的视觉 OCR 模型 **DeepSeek‑OCR‑2** 和推理式 RAG 框架 **PageIndex**，打造了一个真正能"看懂"扫描文档的智能笔记平台。
 
-## 📊 Comparison with Mainstream Solutions
+## 📊 与主流方案的对比
 
-| Feature | OpenNoteVision LM | NoteBookLM | opennotebook | Tencent iMA |
-|---------|-----------------|------------|--------------|-------------|
-| **Scanned PDF Processing** | ✅ Perfect support | ❌ Not supported | ❌ Not supported | ⚠️ Limited support |
-| **Visual OCR Capability** | ✅ DeepSeek‑OCR‑2 | ❌ None | ❌ None | ⚠️ Basic OCR |
-| **Reasoning-based Retrieval** | ✅ PageIndex tree search | ⚠️ Vector retrieval | ⚠️ Vector retrieval | ❓ Unknown |
-| **Open Source** | ✅ Fully open source | ❌ Closed source | ✅ Open source | ❌ Closed source |
-| **Local Deployment** | ✅ Supported | ❌ Not supported | ✅ Supported | ❌ Not supported |
-| **Multi-format Support** | ✅ PDF/Images | ⚠️ Limited | ⚠️ Limited | ✅ Multiple formats |
-| **Conversation Quality** | ✅ Context-aware | ✅ Good | ⚠️ Average | ❓ Unknown |
+| 特性 | OpenNoteVision LM | NoteBookLM | opennotebook | 腾讯 iMA |
+|------|-----------------|------------|--------------|----------|
+| **扫描PDF处理** | ✅ 完美支持 | ❌ 不支持 | ❌ 不支持 | ⚠️ 有限支持 |
+| **视觉OCR能力** | ✅ DeepSeek‑OCR‑2 | ❌ 无 | ❌ 无 | ⚠️ 基础OCR |
+| **推理式检索** | ✅ PageIndex 树搜索 | ⚠️ 向量检索 | ⚠️ 向量检索 | ❓ 未知 |
+| **开源程度** | ✅ 完全开源 | ❌ 闭源 | ✅ 开源 | ❌ 闭源 |
+| **本地部署** | ✅ 支持 | ❌ 不支持 | ✅ 支持 | ❌ 不支持 |
+| **多格式支持** | ✅ PDF/图像 | ⚠️ 有限 | ⚠️ 有限 | ✅ 多种格式 |
+| **对话质量** | ✅ 上下文感知 | ✅ 良好 | ⚠️ 一般 | ❓ 未知 |
 
-## ✨ Core Features
+## ✨ 核心特色
 
-### 👁️‍🗨️ **Vision-First Document Understanding**
-- **DeepSeek‑OCR‑2 Model**: Industry-leading visual causal flow OCR, understanding documents like humans
-- **Layout-Preserving Conversion**: PDF → Structured Markdown, preserving tables, charts, formulas
-- **Intelligent Image Extraction**: Automatically identify and save images, charts, diagrams from documents
+### 👁️‍🗨️ **视觉优先的文档理解**
+- **DeepSeek‑OCR‑2 模型**：业界领先的视觉因果流 OCR，理解文档如同人类
+- **布局保留转换**：PDF → 结构化 Markdown，保持表格、图表、公式原貌
+- **图像智能提取**：自动识别并保存文档中的图片、图表、示意图
 
-### 🧠 **Reasoning-based Intelligent Conversation**
-- **PageIndex Tree Retrieval**: No vector database needed, reasoning-based search based on document structure
-- **Context-Aware Q&A**: Understand overall document structure, provide deep and relevant answers
-- **Multi-turn Conversation Memory**: Maintain conversation history for coherent document exploration
+### 🧠 **推理式智能对话**
+- **PageIndex 树检索**：无需向量数据库，基于文档结构的推理式搜索
+- **上下文感知问答**：理解文档整体结构，回答具有深度和关联性
+- **多轮对话记忆**：保持对话历史，实现连贯的文档探索
 
-### 🌐 **Modern Full-Stack Architecture**
-- **FastAPI Backend**: High-performance async API supporting concurrent document processing
-- **Responsive Web Interface**: Intuitive document management, preview, conversation interface
-- **Multi-LLM Support**: OpenAI, DeepSeek, OpenRouter, custom endpoints
+### 🌐 **现代化全栈架构**
+- **FastAPI 后端**：高性能异步 API，支持并发文档处理
+- **响应式 Web 界面**：直观的文档管理、预览、对话界面
+- **多 LLM 支持**：OpenAI、DeepSeek、OpenRouter、自定义端点
 
-### 🔓 **Open Source & Privacy**
-- **Fully Open Source**: Transparent code, auditable, customizable
-- **Local-First**: All data processing happens locally, protecting privacy
-- **Self-Hosting Options**: Support private deployment, full data control
+### 🔓 **开源与隐私**
+- **完全开源**：代码透明，可审计，可自定义
+- **本地优先**：所有数据处理在本地进行，保护隐私
+- **自托管选项**：支持私有化部署，完全控制数据
 
-## 🚀 Quick Start
+## 🚀 快速开始
 
-### Requirements
+### 环境要求
 - Python 3.10+
-- 8GB+ RAM (16GB recommended for better experience)
-- DeepSeek‑OCR‑2 model weights (need to download separately)
+- 8GB+ 内存（推荐 16GB 以获得更好体验）
+- DeepSeek‑OCR‑2 模型权重（需单独下载）
 
-### 5-Minute Deployment
+### 5分钟部署
 
-1. **Clone the Project**
+1. **克隆项目**
 ```bash
-git clone https://github.com/yourusername/OpenNoteVision-LM.git
-cd OpenNoteVision-LM
+git clone https://github.com/RealBSMC/OpenNoteVisionLM.git
+cd OpenNoteVisionLM
 ```
 
-2. **Setup Environment**
+2. **设置环境**
 ```bash
-# Create virtual environment
+# 创建虚拟环境
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
 
-# Install dependencies
+# 安装依赖
 pip install -r requirements.txt
 ```
 
-3. **Download Models**
-```bash
-# Download DeepSeek-OCR-2 model weights
-# From HuggingFace (recommended)
-git clone https://huggingface.co/deepseek-ai/DeepSeek-OCR-2 ./model_weights
+3. **下载模型**
 
-# Or manually download and place in model_weights/ directory
+**国内用户（推荐使用 ModelScope）：**
+```bash
+# 使用 modelscope 下载（国内网络友好）
+pip install modelscope
+python -c "from modelscope import snapshot_download; snapshot_download('deepseek-ai/DeepSeek-OCR-2', local_dir='./model_weights')"
 ```
 
-4. **Configure Application**
+**海外用户：**
 ```bash
-# Copy configuration template
+# 从 HuggingFace 下载
+git clone https://huggingface.co/deepseek-ai/DeepSeek-OCR-2 ./model_weights
+
+# 或者手动下载后放置到 model_weights/ 目录
+```
+
+4. **配置应用**
+```bash
+# 复制配置文件模板
 cp .env.example .env
 
-# Edit .env file, at least set model path
+# 编辑 .env 文件，至少设置模型路径
 # DEEPSEEK_OCR_MODEL_PATH=./model_weights
 ```
 
-5. **Start Application**
+5. **启动应用**
 ```bash
-# Method 1: Direct run
+# 方式1：直接运行
 python app.py
 
-# Method 2: Using startup script (recommended)
+# 方式2：使用启动脚本（推荐）
 ./run.sh
 ```
 
-6. **Start Using**
-Open browser and visit: http://localhost:8000
+6. **开始使用**
+打开浏览器访问：http://localhost:8000
 
-## 📖 Use Cases
+## 📖 使用场景
 
-### 🎓 Academic Research
-- **Scanned Paper Conversations**: Deep Q&A with scanned academic papers
-- **Literature Review Assistance**: Quickly extract core viewpoints from multiple papers
-- **Automatic Note Organization**: Convert lectures, textbooks into structured knowledge bases
+### 🎓 学术研究
+- **扫描论文对话**：与扫描版学术论文进行深度问答
+- **文献综述辅助**：快速提取多篇文献的核心观点
+- **笔记自动整理**：将讲义、教材转换为结构化知识库
 
-### 💼 Business Office
-- **Scanned Contract Analysis**: Quickly understand contract terms and key points
-- **Report Data Extraction**: Extract key data from scanned financial reports
-- **Meeting Minutes Processing**: Convert scanned meeting records into searchable documents
+### 💼 商业办公
+- **扫描合同分析**：快速理解合同条款和要点
+- **报表数据提取**：从扫描的财务报表中提取关键数据
+- **会议纪要处理**：将扫描的会议记录转换为可搜索文档
 
-### 🏥 Professional Fields
-- **Medical Document Processing**: Handle scanned medical records, test reports
-- **Legal Document Analysis**: Analyze scanned legal documents and case law
-- **Technical Manual Queries**: Interactive Q&A with scanned technical documents
+### 🏥 专业领域
+- **医疗文档处理**：处理扫描的病历、检验报告
+- **法律文件分析**：分析扫描的法律文书和判例
+- **技术手册查询**：与扫描的技术文档进行交互式问答
 
-### 👨‍💻 Personal Knowledge Management
-- **Reading Note Creation**: Extract essence from scanned books
-- **Handwritten Note Digitization**: Process scanned handwritten notes (needs to be clear)
-- **Personal Archive Management**: Build searchable personal document libraries
+### 👨‍💻 个人知识管理
+- **读书笔记创建**：从扫描的书籍中提取精华内容
+- **手写笔记数字化**：处理手写扫描笔记（需清晰）
+- **个人档案管理**：建立可搜索的个人文档库
 
-## 🏗️ Technical Architecture
+## 🏗️ 技术架构
 
 ```
-OpenNoteVision-LM/
-├── Vision Layer
-│   ├── DeepSeek-OCR-2 ──── Visual document understanding
-│   ├── Image Preprocessing ─ Optimize scan quality
-│   └── Layout Analysis ──── Preserve document structure
+OpenNoteVisionLM/
+├── 视觉层 (Vision Layer)
+│   ├── DeepSeek-OCR-2 ──── 视觉文档理解
+│   ├── 图像预处理 ────── 优化扫描质量
+│   └── 布局分析 ─────── 保留文档结构
 │
-├── Understanding Layer  
-│   ├── PageIndex ──────── Reasoning-based document indexing
-│   ├── Tree Structure Building ─ Document semantic organization
-│   └── Context Management ─ Conversation state maintenance
+├── 理解层 (Understanding Layer)
+│   ├── PageIndex ──────── 推理式文档索引
+│   ├── 树状结构构建 ──── 文档语义组织
+│   └── 上下文管理 ────── 对话状态维护
 │
-├── Interaction Layer
-│   ├── FastAPI Backend ──── RESTful API service
-│   ├── Web Frontend ─────── User interface
-│   └── Multi-LLM Adapter ─ Support various large models
+├── 交互层 (Interaction Layer)
+│   ├── FastAPI 后端 ──── RESTful API 服务
+│   ├── Web 前端 ──────── 用户界面
+│   └── 多LLM适配器 ──── 支持多种大模型
 │
-└── Storage Layer
-    ├── Document Repository ─ Original document storage
-    ├── Index Database ────── Tree index persistence
-    └── Conversation History ─ User interaction records
+└── 存储层 (Storage Layer)
+    ├── 文档仓库 ──────── 原始文档存储
+    ├── 索引数据库 ────── 树状索引持久化
+    └── 对话历史 ──────── 用户交互记录
 ```
 
-## 🔧 Advanced Configuration
+## 🔧 高级配置
 
-### Performance Optimization
+### 性能优化
 ```python
-# Key parameters in config.py
-BASE_SIZE = 1024        # Base image size
-IMAGE_SIZE = 768        # Model input size
-MAX_CONCURRENCY = 100   # Concurrent processing (adjust based on memory)
-NUM_WORKERS = 64        # Image processing threads
+# config.py 中的关键参数
+BASE_SIZE = 1024        # 基础图像尺寸
+IMAGE_SIZE = 768        # 模型输入尺寸
+MAX_CONCURRENCY = 100   # 并发处理数（根据内存调整）
+NUM_WORKERS = 64        # 图像处理线程数
 ```
 
-### Multi-LLM Configuration
-Support OpenAI, DeepSeek, OpenRouter, custom endpoints:
+### 多 LLM 配置
+支持 OpenAI、DeepSeek、OpenRouter、自定义端点：
 ```env
-# .env file configuration example
+# .env 文件配置示例
 OPENAI_API_KEY=your_key_here
-# or
+# 或
 DEEPSEEK_API_KEY=your_key_here
-# or
+# 或
 OPENROUTER_API_KEY=your_key_here
 
-# Model selection
-RAG_MODEL=gpt-4o-2024-11-20  # or deepseek-chat, etc.
+# 模型选择
+RAG_MODEL=gpt-4o-2024-11-20  # 或 deepseek-chat 等
 ```
 
-### Custom Deployment
-- **Docker Deployment**: Provide Dockerfile (to be implemented)
-- **Cloud Service Deployment**: Support AWS, Azure, GCP
-- **Private Deployment**: Internal network deployment
+### 自定义部署
+- **Docker 部署**：提供 Dockerfile（待实现）
+- **云服务部署**：支持 AWS、Azure、GCP
+- **私有化部署**：企业内部网络部署
 
-## 📈 Performance
+## 📈 性能表现
 
-### Processing Speed
-- **First Model Loading**: 1-2 minutes (only first time)
-- **Scanned PDF Processing**: 10-30 seconds/page (depending on complexity)
-- **Index Building**: 1-5 minutes (100-page document)
-- **Query Response**: 1-5 seconds (tree retrieval optimized)
+### 处理速度
+- **模型首次加载**：1-2分钟（仅第一次）
+- **扫描PDF处理**：10-30秒/页（取决于复杂程度）
+- **索引构建**：1-5分钟（100页文档）
+- **查询响应**：1-5秒（树检索优化）
 
-### Resource Usage
-- **Memory Usage**: 4-8GB (16GB recommended)
-- **CPU Usage**: Automatic optimization, uses physical cores
-- **Storage Space**: Model weights ~15GB, additional 10-100MB per document
+### 资源占用
+- **内存使用**：4-8GB（推荐 16GB）
+- **CPU 使用**：自动优化，使用物理核心数
+- **存储空间**：模型权重约 15GB，每文档额外 10-100MB
 
-## 🤝 Contribution Guide
+## 🤝 贡献指南
 
-We welcome contributions in all forms!
+我们欢迎各种形式的贡献！
 
-### Development Process
-1. Fork this repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add some amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
+### 开发流程
+1. Fork 本仓库
+2. 创建功能分支 (`git checkout -b feature/amazing-feature`)
+3. 提交更改 (`git commit -m '添加了一些很棒的功能'`)
+4. 推送到分支 (`git push origin feature/amazing-feature`)
+5. 开启 Pull Request
 
-### Development Environment
+### 开发环境
 ```bash
-# Install development dependencies
+# 安装开发依赖
 pip install -r requirements-dev.txt
 
-# Run tests
+# 运行测试
 pytest tests/
 
-# Code quality check
+# 代码质量检查
 ruff check .
 black --check .
 ```
 
-### Urgent Contribution Areas
-- 📱 Mobile adaptation
-- 🐳 Docker containerization
-- 🌐 Multi-language interface
-- 📊 Performance benchmarking
-- 🔌 Plugin system
+### 急需贡献的方向
+- 📱 移动端适配
+- 🐳 Docker 容器化
+- 🌐 多语言界面
+- 📊 性能基准测试
+- 🔌 插件系统
 
-## 📄 License
+## 📄 许可证
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+本项目采用 **MIT 许可证** - 详见 [LICENSE](LICENSE) 文件。
 
-### Third-Party Component Licenses
-- **DeepSeek‑OCR‑2**: Apache 2.0 License
-- **PageIndex**: MIT License
-- **Other dependencies**: Respective open source licenses
+### 第三方组件许可证
+- **DeepSeek‑OCR‑2**：Apache 2.0 许可证
+- **PageIndex**：MIT 许可证
+- **其他依赖**：各自的开源许可证
 
-## 🙏 Acknowledgments
+## 🙏 致谢
 
-- **DeepSeek AI**: For the excellent DeepSeek‑OCR‑2 visual model
-- **Vectify AI**: For developing the innovative PageIndex reasoning-based RAG framework
-- **Open Source Community**: All open source project contributors that made this project possible
-- **Early Users**: For valuable feedback and improvement suggestions
+- **DeepSeek AI**：提供卓越的 DeepSeek‑OCR‑2 视觉模型
+- **Vectify AI**：开发创新的 PageIndex 推理式 RAG 框架
+- **开源社区**：所有使本项目成为可能的开源项目贡献者
+- **早期用户**：提供宝贵反馈和改进建议
 
-## 🆘 Support & Feedback
+## 🆘 支持与反馈
 
-- **Issue Reporting**: [GitHub Issues](https://github.com/yourusername/OpenNoteVision-LM/issues)
-- **Feature Suggestions**: Submit via Issues
-- **Technical Discussion**: Welcome to submit Pull Requests
-- **Usage Problems**: Check documentation or submit Issue
+- **问题报告**：[GitHub Issues](https://github.com/RealBSMC/OpenNoteVisionLM/issues)
+- **功能建议**：通过 Issues 提交
+- **技术讨论**：欢迎提交 Pull Request
+- **使用问题**：查阅文档或提交 Issue
 
 ---
 
-## 🚨 Important Disclaimer
+## 🚨 重要声明
 
-**OpenNoteVision LM is an open source community project and is NOT an official version or derivative of the following products:**
-- ❌ NOT an open source alternative to Google NoteBookLM
-- ❌ NOT a fork or improved version of opennotebook
-- ❌ NOT related to Tencent iMA
-- ❌ NO official affiliation with DeepSeek AI or Vectify AI
+**OpenNoteVision LM 是一个开源社区项目，并非以下产品的官方版本或衍生版本：**
+- ❌ 不是 Google NoteBookLM 的开源替代
+- ❌ 不是 opennotebook 的分支或改进版
+- ❌ 不是腾讯 iMA 的相关项目
+- ❌ 与 DeepSeek AI、Vectify AI 无官方关联
 
-**We simply address user needs unmet by these products, providing visual document processing capabilities they lack.**
+**我们只是解决了这些产品未能满足的用户需求，提供了他们缺乏的视觉文档处理能力。**
