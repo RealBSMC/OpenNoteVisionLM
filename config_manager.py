@@ -109,7 +109,7 @@ def ensure_config_dir():
 
 def load_settings() -> RAGSettings:
     settings = RAGSettings()
-    
+
     if CONFIG_FILE.exists():
         try:
             data = json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
@@ -119,6 +119,8 @@ def load_settings() -> RAGSettings:
                 settings.api_key = data["api_key"]
             if data.get("api_base_url"):
                 settings.api_base_url = data["api_base_url"]
+            if data.get("model_path"):
+                settings.model_path = data["model_path"]
             if data.get("index_model"):
                 settings.index_model = data["index_model"]
             if data.get("chat_model"):
@@ -161,6 +163,7 @@ def save_settings(settings: RAGSettings):
         "provider": settings.provider,
         "api_key": settings.api_key,
         "api_base_url": settings.api_base_url,
+        "model_path": settings.model_path,
         "index_model": settings.index_model,
         "chat_model": settings.chat_model,
         "rag_model": settings.rag_model,

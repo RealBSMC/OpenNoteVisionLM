@@ -810,3 +810,88 @@ body {
     background: var(--color-red-light);
     color: var(--color-red);
 }
+
+/* ============================================================
+   Input with Button
+   ============================================================ */
+.input-with-button {
+    display: flex;
+    gap: 8px;
+}
+.input-with-button .form-input {
+    flex: 1;
+    background: var(--color-gray-light);
+}
+.btn-secondary {
+    background: var(--color-gray-light);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border);
+}
+.btn-secondary:hover {
+    background: var(--color-border);
+    color: var(--color-text);
+}
+
+/* ============================================================
+   Directory Browser Modal
+   ============================================================ */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-gray-light);
+}
+.browse-path-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.browse-path-bar .form-input {
+    flex: 1;
+    background: var(--color-gray-light);
+    font-family: monospace;
+    font-size: 13px;
+}
+.browse-entries {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+.browse-entry {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background var(--transition);
+    border-bottom: 1px solid var(--color-border);
+}
+.browse-entry:last-child {
+    border-bottom: none;
+}
+.browse-entry:hover {
+    background: var(--color-primary-light);
+}
+.browse-entry.selected {
+    background: var(--color-primary-light);
+    border-left: 3px solid var(--color-primary);
+}
+.browse-entry svg {
+    flex-shrink: 0;
+    color: var(--color-primary);
+}
+.browse-entry span {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.browse-empty {
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 14px;
+}

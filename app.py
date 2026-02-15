@@ -27,9 +27,10 @@ import logging
 import threading
 import time
 import asyncio
+import subprocess
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 # ====== 第三方库导入 ======
 from fastapi import FastAPI, UploadFile, File, HTTPException, BackgroundTasks
@@ -398,12 +399,83 @@ async def update_rag_settings(request: SettingsUpdate):
         update_data["context_length"] = request.context_length
     if request.enable_rag is not None:
         update_data["enable_rag"] = request.enable_rag
-    
+
     if update_data:
         new_settings = update_settings(**update_data)
         rag_engine.update_config(new_settings)
         return {"status": "success", "settings": new_settings.to_display()}
     return {"status": "no_changes"}
+
+
+class BrowsePathRequest(BaseModel):
+    current_path: str = ""
+
+
+@app.post("/api/browse-directory")
+async def browse_directory(request: BrowsePathRequest):
+    """
+    打开系统目录选择对话框，返回用户选择的路径。
+    如果系统对话框不可用，则返回可浏览的目录列表。
+    """
+    selected_path = None
+
+    # 尝试使用 zenity (GNOME)
+    try:
+        result = subprocess.run(
+            ["zenity", "--file-selection", "--directory", "--title=选择 DeepSeek-OCR 模型目录"],
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            selected_path = result.stdout.strip()
+            return {"method": "dialog", "selected_path": selected_path}
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pass
+
+    # 尝试使用 kdialog (KDE)
+    try:
+        result = subprocess.run(
+            ["kdialog", "--getexistingdirectory", request.current_path or os.path.expanduser("~")],
+            capture_output=True,
+            text=True,
+            timeout=60
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            selected_path = result.stdout.strip()
+            return {"method": "dialog", "selected_path": selected_path}
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        pass
+
+    # 如果系统对话框不可用，返回可浏览的目录列表
+    browse_path = request.current_path
+    if not browse_path:
+        browse_path = os.path.expanduser("~")
+
+    if not os.path.isdir(browse_path):
+        browse_path = os.path.expanduser("~")
+
+    try:
+        entries = []
+        for entry in sorted(os.scandir(browse_path), key=lambda e: (not e.is_dir(), e.name.lower())):
+            if entry.is_dir() and not entry.name.startswith('.'):
+                entries.append({
+                    "name": entry.name,
+                    "path": entry.path,
+                    "is_dir": True
+                })
+
+        return {
+            "method": "browse",
+            "current_path": browse_path,
+            "parent_path": str(Path(browse_path).parent) if browse_path != "/" else None,
+            "entries": entries[:100],  # 限制数量
+            "message": "系统文件选择对话框不可用，请手动浏览目录"
+        }
+    except PermissionError:
+        return {"method": "error", "message": f"没有权限访问目录: {browse_path}"}
+    except Exception as e:
+        return {"method": "error", "message": f"浏览目录失败: {str(e)}"}
 
 
 # ============================================================

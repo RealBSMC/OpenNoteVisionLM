@@ -176,6 +176,7 @@ const dom = {
     customUrlInput: $('#custom-url-input'),
     apiKeyInput: $('#api-key-input'),
     modelPathInput: $('#model-path-input'),
+    browseModelPathBtn: $('#browse-model-path-btn'),
     apiKeyHint: $('#api-key-hint'),
     indexModelInput: $('#index-model-input'),
     indexModelHint: $('#index-model-hint'),
@@ -189,6 +190,14 @@ const dom = {
     contextLengthInput: $('#context-length-input'),
     saveSettingsBtn: $('#save-settings-btn'),
     settingsStatus: $('#settings-status'),
+    // Browse modal
+    browseModal: $('#browse-modal'),
+    browseClose: $('#browse-close'),
+    browseCurrentPath: $('#browse-current-path'),
+    browseEntries: $('#browse-entries'),
+    browseParentBtn: $('#browse-parent-btn'),
+    browseCancelBtn: $('#browse-cancel-btn'),
+    browseSelectBtn: $('#browse-select-btn'),
     // Viewer
     backBtn: $('#back-btn'),
     docTitle: $('#doc-title'),
@@ -572,38 +581,38 @@ function updateModelSelect(provider) {
 async function saveSettings() {
     const provider = dom.providerSelect.value;
     const apiKey = dom.apiKeyInput.value.trim();
-    const indexModel = provider === 'custom' 
-        ? dom.customIndexModelInput.value.trim() 
+    const indexModel = provider === 'custom'
+        ? dom.customIndexModelInput.value.trim()
         : dom.indexModelInput.value;
-    const chatModel = provider === 'custom' 
-        ? dom.customChatModelInput.value.trim() 
+    const chatModel = provider === 'custom'
+        ? dom.customChatModelInput.value.trim()
         : dom.chatModelInput.value;
     const threshold = parseInt(dom.summaryThresholdInput.value, 10);
     const contextLength = parseInt(dom.contextLengthInput.value, 10);
     const customUrl = dom.customUrlInput.value.trim();
     const modelPath = dom.modelPathInput.value.trim();
-    
+
     if (provider === 'custom' && !customUrl) {
         dom.settingsStatus.className = 'settings-status error';
         dom.settingsStatus.textContent = '自定义模式需要填写 API Base URL';
         return;
     }
-    
+
     if (!indexModel) {
         dom.settingsStatus.className = 'settings-status error';
         dom.settingsStatus.textContent = '请选择或输入索引模型';
         return;
     }
-    
+
     if (!chatModel) {
         dom.settingsStatus.className = 'settings-status error';
         dom.settingsStatus.textContent = '请选择或输入问答模型';
         return;
     }
-    
+
     dom.saveSettingsBtn.disabled = true;
     dom.saveSettingsBtn.textContent = '保存中...';
-    
+
     try {
          const body = {
              provider: provider,
@@ -613,34 +622,34 @@ async function saveSettings() {
              summary_token_threshold: threshold,
              context_length: contextLength || 8192,
          };
-        
+
         if (provider === 'custom' && customUrl) {
             body.api_base_url = customUrl;
         }
-        
+
         if (apiKey) {
             body.api_key = apiKey;
         }
-        
+
         const resp = await fetch('/api/settings', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body),
         });
-        
+
         if (!resp.ok) {
             const err = await resp.text();
             throw new Error(err);
         }
-        
+
         const data = await resp.json();
-        
+
         dom.settingsStatus.className = 'settings-status success';
         dom.settingsStatus.textContent = '设置保存成功！';
         dom.apiKeyInput.value = '';
-        
+
         updateRagStatus();
-        
+
         setTimeout(hideSettingsModal, 1000);
     } catch (e) {
         dom.settingsStatus.className = 'settings-status error';
@@ -649,6 +658,122 @@ async function saveSettings() {
         dom.saveSettingsBtn.disabled = false;
         dom.saveSettingsBtn.textContent = '保存设置';
     }
+}
+
+
+// ============================================================
+// Directory Browser
+// ============================================================
+
+let browseCurrentPath = '';
+
+async function browseDirectory() {
+    try {
+        const resp = await fetch('/api/browse-directory', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ current_path: dom.modelPathInput.value || '' }),
+        });
+
+        if (!resp.ok) {
+            throw new Error('Failed to browse directory');
+        }
+
+        const data = await resp.json();
+
+        if (data.method === 'dialog') {
+            // 系统对话框成功选择了路径
+            dom.modelPathInput.value = data.selected_path;
+        } else if (data.method === 'browse') {
+            // 系统对话框不可用，显示 Web 目录浏览器
+            showBrowseModal(data);
+        } else if (data.method === 'error') {
+            alert(data.message);
+        }
+    } catch (e) {
+        console.error('Browse directory failed:', e);
+        alert('浏览目录失败: ' + e.message);
+    }
+}
+
+function showBrowseModal(data) {
+    browseCurrentPath = data.current_path;
+    dom.browseCurrentPath.value = browseCurrentPath;
+    dom.browseParentBtn.disabled = !data.parent_path;
+    renderBrowseEntries(data.entries);
+    dom.browseModal.style.display = 'flex';
+}
+
+function hideBrowseModal() {
+    dom.browseModal.style.display = 'none';
+}
+
+function renderBrowseEntries(entries) {
+    if (entries.length === 0) {
+        dom.browseEntries.innerHTML = '<div class="browse-empty">此目录没有子目录</div>';
+        return;
+    }
+
+    dom.browseEntries.innerHTML = entries.map(entry => `
+        <div class="browse-entry" data-path="${entry.path}">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M2 4h12v10H2z"/>
+                <path d="M2 6h12"/>
+                <path d="M6 4V2h4v2"/>
+            </svg>
+            <span>${entry.name}</span>
+        </div>
+    `).join('');
+
+    // 绑定点击事件
+    dom.browseEntries.querySelectorAll('.browse-entry').forEach(el => {
+        el.addEventListener('dblclick', async () => {
+            await navigateToDirectory(el.dataset.path);
+        });
+        el.addEventListener('click', () => {
+            dom.browseEntries.querySelectorAll('.browse-entry').forEach(e => e.classList.remove('selected'));
+            el.classList.add('selected');
+        });
+    });
+}
+
+async function navigateToDirectory(path) {
+    try {
+        const resp = await fetch('/api/browse-directory', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ current_path: path }),
+        });
+
+        if (!resp.ok) {
+            throw new Error('Failed to navigate');
+        }
+
+        const data = await resp.json();
+
+        if (data.method === 'browse') {
+            browseCurrentPath = data.current_path;
+            dom.browseCurrentPath.value = browseCurrentPath;
+            dom.browseParentBtn.disabled = !data.parent_path;
+            renderBrowseEntries(data.entries);
+        } else if (data.method === 'error') {
+            alert(data.message);
+        }
+    } catch (e) {
+        console.error('Navigate failed:', e);
+        alert('无法访问目录: ' + e.message);
+    }
+}
+
+async function navigateToParent() {
+    if (!browseCurrentPath || browseCurrentPath === '/') return;
+    const parentPath = browseCurrentPath.split('/').slice(0, -1).join('/') || '/';
+    await navigateToDirectory(parentPath);
+}
+
+function selectCurrentDirectory() {
+    dom.modelPathInput.value = browseCurrentPath;
+    hideBrowseModal();
 }
 
 
@@ -1225,7 +1350,17 @@ function bindEvents() {
     });
     dom.saveSettingsBtn.addEventListener('click', saveSettings);
     dom.providerSelect.addEventListener('change', (e) => onProviderChange(e.target.value));
-    
+
+    // 目录浏览器
+    dom.browseModelPathBtn.addEventListener('click', browseDirectory);
+    dom.browseClose.addEventListener('click', hideBrowseModal);
+    dom.browseCancelBtn.addEventListener('click', hideBrowseModal);
+    dom.browseModal.addEventListener('click', (e) => {
+        if (e.target === dom.browseModal) hideBrowseModal();
+    });
+    dom.browseParentBtn.addEventListener('click', navigateToParent);
+    dom.browseSelectBtn.addEventListener('click', selectCurrentDirectory);
+
     // RAG 功能
     dom.buildIndexBtn.addEventListener('click', buildIndex);
     dom.toggleChatBtn.addEventListener('click', toggleChat);
